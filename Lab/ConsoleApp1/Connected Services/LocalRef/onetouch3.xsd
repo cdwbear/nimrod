@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Apex.Models.Common" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Apex.Models.Common" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:9562/onetouch.soap?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="SourceLocation">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsValueType xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsValueType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="_x003C_Line_x003E_k__BackingField" nillable="true" type="xs:int" />
+      <xs:element name="_x003C_Offset_x003E_k__BackingField" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SourceLocation" nillable="true" type="tns:SourceLocation" />
+  <xs:simpleType name="WsYesOrNo">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="No" />
+      <xs:enumeration value="NotApplicable" />
+      <xs:enumeration value="Yes" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="WsYesOrNo" nillable="true" type="tns:WsYesOrNo" />
+  <xs:simpleType name="WsInsuranceType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="Disability" />
+      <xs:enumeration value="MedicarePos" />
+      <xs:enumeration value="MedicareAdvantagePos" />
+      <xs:enumeration value="MultipleOptionsHealthPlan" />
+      <xs:enumeration value="MedicareSecondaryWorkingAgedGroupHealthPlan" />
+      <xs:enumeration value="MedicareSecondaryEndStageRenalGroupHealthPlan" />
+      <xs:enumeration value="MedicareSecondaryNofault" />
+      <xs:enumeration value="MedicareSecondaryWorkersCompensation" />
+      <xs:enumeration value="MedicareSecondaryPublicHealth" />
+      <xs:enumeration value="Dental" />
+      <xs:enumeration value="Vision" />
+      <xs:enumeration value="PrescriptionDrugs" />
+      <xs:enumeration value="MedicareSecondaryBlackLung" />
+      <xs:enumeration value="MedicareSecondaryVeteransAdministration" />
+      <xs:enumeration value="MedicareSecondaryDisabledUnder65GroupHealthPlan" />
+      <xs:enumeration value="MedicareSecondaryOtherLiability" />
+      <xs:enumeration value="AutoInsurancePolicy" />
+      <xs:enumeration value="Commercial" />
+      <xs:enumeration value="Cobra" />
+      <xs:enumeration value="MedicareConditionallyPrimary" />
+      <xs:enumeration value="DisabilityBenefits" />
+      <xs:enumeration value="ExclusiveProviderOrganization" />
+      <xs:enumeration value="FamilyOrFriends" />
+      <xs:enumeration value="GroupPolicy" />
+      <xs:enumeration value="Hmo" />
+      <xs:enumeration value="HmoMedicareRisk" />
+      <xs:enumeration value="SpecialLowIncomeMedicare" />
+      <xs:enumeration value="Indemnity" />
+      <xs:enumeration value="IndividualPolicy" />
+      <xs:enumeration value="LongTermCare" />
+      <xs:enumeration value="LongTermPolicy" />
+      <xs:enumeration value="LifeInsurance" />
+      <xs:enumeration value="Litigation" />
+      <xs:enumeration value="MedicarePartA" />
+      <xs:enumeration value="MedicarePartB" />
+      <xs:enumeration value="Medicaid" />
+      <xs:enumeration value="MedicarePartD" />
+      <xs:enumeration value="MedicareAdvantagePpo" />
+      <xs:enumeration value="MedicareAdvantageFeeForService" />
+      <xs:enumeration value="MedigapPartA" />
+      <xs:enumeration value="MedigapPartB" />
+      <xs:enumeration value="MedicareAdvantageHmo" />
+      <xs:enumeration value="MedicareAdvantageHmoRisk" />
+      <xs:enumeration value="MedicareAdvantageIndemnity" />
+      <xs:enumeration value="MedicareAdvantagePpoPartD" />
+      <xs:enumeration value="MedicareAdvantageIndemnityNoPartD" />
+      <xs:enumeration value="MedicareAdvantagePosPartD" />
+      <xs:enumeration value="MedicarePrimary" />
+      <xs:enumeration value="MedicareAdvantageRiskHmoNoPartD" />
+      <xs:enumeration value="MedicareAdvantageHmoNoPartD" />
+      <xs:enumeration value="MedicareAdvantage" />
+      <xs:enumeration value="Other" />
+      <xs:enumeration value="PropertyInsurancePersonal" />
+      <xs:enumeration value="Personal" />
+      <xs:enumeration value="PersonalPayment" />
+      <xs:enumeration value="Ppo" />
+      <xs:enumeration value="Pos" />
+      <xs:enumeration value="QualifiedMedicareBeneficiary" />
+      <xs:enumeration value="PropertyInsuranceReal" />
+      <xs:enumeration value="SupplementalPolicy" />
+      <xs:enumeration value="Tefra" />
+      <xs:enumeration value="WorkersCompensation" />
+      <xs:enumeration value="WrapUpPolicy" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="WsInsuranceType" nillable="true" type="tns:WsInsuranceType" />
+</xs:schema>

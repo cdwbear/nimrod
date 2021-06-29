@@ -1,0 +1,1 @@
+Data Source=brentdb1;Initial Catalog=Apex;Persist Security Info=True;User ID=SA; Password=Apexedi1!;Connection Timeout=3600

@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Apex.AdministrativeServices.Contracts.Providers" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Apex.AdministrativeServices.Contracts.Providers" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfWsCommonProvider">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WsCommonProvider" nillable="true" type="tns:WsCommonProvider" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWsCommonProvider" nillable="true" type="tns:ArrayOfWsCommonProvider" />
+  <xs:complexType name="WsCommonProvider">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AcceptTermsDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="AccountVerifiedByApex" type="xs:boolean" />
+      <xs:element minOccurs="0" name="AccountVerifiedByClient" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Address1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Address2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Adjustment" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="AdjustmentDesc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BCBSGroup" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BCBSIndividual" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BCBSMedicaid" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BillAllDocsAtThisSiteSeparately" type="xs:boolean" />
+      <xs:element minOccurs="0" name="BillClaimsOnAnotherProviderId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="BillDocIfNoClaims" type="xs:boolean" />
+      <xs:element minOccurs="0" name="BillMethod" type="xs:int" />
+      <xs:element minOccurs="0" name="BillPerVolume" type="xs:boolean" />
+      <xs:element minOccurs="0" name="BillingAddress1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BillingAddress2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BillingCity" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BillingName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BillingStartDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="BillingState" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BillingStateId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="BillingZip" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BlueCross" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BlueShield" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CLIA" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CardCheckingAcctNumVB" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="CardExpiration" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ChargePerClaimOverThresholdOrElect" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ChargePerClaimPaper" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ChargePerClaimUnderThresholdOrPaper" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CheckDigit" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CheckingRoutingNum" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClaimProductPurchasedId" type="xs:int" />
+      <xs:element minOccurs="0" name="ClientId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CommissionElectronic1" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CommissionElectronic2" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CommissionPaper1" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CommissionPaper2" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ContactName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CountryCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DMERC" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DaysOldClaims" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="DeliveryPoint" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DeltaDental" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DentalERAAmount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DepositAmount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DocIsAlwaysBilled" type="xs:boolean" />
+      <xs:element minOccurs="0" name="DocIsInactive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="DontSendAcceptanceReports" type="xs:boolean" />
+      <xs:element minOccurs="0" name="DontSendHumanReadableEobReports" type="xs:boolean" />
+      <xs:element minOccurs="0" name="DontSendMachineReadableEobReports" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ElectronicSubmitterId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EligibilityAmountOverThresholdMed" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="EligibilityBaseAmountMed" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmailAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Fax" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstNameIsMiddleInitial" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ForceOutputFrom0Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ForceOutputFrom1Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ForceOutputTo0Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ForceOutputTo1Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="HoldStatementsForReview" type="xs:boolean" />
+      <xs:element minOccurs="0" name="InnovationsMonthlyAmount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="IsIdtfLab" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsMigratable" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsNEAClient" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsOnWeb" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsPayToProviderPerson" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsRenderingProvider" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsRenderingProviderTaxIdEin" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsSubscribedSales" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsTaxIdEin" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsTestAccount" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsUsePayToProviderFromClaim" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsUseProviderFromClaim" type="xs:boolean" />
+      <xs:element minOccurs="0" name="KWApexMapId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="KeyFieldData" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastUpdate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="License" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LineItemMappingMax" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LineItemMappingMin" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MamoCertNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Medicaid" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MedicaidGroup" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MedicareGroup" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MedicareIndividual" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MiddleInitial" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MinimumFee" type="xs:decimal" />
+      <xs:element minOccurs="0" name="MonthlyClaimThreshold" type="xs:int" />
+      <xs:element minOccurs="0" name="MonthlyFee" type="xs:decimal" />
+      <xs:element minOccurs="0" name="NEAFacilityID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NEICSiteCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NEICSpecialtyCodeId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="NationalProviderId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NetworkId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Notes" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumberOfDaysFreeClaims" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="NumberOfEligibilityTransBlockMed" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="OldClaims" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="OrganizationName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OutputMedicareLegacy" type="xs:boolean" />
+      <xs:element minOccurs="0" name="PEHP" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PayToAddressAddress1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PayToAddressAddress2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PayToAddressCity" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PayToAddressCountryCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PayToAddressState" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PayToAddressZip" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PayerEnrollment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PayerEnrollmentPending" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PayerSpecificId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PaymentMethod" type="xs:int" />
+      <xs:element minOccurs="0" name="PerClaimRateOverBlockThreshold" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PgpPublicKey" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProfessionId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ProvTypeOrg" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProviderId" type="xs:int" />
+      <xs:element minOccurs="0" name="ProviderSale" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ProviderStartDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Qualifications" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Quit" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="RailroadMedicare" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RailroadMedicareGroup" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RegistrationFee" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="RejectAllClaims" type="xs:boolean" />
+      <xs:element minOccurs="0" name="RejectPaperClaims" type="xs:boolean" />
+      <xs:element minOccurs="0" name="RenderingProviderAddress1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RenderingProviderAddress2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RenderingProviderCity" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RenderingProviderFirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RenderingProviderLastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RenderingProviderMiddleInitial" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RenderingProviderNEICSpecialtyCodeId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="RenderingProviderNpi" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RenderingProviderOrganization" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RenderingProviderState" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RenderingProviderStateId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="RenderingProviderTaxId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RenderingProviderUseOrganizationName" type="xs:boolean" />
+      <xs:element minOccurs="0" name="RenderingProviderZip" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReportIdNumbers" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReportOnPreviousFailedClaims" type="xs:boolean" />
+      <xs:element minOccurs="0" name="RequireSoftwareUpdate" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SalesCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SalesRep1Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="SalesRep2Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="SendApexReports" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SendUtahMedicareERAOnly" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ServiceLevel" type="xs:int" />
+      <xs:element minOccurs="0" name="ShowPaperClaims" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SiteIsOnHold" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SoftwareName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SoftwareVersion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatBackprinting" type="xs:boolean" />
+      <xs:element minOccurs="0" name="StatChargePerStatOverThreshold" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="StatChargePerStatSecondPage" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="StatChargePerStatUnderThreshold" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="StatClaimStartString" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatCreditCardsAccepted" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatCustomLogo" type="xs:boolean" />
+      <xs:element minOccurs="0" name="StatExcludeBalanceDue" type="xs:boolean" />
+      <xs:element minOccurs="0" name="StatExcludeRemitToAddress" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="StatFooterHeaderCorrectLineNumber" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="StatFooterHeaderString" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatHasFloatingFooterHeader" type="xs:boolean" />
+      <xs:element minOccurs="0" name="StatIncludePaymentDueByDate" type="xs:boolean" />
+      <xs:element minOccurs="0" name="StatIncludePaymentDueByDateNumberOfDays" nillable="true" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="StatIndustryCommercialType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatIndustryType" nillable="true" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="StatKWApexMapId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="StatKeyFieldData" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatLineItemStartsWithRegex" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatLineItemStartsWithRegexPatternLength" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="StatMinimumFeeAmount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="StatMonthlyStatThreshold" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="StatNote" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatNote1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatNote2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatNote3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatNote4" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatNote5" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatPaperColor" type="xs:int" />
+      <xs:element minOccurs="0" name="StatPaySalesRep1" type="xs:boolean" />
+      <xs:element minOccurs="0" name="StatPaySalesRep2" type="xs:boolean" />
+      <xs:element minOccurs="0" name="StatPayVendor1" type="xs:boolean" />
+      <xs:element minOccurs="0" name="StatPayVendor2" type="xs:boolean" />
+      <xs:element minOccurs="0" name="StatProductType" type="xs:int" />
+      <xs:element minOccurs="0" name="StatPullOfficeInfoFromStatement" type="xs:boolean" />
+      <xs:element minOccurs="0" name="StatPullRemitToInfoFromStatement" type="xs:boolean" />
+      <xs:element minOccurs="0" name="StatRemitAddress1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatRemitAddress2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatRemitCheckDigit" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatRemitCity" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatRemitDeliveryPoint" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatRemitName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatRemitPhone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatRemitPhoneAlt" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatRemitPhoneAltExt" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatRemitPhoneExt" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatRemitSTId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="StatRemitState" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatRemitZip" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatShiftFirstLine" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatShiftSpaceHi" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatShiftSpaceLo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatSoftwareConversionId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="StatStatementStartDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="StatStripString" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatUniqueName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatUseUniqueSettings" type="xs:int" />
+      <xs:element minOccurs="0" name="State" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StateId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="StripString" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SubscribedSales" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="SubscribedSalesIP" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TaxId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Tricare" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UPIN" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UniqueNameOnClaim" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UnsubscribedSales" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Use5010Tables" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="UseClaimRemedi" type="xs:boolean" />
+      <xs:element minOccurs="0" name="UseFacilityAddOnClaim" type="xs:boolean" />
+      <xs:element minOccurs="0" name="UseNpiOnClaim" type="xs:boolean" />
+      <xs:element minOccurs="0" name="UseOrganizationName" type="xs:boolean" />
+      <xs:element minOccurs="0" name="UseTaxIdOnClaim" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Vendor1Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Vendor2Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="WebUserSettingsId" type="xs:int" />
+      <xs:element minOccurs="0" name="WorkersComp" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Zip" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WsCommonProvider" nillable="true" type="tns:WsCommonProvider" />
+</xs:schema>

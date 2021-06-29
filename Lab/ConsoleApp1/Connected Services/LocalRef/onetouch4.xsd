@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Apex.PayerServices.PayerModel" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Apex.PayerServices.PayerModel" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="WsStatusOfClaim">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="ProcessedAsPrimary" />
+      <xs:enumeration value="ProcessedAsSecondary" />
+      <xs:enumeration value="ProcessedAsTertiary" />
+      <xs:enumeration value="Denied" />
+      <xs:enumeration value="ProcessedAsPrimaryForwarded" />
+      <xs:enumeration value="ProcessedAsSecondaryForwarded" />
+      <xs:enumeration value="ProcessedAsTertiaryForwarded" />
+      <xs:enumeration value="PaymentReversal" />
+      <xs:enumeration value="ForwardedNotOurs" />
+      <xs:enumeration value="PredeterminationOnly" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="WsStatusOfClaim" nillable="true" type="tns:WsStatusOfClaim" />
+</xs:schema>

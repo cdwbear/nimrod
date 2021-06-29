@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/OnetouchWebServicesContracts" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/OnetouchWebServicesContracts" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:9562/onetouch.soap?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Apex.OneTouchService" />
+  <xs:complexType name="ArrayOfSubmitResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SubmitResult" nillable="true" type="tns:SubmitResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSubmitResult" nillable="true" type="tns:ArrayOfSubmitResult" />
+  <xs:complexType name="SubmitResult">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Apex.OneTouchService" minOccurs="0" name="Errors" nillable="true" type="q1:ArrayOfSubmitError" />
+      <xs:element minOccurs="0" name="RequestId" nillable="true" type="xs:string" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Apex.OneTouchService" minOccurs="0" name="Status" type="q2:SubmitStatus" />
+      <xs:element minOccurs="0" name="VendorClaimId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SubmitResult" nillable="true" type="tns:SubmitResult" />
+  <xs:complexType name="AuthenticationFault">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AuthenticationFault" nillable="true" type="tns:AuthenticationFault" />
+  <xs:complexType name="VendorIdFault">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VendorIdFault" nillable="true" type="tns:VendorIdFault" />
+</xs:schema>

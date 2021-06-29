@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetProviders">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProvidersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProvidersResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEligibilityPayers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEligibilityPayersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEligibilityPayersResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SubmitEligibility">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="providerID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="payerID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="eqCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="subscriberID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="subscriberFirstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="subscriberLastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="subscriberDateOfBirth" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="subscriberIsMale" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="isInNetwork" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="dependentFirstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dependentLastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dependentDateOfBirth" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="dependentIsMale" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SubmitEligibilityResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SubmitEligibilityResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEligibilityResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="functionalGroupEligibilityID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="return271Response" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEligibilityResponseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEligibilityResponseResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="int" type="s:int" />
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetProvidersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProviders" />
+  </wsdl:message>
+  <wsdl:message name="GetProvidersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProvidersResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEligibilityPayersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEligibilityPayers" />
+  </wsdl:message>
+  <wsdl:message name="GetEligibilityPayersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEligibilityPayersResponse" />
+  </wsdl:message>
+  <wsdl:message name="SubmitEligibilitySoapIn">
+    <wsdl:part name="parameters" element="tns:SubmitEligibility" />
+  </wsdl:message>
+  <wsdl:message name="SubmitEligibilitySoapOut">
+    <wsdl:part name="parameters" element="tns:SubmitEligibilityResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEligibilityResponseSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEligibilityResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEligibilityResponseSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEligibilityResponseResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProvidersHttpGetIn">
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetProvidersHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="GetEligibilityPayersHttpGetIn">
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetEligibilityPayersHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="SubmitEligibilityHttpGetIn">
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="providerID" type="s:string" />
+    <wsdl:part name="payerID" type="s:string" />
+    <wsdl:part name="eqCode" type="s:string" />
+    <wsdl:part name="subscriberID" type="s:string" />
+    <wsdl:part name="subscriberFirstName" type="s:string" />
+    <wsdl:part name="subscriberLastName" type="s:string" />
+    <wsdl:part name="subscriberDateOfBirth" type="s:string" />
+    <wsdl:part name="subscriberIsMale" type="s:string" />
+    <wsdl:part name="isInNetwork" type="s:string" />
+    <wsdl:part name="dependentFirstName" type="s:string" />
+    <wsdl:part name="dependentLastName" type="s:string" />
+    <wsdl:part name="dependentDateOfBirth" type="s:string" />
+    <wsdl:part name="dependentIsMale" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SubmitEligibilityHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="GetEligibilityResponseHttpGetIn">
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="functionalGroupEligibilityID" type="s:string" />
+    <wsdl:part name="return271Response" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetEligibilityResponseHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetProvidersHttpPostIn">
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetProvidersHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="GetEligibilityPayersHttpPostIn">
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetEligibilityPayersHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="SubmitEligibilityHttpPostIn">
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="providerID" type="s:string" />
+    <wsdl:part name="payerID" type="s:string" />
+    <wsdl:part name="eqCode" type="s:string" />
+    <wsdl:part name="subscriberID" type="s:string" />
+    <wsdl:part name="subscriberFirstName" type="s:string" />
+    <wsdl:part name="subscriberLastName" type="s:string" />
+    <wsdl:part name="subscriberDateOfBirth" type="s:string" />
+    <wsdl:part name="subscriberIsMale" type="s:string" />
+    <wsdl:part name="isInNetwork" type="s:string" />
+    <wsdl:part name="dependentFirstName" type="s:string" />
+    <wsdl:part name="dependentLastName" type="s:string" />
+    <wsdl:part name="dependentDateOfBirth" type="s:string" />
+    <wsdl:part name="dependentIsMale" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SubmitEligibilityHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="GetEligibilityResponseHttpPostIn">
+    <wsdl:part name="username" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="functionalGroupEligibilityID" type="s:string" />
+    <wsdl:part name="return271Response" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetEligibilityResponseHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="ApexEligibilityAPISoap">
+    <wsdl:operation name="GetProviders">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a list of active providers and their Apex provider IDs for the given client's username and password. For examples contact Apex EDI for documentation.</wsdl:documentation>
+      <wsdl:input message="tns:GetProvidersSoapIn" />
+      <wsdl:output message="tns:GetProvidersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEligibilityPayers">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a list of active eligibility payers, their eligibility payer IDs, and their transmission method (real-time or batch). For examples contact Apex EDI for documentation. </wsdl:documentation>
+      <wsdl:input message="tns:GetEligibilityPayersSoapIn" />
+      <wsdl:output message="tns:GetEligibilityPayersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitEligibility">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Submits an eligibility request to the payer for the given parameters. To retrieve the response of this request, call the 'GetEligibilityResponse' method using the integer value that's returned on this method call.</wsdl:documentation>
+      <wsdl:input message="tns:SubmitEligibilitySoapIn" />
+      <wsdl:output message="tns:SubmitEligibilitySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEligibilityResponse">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns the response of a previously submitted eligibility request sent through the 'SubmitEligibility' method. If a real-time response is not available, a message reading 'Response is still pending. Please try again later.’ will be returned.  By setting the 'return271Response' to true, it will return the raw ANSI 271 string. If set to false, it will return an HTML-formatted version of the eligibility response.</wsdl:documentation>
+      <wsdl:input message="tns:GetEligibilityResponseSoapIn" />
+      <wsdl:output message="tns:GetEligibilityResponseSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ApexEligibilityAPIHttpGet">
+    <wsdl:operation name="GetProviders">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a list of active providers and their Apex provider IDs for the given client's username and password. For examples contact Apex EDI for documentation.</wsdl:documentation>
+      <wsdl:input message="tns:GetProvidersHttpGetIn" />
+      <wsdl:output message="tns:GetProvidersHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEligibilityPayers">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a list of active eligibility payers, their eligibility payer IDs, and their transmission method (real-time or batch). For examples contact Apex EDI for documentation. </wsdl:documentation>
+      <wsdl:input message="tns:GetEligibilityPayersHttpGetIn" />
+      <wsdl:output message="tns:GetEligibilityPayersHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitEligibility">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Submits an eligibility request to the payer for the given parameters. To retrieve the response of this request, call the 'GetEligibilityResponse' method using the integer value that's returned on this method call.</wsdl:documentation>
+      <wsdl:input message="tns:SubmitEligibilityHttpGetIn" />
+      <wsdl:output message="tns:SubmitEligibilityHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEligibilityResponse">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns the response of a previously submitted eligibility request sent through the 'SubmitEligibility' method. If a real-time response is not available, a message reading 'Response is still pending. Please try again later.’ will be returned.  By setting the 'return271Response' to true, it will return the raw ANSI 271 string. If set to false, it will return an HTML-formatted version of the eligibility response.</wsdl:documentation>
+      <wsdl:input message="tns:GetEligibilityResponseHttpGetIn" />
+      <wsdl:output message="tns:GetEligibilityResponseHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ApexEligibilityAPIHttpPost">
+    <wsdl:operation name="GetProviders">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a list of active providers and their Apex provider IDs for the given client's username and password. For examples contact Apex EDI for documentation.</wsdl:documentation>
+      <wsdl:input message="tns:GetProvidersHttpPostIn" />
+      <wsdl:output message="tns:GetProvidersHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEligibilityPayers">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a list of active eligibility payers, their eligibility payer IDs, and their transmission method (real-time or batch). For examples contact Apex EDI for documentation. </wsdl:documentation>
+      <wsdl:input message="tns:GetEligibilityPayersHttpPostIn" />
+      <wsdl:output message="tns:GetEligibilityPayersHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitEligibility">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Submits an eligibility request to the payer for the given parameters. To retrieve the response of this request, call the 'GetEligibilityResponse' method using the integer value that's returned on this method call.</wsdl:documentation>
+      <wsdl:input message="tns:SubmitEligibilityHttpPostIn" />
+      <wsdl:output message="tns:SubmitEligibilityHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEligibilityResponse">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns the response of a previously submitted eligibility request sent through the 'SubmitEligibility' method. If a real-time response is not available, a message reading 'Response is still pending. Please try again later.’ will be returned.  By setting the 'return271Response' to true, it will return the raw ANSI 271 string. If set to false, it will return an HTML-formatted version of the eligibility response.</wsdl:documentation>
+      <wsdl:input message="tns:GetEligibilityResponseHttpPostIn" />
+      <wsdl:output message="tns:GetEligibilityResponseHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ApexEligibilityAPISoap" type="tns:ApexEligibilityAPISoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetProviders">
+      <soap:operation soapAction="http://tempuri.org/GetProviders" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEligibilityPayers">
+      <soap:operation soapAction="http://tempuri.org/GetEligibilityPayers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitEligibility">
+      <soap:operation soapAction="http://tempuri.org/SubmitEligibility" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEligibilityResponse">
+      <soap:operation soapAction="http://tempuri.org/GetEligibilityResponse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ApexEligibilityAPISoap12" type="tns:ApexEligibilityAPISoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetProviders">
+      <soap12:operation soapAction="http://tempuri.org/GetProviders" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEligibilityPayers">
+      <soap12:operation soapAction="http://tempuri.org/GetEligibilityPayers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitEligibility">
+      <soap12:operation soapAction="http://tempuri.org/SubmitEligibility" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEligibilityResponse">
+      <soap12:operation soapAction="http://tempuri.org/GetEligibilityResponse" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ApexEligibilityAPIHttpGet" type="tns:ApexEligibilityAPIHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetProviders">
+      <http:operation location="/GetProviders" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEligibilityPayers">
+      <http:operation location="/GetEligibilityPayers" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitEligibility">
+      <http:operation location="/SubmitEligibility" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEligibilityResponse">
+      <http:operation location="/GetEligibilityResponse" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ApexEligibilityAPIHttpPost" type="tns:ApexEligibilityAPIHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetProviders">
+      <http:operation location="/GetProviders" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEligibilityPayers">
+      <http:operation location="/GetEligibilityPayers" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitEligibility">
+      <http:operation location="/SubmitEligibility" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEligibilityResponse">
+      <http:operation location="/GetEligibilityResponse" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ApexEligibilityAPI">
+    <wsdl:port name="ApexEligibilityAPISoap" binding="tns:ApexEligibilityAPISoap">
+      <soap:address location="http://onetouch.apexedi.com/secure/apexeligibilityapi.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ApexEligibilityAPISoap12" binding="tns:ApexEligibilityAPISoap12">
+      <soap12:address location="http://onetouch.apexedi.com/secure/apexeligibilityapi.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ApexEligibilityAPIHttpGet" binding="tns:ApexEligibilityAPIHttpGet">
+      <http:address location="http://onetouch.apexedi.com/secure/apexeligibilityapi.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ApexEligibilityAPIHttpPost" binding="tns:ApexEligibilityAPIHttpPost">
+      <http:address location="http://onetouch.apexedi.com/secure/apexeligibilityapi.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
