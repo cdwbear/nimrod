@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility.Request" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility.Request" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:9557/onetouch.soap?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts" />
+  <xs:import schemaLocation="http://localhost:9557/onetouch.soap?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility" />
+  <xs:import schemaLocation="http://localhost:9557/onetouch.soap?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility.Response" />
+  <xs:import schemaLocation="http://localhost:9557/onetouch.soap?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="WsBenefitSubmitRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BenefitInquiries" nillable="true" type="tns:ArrayOfWsBenefitInquiry" />
+      <xs:element minOccurs="0" name="IsTest" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WsBenefitSubmitRequest" nillable="true" type="tns:WsBenefitSubmitRequest" />
+  <xs:complexType name="ArrayOfWsBenefitInquiry">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WsBenefitInquiry" nillable="true" type="tns:WsBenefitInquiry" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWsBenefitInquiry" nillable="true" type="tns:ArrayOfWsBenefitInquiry" />
+  <xs:complexType name="WsBenefitInquiry">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts" base="q1:WsDocument">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ApexSubmitterTransactionId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OriginalSubmitterTransactionId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Payers" nillable="true" type="tns:ArrayOfWsEligibilityRequestPayer" />
+          <xs:element minOccurs="0" name="RequestType" type="tns:WsRequestType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="WsBenefitInquiry" nillable="true" type="tns:WsBenefitInquiry" />
+  <xs:complexType name="ArrayOfWsEligibilityRequestPayer">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WsEligibilityRequestPayer" nillable="true" type="tns:WsEligibilityRequestPayer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWsEligibilityRequestPayer" nillable="true" type="tns:ArrayOfWsEligibilityRequestPayer" />
+  <xs:complexType name="WsEligibilityRequestPayer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CmsPlanId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CommonName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ElectronicTransmitterIdNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmployersIdNumber" nillable="true" type="xs:string" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts" minOccurs="0" name="EntityType" type="q2:WsEntityType" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MiddleName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NaicId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NationalPayerIdNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NationalProviderId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Payees" nillable="true" type="tns:ArrayOfWsEligibilityRequestPayee" />
+      <xs:element minOccurs="0" name="PayerId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Suffix" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TaxIdNumber" nillable="true" type="xs:string" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility" minOccurs="0" name="Type" type="q3:WsPayerType" />
+      <xs:element minOccurs="0" name="VendorPayerId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WsEligibilityRequestPayer" nillable="true" type="tns:WsEligibilityRequestPayer" />
+  <xs:complexType name="ArrayOfWsEligibilityRequestPayee">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WsEligibilityRequestPayee" nillable="true" type="tns:WsEligibilityRequestPayee" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWsEligibilityRequestPayee" nillable="true" type="tns:ArrayOfWsEligibilityRequestPayee" />
+  <xs:complexType name="WsEligibilityRequestPayee">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CmsPlanId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CommonName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ContractNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DevicePin" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmployersIdNumber" nillable="true" type="xs:string" />
+      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts" minOccurs="0" name="EntityType" type="q4:WsEntityType" />
+      <xs:element minOccurs="0" name="FacilityIdNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FacilityNetworkIdNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MedicaidProviderNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MedicareProviderNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MiddleName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NationalProviderId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PayerId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PersonalIdNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PharmacyNumber" nillable="true" type="xs:string" />
+      <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts" minOccurs="0" name="PhysicalAddress" nillable="true" type="q5:WsAddress" />
+      <xs:element minOccurs="0" name="PlanNetworkId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PriorIdNumber" nillable="true" type="xs:string" />
+      <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility" minOccurs="0" name="ProviderRole" nillable="true" type="q6:WsProviderRole" />
+      <xs:element minOccurs="0" name="ReceivingProviderTaxonomyCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RenderingProviderTaxonomyCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ServiceProviderNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SocialSecurityNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StateIssuingLicense" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StateLicenseNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SubmitterIdNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Subscribers" nillable="true" type="tns:ArrayOfWsEligibilityRequestSubscriber" />
+      <xs:element minOccurs="0" name="Suffix" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TaxIdNumber" nillable="true" type="xs:string" />
+      <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility.Response" minOccurs="0" name="Type" type="q7:WsPayeeType" />
+      <xs:element minOccurs="0" name="UserId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WsEligibilityRequestPayee" nillable="true" type="tns:WsEligibilityRequestPayee" />
+  <xs:complexType name="ArrayOfWsEligibilityRequestSubscriber">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WsEligibilityRequestSubscriber" nillable="true" type="tns:WsEligibilityRequestSubscriber" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWsEligibilityRequestSubscriber" nillable="true" type="tns:ArrayOfWsEligibilityRequestSubscriber" />
+  <xs:complexType name="WsEligibilityRequestSubscriber">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:WsEligibilityRequestPatient">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Dependents" nillable="true" type="tns:ArrayOfWsEligibilityRequestDependent" />
+          <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts" minOccurs="0" name="EntityType" nillable="true" type="q8:WsEntityType" />
+          <xs:element minOccurs="0" name="RequestedBenefits" nillable="true" type="tns:ArrayOfWsSubscriberBenefit" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="WsEligibilityRequestSubscriber" nillable="true" type="tns:WsEligibilityRequestSubscriber" />
+  <xs:complexType name="WsEligibilityRequestPatient">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AgencyClaimNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BirthDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CaseNumber" nillable="true" type="xs:string" />
+      <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility" minOccurs="0" name="ClearinghouseTraceNumber" nillable="true" type="q9:WsTraceNumber" />
+      <xs:element minOccurs="0" name="CommonName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ContractNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EligibilityCategory" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EligibilityRequestProvider" nillable="true" type="tns:WsEligibilityRequestProvider" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility" minOccurs="0" name="Gender" nillable="true" type="q10:WsGender" />
+      <xs:element minOccurs="0" name="GroupNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GroupOrPolicyNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HealthInsuranceClaimNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IdCardNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IdCardSerialNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="InsurancePolicyNumber" nillable="true" type="xs:string" />
+      <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts" minOccurs="0" name="IssueDate" nillable="true" type="q11:WsDateRange" />
+      <xs:element minOccurs="0" name="IssueNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MedicaidRecipientId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MedicalRecordNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MemberId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MiddleName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MultipleBirthSequenceNumber" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="PatientAccountNumber" nillable="true" type="xs:string" />
+      <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility" minOccurs="0" name="PayeeTraceNumber" nillable="true" type="q12:WsTraceNumber" />
+      <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts" minOccurs="0" name="PhysicalAddress" nillable="true" type="q13:WsAddress" />
+      <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts" minOccurs="0" name="PlanDate" nillable="true" type="q14:WsDateRange" />
+      <xs:element minOccurs="0" name="PlanNetworkIdNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PlanNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PolicyNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SocialSecurityNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StandardUniqueHealthId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Suffix" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WsEligibilityRequestPatient" nillable="true" type="tns:WsEligibilityRequestPatient" />
+  <xs:complexType name="WsEligibilityRequestProvider">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EmployersIdNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NationalProviderId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PharmacyNumber" nillable="true" type="xs:string" />
+      <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility" minOccurs="0" name="ProviderRole" type="q15:WsProviderRole" />
+      <xs:element minOccurs="0" name="ServicerId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SocialSecurityNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TaxIdNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TaxonomyCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WsEligibilityRequestProvider" nillable="true" type="tns:WsEligibilityRequestProvider" />
+  <xs:complexType name="ArrayOfWsEligibilityRequestDependent">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WsEligibilityRequestDependent" nillable="true" type="tns:WsEligibilityRequestDependent" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWsEligibilityRequestDependent" nillable="true" type="tns:ArrayOfWsEligibilityRequestDependent" />
+  <xs:complexType name="WsEligibilityRequestDependent">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:WsEligibilityRequestPatient">
+        <xs:sequence>
+          <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility" minOccurs="0" name="RelationshipToSubscriber" type="q16:WsRelationship" />
+          <xs:element minOccurs="0" name="RequestedBenefits" nillable="true" type="tns:ArrayOfWsBenefit" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="WsEligibilityRequestDependent" nillable="true" type="tns:WsEligibilityRequestDependent" />
+  <xs:complexType name="ArrayOfWsBenefit">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WsBenefit" nillable="true" type="tns:WsBenefit" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWsBenefit" nillable="true" type="tns:ArrayOfWsBenefit" />
+  <xs:complexType name="WsBenefit">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IsFamilyBenefit" type="xs:boolean" />
+      <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts" minOccurs="0" name="PlaceOfService" nillable="true" type="q17:WsPlaceOfServiceCode" />
+      <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts" minOccurs="0" name="PlanDate" nillable="true" type="q18:WsDateRange" />
+      <xs:element minOccurs="0" name="PriorAuthorizationNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Procedure" nillable="true" type="tns:WsEligibilityRequestProcedure" />
+      <xs:element minOccurs="0" name="ReferralNumber" nillable="true" type="xs:string" />
+      <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility" minOccurs="0" name="Type" nillable="true" type="q19:ArrayOfWsServiceType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WsBenefit" nillable="true" type="tns:WsBenefit" />
+  <xs:complexType name="WsEligibilityRequestProcedure">
+    <xs:sequence>
+      <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility" minOccurs="0" name="DiagnosisCodes" nillable="true" type="q20:ArrayOfWsDiagnosisCode" />
+      <xs:element xmlns:q21="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Modifiers" nillable="true" type="q21:ArrayOfstring" />
+      <xs:element minOccurs="0" name="ProcedureCode" nillable="true" type="xs:string" />
+      <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility" minOccurs="0" name="Type" type="q22:WsEligibilityProcedureCodeSource" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WsEligibilityRequestProcedure" nillable="true" type="tns:WsEligibilityRequestProcedure" />
+  <xs:complexType name="WsSubscriberBenefit">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:WsBenefit">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SpendDownAmount" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="SpendDownTotalBilledAmount" nillable="true" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="WsSubscriberBenefit" nillable="true" type="tns:WsSubscriberBenefit" />
+  <xs:complexType name="ArrayOfWsSubscriberBenefit">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WsSubscriberBenefit" nillable="true" type="tns:WsSubscriberBenefit" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWsSubscriberBenefit" nillable="true" type="tns:ArrayOfWsSubscriberBenefit" />
+  <xs:simpleType name="WsRequestType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="Request" />
+      <xs:enumeration value="SpendDownRequest" />
+      <xs:enumeration value="SpendDownCancellation" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="WsRequestType" nillable="true" type="tns:WsRequestType" />
+  <xs:complexType name="WsBenefitSubmitRequestLite">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Benefits" nillable="true" type="tns:ArrayOfWsBenefitLite" />
+      <xs:element minOccurs="0" name="Dependents" nillable="true" type="tns:ArrayOfWsEligibilityRequestDependentInfo" />
+      <xs:element minOccurs="0" name="IsTest" type="xs:boolean" />
+      <xs:element minOccurs="0" name="OriginalSubmitterTransactionId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PayeeId" type="xs:int" />
+      <xs:element minOccurs="0" name="PayerId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Subscriber" nillable="true" type="tns:WsEligibilityRequestSubscriberInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WsBenefitSubmitRequestLite" nillable="true" type="tns:WsBenefitSubmitRequestLite" />
+  <xs:complexType name="ArrayOfWsBenefitLite">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WsBenefitLite" nillable="true" type="tns:WsBenefitLite" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWsBenefitLite" nillable="true" type="tns:ArrayOfWsBenefitLite" />
+  <xs:complexType name="WsBenefitLite">
+    <xs:sequence>
+      <xs:element xmlns:q23="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="EQCodes" nillable="true" type="q23:ArrayOfstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WsBenefitLite" nillable="true" type="tns:WsBenefitLite" />
+  <xs:complexType name="ArrayOfWsEligibilityRequestDependentInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WsEligibilityRequestDependentInfo" nillable="true" type="tns:WsEligibilityRequestDependentInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWsEligibilityRequestDependentInfo" nillable="true" type="tns:ArrayOfWsEligibilityRequestDependentInfo" />
+  <xs:complexType name="WsEligibilityRequestDependentInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:WsEligibilityRequestPatientInfo">
+        <xs:sequence>
+          <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility" minOccurs="0" name="RelationshipToSubscriber" type="q24:WsRelationship" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="WsEligibilityRequestDependentInfo" nillable="true" type="tns:WsEligibilityRequestDependentInfo" />
+  <xs:complexType name="WsEligibilityRequestPatientInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BirthDate" nillable="true" type="xs:dateTime" />
+      <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility" minOccurs="0" name="ClearinghouseTraceNumber" nillable="true" type="q25:WsTraceNumber" />
+      <xs:element minOccurs="0" name="CommonName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EligibilityRequestProvider" nillable="true" type="tns:WsEligibilityRequestProvider" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility" minOccurs="0" name="Gender" nillable="true" type="q26:WsGender" />
+      <xs:element minOccurs="0" name="MemberId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MiddleName" nillable="true" type="xs:string" />
+      <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility" minOccurs="0" name="PayeeTraceNumber" nillable="true" type="q27:WsTraceNumber" />
+      <xs:element minOccurs="0" name="Suffix" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WsEligibilityRequestPatientInfo" nillable="true" type="tns:WsEligibilityRequestPatientInfo" />
+  <xs:complexType name="WsEligibilityRequestSubscriberInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:WsEligibilityRequestPatientInfo">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="WsEligibilityRequestSubscriberInfo" nillable="true" type="tns:WsEligibilityRequestSubscriberInfo" />
+</xs:schema>

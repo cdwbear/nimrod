@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Apex.OneTouchService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Apex.OneTouchService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:52846/onetouch.soap?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/OnetouchWebServicesContracts" />
+  <xs:import schemaLocation="http://localhost:52846/onetouch.soap?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ClaimSubmitResult">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/OnetouchWebServicesContracts" minOccurs="0" name="ClaimResults" nillable="true" type="q1:ArrayOfSubmitResult" />
+      <xs:element minOccurs="0" name="DocumentLevelErrors" nillable="true" type="tns:ArrayOfSubmitError" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ClaimSubmitResult" nillable="true" type="tns:ClaimSubmitResult" />
+  <xs:complexType name="ArrayOfSubmitError">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SubmitError" nillable="true" type="tns:SubmitError" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSubmitError" nillable="true" type="tns:ArrayOfSubmitError" />
+  <xs:complexType name="SubmitError">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Location" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SupplimentalInformation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Type" type="tns:SubmitErrorType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SubmitError" nillable="true" type="tns:SubmitError" />
+  <xs:simpleType name="SubmitErrorType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="Syntax" />
+      <xs:enumeration value="Validation" />
+      <xs:enumeration value="System" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="SubmitErrorType" nillable="true" type="tns:SubmitErrorType" />
+  <xs:simpleType name="SubmitStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="Accepted" />
+      <xs:enumeration value="NotAccepted" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="SubmitStatus" nillable="true" type="tns:SubmitStatus" />
+  <xs:complexType name="ArrayOfClaimStatus">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ClaimStatus" nillable="true" type="tns:ClaimStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfClaimStatus" nillable="true" type="tns:ArrayOfClaimStatus" />
+  <xs:complexType name="ClaimStatus">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CurrentState" type="tns:ProcessStatus" />
+      <xs:element minOccurs="0" name="ReceivedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="VendorClaimId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ClaimStatus" nillable="true" type="tns:ClaimStatus" />
+  <xs:simpleType name="ProcessStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="Ready" />
+      <xs:enumeration value="Submitted" />
+      <xs:enumeration value="NotFound" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ProcessStatus" nillable="true" type="tns:ProcessStatus" />
+  <xs:simpleType name="PayerType">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Unknown">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">0</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Dental">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Medical">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Institutional">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="Medicaid">
+            <xs:annotation>
+              <xs:appinfo>
+                <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">8</EnumerationValue>
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:element name="PayerType" nillable="true" type="tns:PayerType" />
+  <xs:complexType name="ArrayOfPayer">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Payer" nillable="true" type="tns:Payer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPayer" nillable="true" type="tns:ArrayOfPayer" />
+  <xs:complexType name="Payer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ApexPayerId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClaimEnrollmentRequired" type="xs:boolean" />
+      <xs:element minOccurs="0" name="EraAvailability" type="tns:ERAAvailability" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NationalPayerId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OffersEligibility" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Type" type="tns:PayerType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Payer" nillable="true" type="tns:Payer" />
+  <xs:simpleType name="ERAAvailability">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NotAvailable" />
+      <xs:enumeration value="Available" />
+      <xs:enumeration value="RequiresEnrollment" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ERAAvailability" nillable="true" type="tns:ERAAvailability" />
+  <xs:complexType name="ArrayOfPayerResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PayerResponse" nillable="true" type="tns:PayerResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPayerResponse" nillable="true" type="tns:ArrayOfPayerResponse" />
+  <xs:complexType name="PayerResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Content" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="Format" type="tns:ResponseFormat" />
+      <xs:element minOccurs="0" name="ReceiveDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Type" type="tns:ResponseType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PayerResponse" nillable="true" type="tns:PayerResponse" />
+  <xs:simpleType name="ResponseFormat">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="Ansi" />
+      <xs:enumeration value="Proprietary" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ResponseFormat" nillable="true" type="tns:ResponseFormat" />
+  <xs:simpleType name="ResponseType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="Acknowledgement" />
+      <xs:enumeration value="Remittance" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ResponseType" nillable="true" type="tns:ResponseType" />
+</xs:schema>

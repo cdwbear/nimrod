@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:52846/onetouch.soap?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts" />
+  <xs:import schemaLocation="http://localhost:52846/onetouch.soap?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility.Response" />
+  <xs:simpleType name="WsProviderRole">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="Hospital" />
+      <xs:enumeration value="RuralHealthClinic" />
+      <xs:enumeration value="Admitting" />
+      <xs:enumeration value="AssistantSurgeon" />
+      <xs:enumeration value="Attending" />
+      <xs:enumeration value="Billing" />
+      <xs:enumeration value="BillingService" />
+      <xs:enumeration value="Consulting" />
+      <xs:enumeration value="Covering" />
+      <xs:enumeration value="HomeHealthCare" />
+      <xs:enumeration value="Laboratory" />
+      <xs:enumeration value="OnStaff" />
+      <xs:enumeration value="Operating" />
+      <xs:enumeration value="Ordering" />
+      <xs:enumeration value="OtherPhysician" />
+      <xs:enumeration value="Pharmacist" />
+      <xs:enumeration value="Pharmacy" />
+      <xs:enumeration value="PrimaryCarePhysician" />
+      <xs:enumeration value="Performing" />
+      <xs:enumeration value="PayTo" />
+      <xs:enumeration value="Purchasing" />
+      <xs:enumeration value="Referring" />
+      <xs:enumeration value="ReportingProvider" />
+      <xs:enumeration value="Submitting" />
+      <xs:enumeration value="SkilledNursingFacility" />
+      <xs:enumeration value="Supervising" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="WsProviderRole" nillable="true" type="tns:WsProviderRole" />
+  <xs:complexType name="WsTraceNumber">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Number" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OriginatorId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OriginatorSecondaryId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WsTraceNumber" nillable="true" type="tns:WsTraceNumber" />
+  <xs:simpleType name="WsGender">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="Male" />
+      <xs:enumeration value="Female" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="WsGender" nillable="true" type="tns:WsGender" />
+  <xs:simpleType name="WsRelationship">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Invalid" />
+      <xs:enumeration value="Spouse" />
+      <xs:enumeration value="Self" />
+      <xs:enumeration value="Child" />
+      <xs:enumeration value="Employee" />
+      <xs:enumeration value="RelationshipUnknown" />
+      <xs:enumeration value="OtherAdult" />
+      <xs:enumeration value="OrganDonor" />
+      <xs:enumeration value="CadaverDonor" />
+      <xs:enumeration value="LifePartner" />
+      <xs:enumeration value="OtherRelationship" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="WsRelationship" nillable="true" type="tns:WsRelationship" />
+  <xs:complexType name="ArrayOfWsDiagnosisCode">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WsDiagnosisCode" nillable="true" type="tns:WsDiagnosisCode" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWsDiagnosisCode" nillable="true" type="tns:ArrayOfWsDiagnosisCode" />
+  <xs:complexType name="WsDiagnosisCode">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts" minOccurs="0" name="Type" type="q1:WsDiagnosticCodeType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WsDiagnosisCode" nillable="true" type="tns:WsDiagnosisCode" />
+  <xs:simpleType name="WsEligibilityProcedureCodeSource">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="Ada" />
+      <xs:enumeration value="Cpt" />
+      <xs:enumeration value="Hcpcs" />
+      <xs:enumeration value="Icd9" />
+      <xs:enumeration value="Hiec" />
+      <xs:enumeration value="Ndc" />
+      <xs:enumeration value="MutuallyDefined" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="WsEligibilityProcedureCodeSource" nillable="true" type="tns:WsEligibilityProcedureCodeSource" />
+  <xs:complexType name="ArrayOfWsServiceType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WsServiceType" type="tns:WsServiceType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWsServiceType" nillable="true" type="tns:ArrayOfWsServiceType" />
+  <xs:simpleType name="WsServiceType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="MedicalCare" />
+      <xs:enumeration value="Surgical" />
+      <xs:enumeration value="Consultation" />
+      <xs:enumeration value="DiagnosticXRay" />
+      <xs:enumeration value="DiagnosticLab" />
+      <xs:enumeration value="RadiationTherapy" />
+      <xs:enumeration value="Anesthesia" />
+      <xs:enumeration value="SurgicalAssistance" />
+      <xs:enumeration value="OtherMedical" />
+      <xs:enumeration value="NonEscrowOrNonImpoundService" />
+      <xs:enumeration value="EscrowOrImpoundService" />
+      <xs:enumeration value="BloodCharges" />
+      <xs:enumeration value="UsedDurableMedicalEquipment" />
+      <xs:enumeration value="DurableMedicalEquipmentPurchase" />
+      <xs:enumeration value="AmbulatoryServiceCenterFacility" />
+      <xs:enumeration value="RenalSuppliesInTheHome" />
+      <xs:enumeration value="AlternateMethodDialysis" />
+      <xs:enumeration value="ChronicRenalDiseaseCrdEquipment" />
+      <xs:enumeration value="PreAdmissionTesting" />
+      <xs:enumeration value="DurableMedicalEquipmentRental" />
+      <xs:enumeration value="PneumoniaVaccine" />
+      <xs:enumeration value="SecondSurgicalOpinion" />
+      <xs:enumeration value="ThirdSurgicalOpinion" />
+      <xs:enumeration value="SocialWork" />
+      <xs:enumeration value="DiagnosticDental" />
+      <xs:enumeration value="Periodontics" />
+      <xs:enumeration value="Restorative" />
+      <xs:enumeration value="Endodontics" />
+      <xs:enumeration value="MaxillofacialProsthetics" />
+      <xs:enumeration value="AdjunctiveDentalServices" />
+      <xs:enumeration value="HealthBenefitPlanCoverage" />
+      <xs:enumeration value="BenefitDisclaimer" />
+      <xs:enumeration value="PlanWaitingPeriod" />
+      <xs:enumeration value="Chiropractic" />
+      <xs:enumeration value="ChiropracticOfficeVisits" />
+      <xs:enumeration value="DentalCare" />
+      <xs:enumeration value="DentalCrowns" />
+      <xs:enumeration value="DentalAccident" />
+      <xs:enumeration value="Orthodontics" />
+      <xs:enumeration value="Prosthodontics" />
+      <xs:enumeration value="OralSurgery" />
+      <xs:enumeration value="RoutinePreventiveDental" />
+      <xs:enumeration value="HomeHealthCare" />
+      <xs:enumeration value="HomeHealthPrescriptions" />
+      <xs:enumeration value="HomeHealthVisits" />
+      <xs:enumeration value="Hospice" />
+      <xs:enumeration value="RespiteCare" />
+      <xs:enumeration value="Hospital" />
+      <xs:enumeration value="HospitalInpatient" />
+      <xs:enumeration value="HospitalRoomAndBoard" />
+      <xs:enumeration value="HospitalOutpatient" />
+      <xs:enumeration value="HospitalEmergencyAccident" />
+      <xs:enumeration value="HospitalEmergencyMedical" />
+      <xs:enumeration value="HospitalAmbulatorySurgical" />
+      <xs:enumeration value="LongTermCare" />
+      <xs:enumeration value="MajorMedical" />
+      <xs:enumeration value="MedicallyRelatedTransportation" />
+      <xs:enumeration value="AirTransportation" />
+      <xs:enumeration value="Cabulance" />
+      <xs:enumeration value="LicensedAmbulance" />
+      <xs:enumeration value="GeneralBenefits" />
+      <xs:enumeration value="InVitroFertilization" />
+      <xs:enumeration value="MriCatScan" />
+      <xs:enumeration value="DonorProcedures" />
+      <xs:enumeration value="Acupuncture" />
+      <xs:enumeration value="NewbornCare" />
+      <xs:enumeration value="Pathology" />
+      <xs:enumeration value="SmokingCessation" />
+      <xs:enumeration value="WellBabyCare" />
+      <xs:enumeration value="Maternity" />
+      <xs:enumeration value="Transplants" />
+      <xs:enumeration value="AudiologyExam" />
+      <xs:enumeration value="InhalationTherapy" />
+      <xs:enumeration value="DiagnosticMedical" />
+      <xs:enumeration value="PrivateDutyNursing" />
+      <xs:enumeration value="ProstheticDevice" />
+      <xs:enumeration value="Dialysis" />
+      <xs:enumeration value="OtologicalExam" />
+      <xs:enumeration value="Chemotherapy" />
+      <xs:enumeration value="AllergyTesting" />
+      <xs:enumeration value="Immunizations" />
+      <xs:enumeration value="RoutinePhysical" />
+      <xs:enumeration value="FamilyPlanning" />
+      <xs:enumeration value="Infertility" />
+      <xs:enumeration value="Abortion" />
+      <xs:enumeration value="Aids" />
+      <xs:enumeration value="EmergencyServices" />
+      <xs:enumeration value="Cancer" />
+      <xs:enumeration value="Pharmacy" />
+      <xs:enumeration value="FreeStandingPrescriptionDrug" />
+      <xs:enumeration value="MailOrderPrescriptionDrug" />
+      <xs:enumeration value="BrandNamePrescriptionDrug" />
+      <xs:enumeration value="GenericPrescriptionDrug" />
+      <xs:enumeration value="Podiatry" />
+      <xs:enumeration value="PodiatryOfficeVisits" />
+      <xs:enumeration value="PodiatryNursingHomeVisits" />
+      <xs:enumeration value="ProfessionalPhysician" />
+      <xs:enumeration value="Anesthesiologist" />
+      <xs:enumeration value="ProfessionalPhysicianVisitOffice" />
+      <xs:enumeration value="ProfessionalPhysicianVisitInpatient" />
+      <xs:enumeration value="ProfessionalPhysicianVisitOutpatient" />
+      <xs:enumeration value="ProfessionalPhysicianVisitNursingHome" />
+      <xs:enumeration value="ProfessionalPhysicianVisitSkilledNursingFacility" />
+      <xs:enumeration value="ProfessionalPhysicianVisitHome" />
+      <xs:enumeration value="Psychiatric" />
+      <xs:enumeration value="PsychiatricRoomAndBoard" />
+      <xs:enumeration value="Psychotherapy" />
+      <xs:enumeration value="PsychiatricInpatient" />
+      <xs:enumeration value="PsychiatricOutpatient" />
+      <xs:enumeration value="Rehabilitation" />
+      <xs:enumeration value="RehabilitationRoomAndBoard" />
+      <xs:enumeration value="RehabilitationInpatient" />
+      <xs:enumeration value="RehabilitationOutpatient" />
+      <xs:enumeration value="OccupationalTherapy" />
+      <xs:enumeration value="PhysicalMedicine" />
+      <xs:enumeration value="SpeechTherapy" />
+      <xs:enumeration value="SkilledNursingCare" />
+      <xs:enumeration value="SkilledNursingCareRoomAndBoard" />
+      <xs:enumeration value="SubstanceAbuse" />
+      <xs:enumeration value="Alcoholism" />
+      <xs:enumeration value="DrugAddiction" />
+      <xs:enumeration value="VisionOptometry" />
+      <xs:enumeration value="Frames" />
+      <xs:enumeration value="RoutineExam" />
+      <xs:enumeration value="Lenses" />
+      <xs:enumeration value="RoutineEyeExam" />
+      <xs:enumeration value="NonmedicallyNecessaryPhysical" />
+      <xs:enumeration value="ExperimentalDrugTherapy" />
+      <xs:enumeration value="BurnCare" />
+      <xs:enumeration value="BrandNamePrescriptionDrugFormulary" />
+      <xs:enumeration value="BrandNamePrescriptionDrugNonFormulary" />
+      <xs:enumeration value="IndependentMedicalEvaluation" />
+      <xs:enumeration value="PartialHospitalizationPsychiatric" />
+      <xs:enumeration value="DayCarePsychiatric" />
+      <xs:enumeration value="CognitiveTherapy" />
+      <xs:enumeration value="MassageTherapy" />
+      <xs:enumeration value="PulmonaryRehabilitation" />
+      <xs:enumeration value="CardiacRehabilitation" />
+      <xs:enumeration value="Pediatric" />
+      <xs:enumeration value="Nursery" />
+      <xs:enumeration value="Skin" />
+      <xs:enumeration value="Orthopedic" />
+      <xs:enumeration value="Cardiac" />
+      <xs:enumeration value="Lymphatic" />
+      <xs:enumeration value="Gastrointestinal" />
+      <xs:enumeration value="Endocrine" />
+      <xs:enumeration value="Neurology" />
+      <xs:enumeration value="Eye" />
+      <xs:enumeration value="InvasiveProcedures" />
+      <xs:enumeration value="Gynecological" />
+      <xs:enumeration value="Obstetrical" />
+      <xs:enumeration value="ObstetricalGynecological" />
+      <xs:enumeration value="MailOrderPrescriptionDrugBrandName" />
+      <xs:enumeration value="MailOrderPrescriptionDrugGeneric" />
+      <xs:enumeration value="PhysicianVisitOfficeSick" />
+      <xs:enumeration value="PhysicianVisitOfficeWell" />
+      <xs:enumeration value="CoronaryCare" />
+      <xs:enumeration value="PrivateDutyNursingInpatient" />
+      <xs:enumeration value="PrivateDutyNursingHome" />
+      <xs:enumeration value="SurgicalBenefitsProfessionalPhysician" />
+      <xs:enumeration value="SurgicalBenefitsFacility" />
+      <xs:enumeration value="MentalHealthProviderInpatient" />
+      <xs:enumeration value="MentalHealthProviderOutpatient" />
+      <xs:enumeration value="MentalHealthFacilityInpatient" />
+      <xs:enumeration value="MentalHealthFacilityOutpatient" />
+      <xs:enumeration value="SubstanceAbuseFacilityInpatient" />
+      <xs:enumeration value="SubstanceAbuseFacilityOutpatient" />
+      <xs:enumeration value="ScreeningXRay" />
+      <xs:enumeration value="ScreeningLaboratory" />
+      <xs:enumeration value="MammogramHighRiskPatient" />
+      <xs:enumeration value="MammogramLowRiskPatient" />
+      <xs:enumeration value="FluVaccination" />
+      <xs:enumeration value="EyewearAndEyewearAccessories" />
+      <xs:enumeration value="CaseManagement" />
+      <xs:enumeration value="Dermatology" />
+      <xs:enumeration value="DurableMedicalEquipment" />
+      <xs:enumeration value="DiabeticSupplies" />
+      <xs:enumeration value="GenericPrescriptionDrugFormulary" />
+      <xs:enumeration value="GenericPrescriptionDrugNonFormulary" />
+      <xs:enumeration value="Allergy" />
+      <xs:enumeration value="IntensiveCare" />
+      <xs:enumeration value="MentalHealth" />
+      <xs:enumeration value="NeonatalIntensiveCare" />
+      <xs:enumeration value="Oncology" />
+      <xs:enumeration value="PositronEmissionTomographyPetScan" />
+      <xs:enumeration value="PhysicalTherapy" />
+      <xs:enumeration value="Pulmonary" />
+      <xs:enumeration value="Renal" />
+      <xs:enumeration value="ResidentialPsychiatricTreatment" />
+      <xs:enumeration value="TransitionalCare" />
+      <xs:enumeration value="TransitionalNurseryCare" />
+      <xs:enumeration value="UrgentCare" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="WsServiceType" nillable="true" type="tns:WsServiceType" />
+  <xs:simpleType name="WsPayerType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="ThirdPartyAdministrator" />
+      <xs:enumeration value="Employer" />
+      <xs:enumeration value="GatewayProvider" />
+      <xs:enumeration value="PlanSponsor" />
+      <xs:enumeration value="Payer" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="WsPayerType" nillable="true" type="tns:WsPayerType" />
+  <xs:complexType name="WsBenefitSubmitResult">
+    <xs:sequence>
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility.Response" minOccurs="0" name="ErrorResponses" nillable="true" type="q2:ArrayOfWsErrorResponse" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility.Response" minOccurs="0" name="InterchangeStatuses" nillable="true" type="q3:ArrayOfWsPayerInterchangeStatus" />
+      <xs:element minOccurs="0" name="RequestId" type="xs:long" />
+      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility.Response" minOccurs="0" name="Responses" nillable="true" type="q4:ArrayOfWsBenefitResponse" />
+      <xs:element minOccurs="0" name="Status" type="tns:WsBenefitStatus" />
+      <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility.Response" minOccurs="0" name="ValidationResults" nillable="true" type="q5:ArrayOfWsValidationResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WsBenefitSubmitResult" nillable="true" type="tns:WsBenefitSubmitResult" />
+  <xs:simpleType name="WsBenefitResponseFormat">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="DataModel" />
+      <xs:enumeration value="X12" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="WsBenefitResponseFormat" nillable="true" type="tns:WsBenefitResponseFormat" />
+  <xs:simpleType name="WsBenefitStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="AllInvalid" />
+      <xs:enumeration value="ResultsComplete" />
+      <xs:enumeration value="ResultsIncomplete" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="WsBenefitStatus" nillable="true" type="tns:WsBenefitStatus" />
+  <xs:complexType name="WsBenefitResponseResult">
+    <xs:sequence>
+      <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility.Response" minOccurs="0" name="ErrorResponses" nillable="true" type="q6:ArrayOfWsErrorResponse" />
+      <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility.Response" minOccurs="0" name="InterchangeStatuses" nillable="true" type="q7:ArrayOfWsPayerInterchangeStatus" />
+      <xs:element minOccurs="0" name="RequestId" type="xs:long" />
+      <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility.Response" minOccurs="0" name="Responses" nillable="true" type="q8:ArrayOfWsBenefitResponse" />
+      <xs:element minOccurs="0" name="Status" type="tns:WsBenefitStatus" />
+      <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility.Response" minOccurs="0" name="ValidationResults" nillable="true" type="q9:ArrayOfWsValidationResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WsBenefitResponseResult" nillable="true" type="tns:WsBenefitResponseResult" />
+  <xs:complexType name="ArrayOfWsCodeValue">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WsCodeValue" nillable="true" type="tns:WsCodeValue" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWsCodeValue" nillable="true" type="tns:ArrayOfWsCodeValue" />
+  <xs:complexType name="WsCodeValue">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Value" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WsCodeValue" nillable="true" type="tns:WsCodeValue" />
+</xs:schema>

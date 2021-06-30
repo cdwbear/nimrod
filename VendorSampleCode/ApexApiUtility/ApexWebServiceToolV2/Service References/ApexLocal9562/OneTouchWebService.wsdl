@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="OneTouchWebService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:9562/onetouch.soap?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:9562/onetouch.soap?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/OnetouchWebServicesContracts" />
+      <xsd:import schemaLocation="http://localhost:9562/onetouch.soap?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:9562/onetouch.soap?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Apex.OneTouchService" />
+      <xsd:import schemaLocation="http://localhost:9562/onetouch.soap?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:9562/onetouch.soap?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts" />
+      <xsd:import schemaLocation="http://localhost:9562/onetouch.soap?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility.Request" />
+      <xsd:import schemaLocation="http://localhost:9562/onetouch.soap?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility" />
+      <xsd:import schemaLocation="http://localhost:9562/onetouch.soap?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility.Response" />
+      <xsd:import schemaLocation="http://localhost:9562/onetouch.soap?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/Apex.Models.Basic" />
+      <xsd:import schemaLocation="http://localhost:9562/onetouch.soap?xsd=xsd10" namespace="http://schemas.datacontract.org/2004/07/Apex.Models.Common" />
+      <xsd:import schemaLocation="http://localhost:9562/onetouch.soap?xsd=xsd11" namespace="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.ClaimStatus" />
+      <xsd:import schemaLocation="http://localhost:9562/onetouch.soap?xsd=xsd12" namespace="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Payments" />
+      <xsd:import schemaLocation="http://localhost:9562/onetouch.soap?xsd=xsd13" namespace="http://schemas.datacontract.org/2004/07/Apex.PayerServices.PayerModel" />
+      <xsd:import schemaLocation="http://localhost:9562/onetouch.soap?xsd=xsd14" namespace="http://schemas.datacontract.org/2004/07/Apex.AdministrativeServices.Contracts.Providers" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IOneTouchServices_SubmitClaims_InputMessage">
+    <wsdl:part name="parameters" element="tns:SubmitClaims" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_SubmitClaims_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SubmitClaimsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_SubmitClaims_AuthenticationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/OnetouchWebServicesContracts" name="detail" element="q1:AuthenticationFault" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_SubmitClaims_VendorIdFaultFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/OnetouchWebServicesContracts" name="detail" element="q2:VendorIdFault" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetClaimStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetClaimStatus" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetClaimStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetClaimStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetClaimStatus_AuthenticationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/OnetouchWebServicesContracts" name="detail" element="q3:AuthenticationFault" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetPayers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPayers" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetPayers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPayersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetPayers_AuthenticationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/OnetouchWebServicesContracts" name="detail" element="q4:AuthenticationFault" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetTestPayers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTestPayers" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetTestPayers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTestPayersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetTestPayers_AuthenticationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/OnetouchWebServicesContracts" name="detail" element="q5:AuthenticationFault" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetPayerResponses_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPayerResponses" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetPayerResponses_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPayerResponsesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetPayerResponses_AuthenticationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/OnetouchWebServicesContracts" name="detail" element="q6:AuthenticationFault" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetPayerResponses_VendorIdFaultFault_FaultMessage">
+    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/OnetouchWebServicesContracts" name="detail" element="q7:VendorIdFault" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetClaimStatusByDate_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetClaimStatusByDate" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetClaimStatusByDate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetClaimStatusByDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetClaimStatusByDate_AuthenticationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/OnetouchWebServicesContracts" name="detail" element="q8:AuthenticationFault" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_SubmitEligibilityRequest_InputMessage">
+    <wsdl:part name="parameters" element="tns:SubmitEligibilityRequest" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_SubmitEligibilityRequest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SubmitEligibilityRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_SubmitEligibilityRequest_AuthenticationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q9="http://schemas.datacontract.org/2004/07/OnetouchWebServicesContracts" name="detail" element="q9:AuthenticationFault" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_SubmitEligibilityRequestWithFormat_InputMessage">
+    <wsdl:part name="parameters" element="tns:SubmitEligibilityRequestWithFormat" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_SubmitEligibilityRequestWithFormat_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SubmitEligibilityRequestWithFormatResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_SubmitEligibilityRequestWithFormat_AuthenticationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q10="http://schemas.datacontract.org/2004/07/OnetouchWebServicesContracts" name="detail" element="q10:AuthenticationFault" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetEligibilityResponses_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEligibilityResponses" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetEligibilityResponses_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEligibilityResponsesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetEligibilityResponses_AuthenticationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q11="http://schemas.datacontract.org/2004/07/OnetouchWebServicesContracts" name="detail" element="q11:AuthenticationFault" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetEligibilityResponsesWithFormat_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEligibilityResponsesWithFormat" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetEligibilityResponsesWithFormat_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEligibilityResponsesWithFormatResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetEligibilityResponsesWithFormat_AuthenticationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q12="http://schemas.datacontract.org/2004/07/OnetouchWebServicesContracts" name="detail" element="q12:AuthenticationFault" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetPayerResponseDocuments_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPayerResponseDocuments" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetPayerResponseDocuments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPayerResponseDocumentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetPayerResponseDocuments_AuthenticationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q13="http://schemas.datacontract.org/2004/07/OnetouchWebServicesContracts" name="detail" element="q13:AuthenticationFault" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetProvidersBySiteId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProvidersBySiteId" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetProvidersBySiteId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProvidersBySiteIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetProvidersBySiteId_AuthenticationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q14="http://schemas.datacontract.org/2004/07/OnetouchWebServicesContracts" name="detail" element="q14:AuthenticationFault" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_SubmitEligibilityRequestLite_InputMessage">
+    <wsdl:part name="parameters" element="tns:SubmitEligibilityRequestLite" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_SubmitEligibilityRequestLite_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SubmitEligibilityRequestLiteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_SubmitEligibilityRequestLite_AuthenticationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q15="http://schemas.datacontract.org/2004/07/OnetouchWebServicesContracts" name="detail" element="q15:AuthenticationFault" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetEQCodesForPayer_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEQCodesForPayer" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetEQCodesForPayer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEQCodesForPayerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetEQCodesForPayer_AuthenticationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q16="http://schemas.datacontract.org/2004/07/OnetouchWebServicesContracts" name="detail" element="q16:AuthenticationFault" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetProfession_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProfession" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetProfession_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProfessionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetProfession_AuthenticationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q17="http://schemas.datacontract.org/2004/07/OnetouchWebServicesContracts" name="detail" element="q17:AuthenticationFault" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetMaxDependents_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMaxDependents" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetMaxDependents_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMaxDependentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetMaxDependents_AuthenticationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q18="http://schemas.datacontract.org/2004/07/OnetouchWebServicesContracts" name="detail" element="q18:AuthenticationFault" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetPayerConfiguration_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPayerConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetPayerConfiguration_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPayerConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetPayerConfiguration_AuthenticationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q19="http://schemas.datacontract.org/2004/07/OnetouchWebServicesContracts" name="detail" element="q19:AuthenticationFault" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetServiceByProviderAndServiceType_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetServiceByProviderAndServiceType" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetServiceByProviderAndServiceType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetServiceByProviderAndServiceTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_GetServiceByProviderAndServiceType_AuthenticationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q20="http://schemas.datacontract.org/2004/07/OnetouchWebServicesContracts" name="detail" element="q20:AuthenticationFault" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_UpdateTrackerEligibilityInformation_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTrackerEligibilityInformation" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_UpdateTrackerEligibilityInformation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTrackerEligibilityInformationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IOneTouchServices_UpdateTrackerEligibilityInformation_AuthenticationFaultFault_FaultMessage">
+    <wsdl:part xmlns:q21="http://schemas.datacontract.org/2004/07/OnetouchWebServicesContracts" name="detail" element="q21:AuthenticationFault" />
+  </wsdl:message>
+  <wsdl:portType name="IOneTouchServices">
+    <wsdl:operation name="SubmitClaims">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOneTouchServices/SubmitClaims" message="tns:IOneTouchServices_SubmitClaims_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOneTouchServices/SubmitClaimsResponse" message="tns:IOneTouchServices_SubmitClaims_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IOneTouchServices/SubmitClaimsAuthenticationFaultFault" name="AuthenticationFaultFault" message="tns:IOneTouchServices_SubmitClaims_AuthenticationFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IOneTouchServices/SubmitClaimsVendorIdFaultFault" name="VendorIdFaultFault" message="tns:IOneTouchServices_SubmitClaims_VendorIdFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClaimStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOneTouchServices/GetClaimStatus" message="tns:IOneTouchServices_GetClaimStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOneTouchServices/GetClaimStatusResponse" message="tns:IOneTouchServices_GetClaimStatus_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IOneTouchServices/GetClaimStatusAuthenticationFaultFault" name="AuthenticationFaultFault" message="tns:IOneTouchServices_GetClaimStatus_AuthenticationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPayers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOneTouchServices/GetPayers" message="tns:IOneTouchServices_GetPayers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOneTouchServices/GetPayersResponse" message="tns:IOneTouchServices_GetPayers_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IOneTouchServices/GetPayersAuthenticationFaultFault" name="AuthenticationFaultFault" message="tns:IOneTouchServices_GetPayers_AuthenticationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTestPayers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOneTouchServices/GetTestPayers" message="tns:IOneTouchServices_GetTestPayers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOneTouchServices/GetTestPayersResponse" message="tns:IOneTouchServices_GetTestPayers_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IOneTouchServices/GetTestPayersAuthenticationFaultFault" name="AuthenticationFaultFault" message="tns:IOneTouchServices_GetTestPayers_AuthenticationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPayerResponses">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOneTouchServices/GetPayerResponses" message="tns:IOneTouchServices_GetPayerResponses_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOneTouchServices/GetPayerResponsesResponse" message="tns:IOneTouchServices_GetPayerResponses_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IOneTouchServices/GetPayerResponsesAuthenticationFaultFault" name="AuthenticationFaultFault" message="tns:IOneTouchServices_GetPayerResponses_AuthenticationFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IOneTouchServices/GetPayerResponsesVendorIdFaultFault" name="VendorIdFaultFault" message="tns:IOneTouchServices_GetPayerResponses_VendorIdFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClaimStatusByDate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOneTouchServices/GetClaimStatusByDate" message="tns:IOneTouchServices_GetClaimStatusByDate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOneTouchServices/GetClaimStatusByDateResponse" message="tns:IOneTouchServices_GetClaimStatusByDate_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IOneTouchServices/GetClaimStatusByDateAuthenticationFaultFault" name="AuthenticationFaultFault" message="tns:IOneTouchServices_GetClaimStatusByDate_AuthenticationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitEligibilityRequest">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOneTouchServices/SubmitEligibilityRequest" message="tns:IOneTouchServices_SubmitEligibilityRequest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOneTouchServices/SubmitEligibilityRequestResponse" message="tns:IOneTouchServices_SubmitEligibilityRequest_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IOneTouchServices/SubmitEligibilityRequestAuthenticationFaultFault" name="AuthenticationFaultFault" message="tns:IOneTouchServices_SubmitEligibilityRequest_AuthenticationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitEligibilityRequestWithFormat">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOneTouchServices/SubmitEligibilityRequestWithFormat" message="tns:IOneTouchServices_SubmitEligibilityRequestWithFormat_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOneTouchServices/SubmitEligibilityRequestWithFormatResponse" message="tns:IOneTouchServices_SubmitEligibilityRequestWithFormat_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IOneTouchServices/SubmitEligibilityRequestWithFormatAuthenticationFaultFault" name="AuthenticationFaultFault" message="tns:IOneTouchServices_SubmitEligibilityRequestWithFormat_AuthenticationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEligibilityResponses">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOneTouchServices/GetEligibilityResponses" message="tns:IOneTouchServices_GetEligibilityResponses_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOneTouchServices/GetEligibilityResponsesResponse" message="tns:IOneTouchServices_GetEligibilityResponses_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IOneTouchServices/GetEligibilityResponsesAuthenticationFaultFault" name="AuthenticationFaultFault" message="tns:IOneTouchServices_GetEligibilityResponses_AuthenticationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEligibilityResponsesWithFormat">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOneTouchServices/GetEligibilityResponsesWithFormat" message="tns:IOneTouchServices_GetEligibilityResponsesWithFormat_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOneTouchServices/GetEligibilityResponsesWithFormatResponse" message="tns:IOneTouchServices_GetEligibilityResponsesWithFormat_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IOneTouchServices/GetEligibilityResponsesWithFormatAuthenticationFaultFault" name="AuthenticationFaultFault" message="tns:IOneTouchServices_GetEligibilityResponsesWithFormat_AuthenticationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPayerResponseDocuments">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOneTouchServices/GetPayerResponseDocuments" message="tns:IOneTouchServices_GetPayerResponseDocuments_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOneTouchServices/GetPayerResponseDocumentsResponse" message="tns:IOneTouchServices_GetPayerResponseDocuments_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IOneTouchServices/GetPayerResponseDocumentsAuthenticationFaultFault" name="AuthenticationFaultFault" message="tns:IOneTouchServices_GetPayerResponseDocuments_AuthenticationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProvidersBySiteId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOneTouchServices/GetProvidersBySiteId" message="tns:IOneTouchServices_GetProvidersBySiteId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOneTouchServices/GetProvidersBySiteIdResponse" message="tns:IOneTouchServices_GetProvidersBySiteId_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IOneTouchServices/GetProvidersBySiteIdAuthenticationFaultFault" name="AuthenticationFaultFault" message="tns:IOneTouchServices_GetProvidersBySiteId_AuthenticationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitEligibilityRequestLite">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOneTouchServices/SubmitEligibilityRequestLite" message="tns:IOneTouchServices_SubmitEligibilityRequestLite_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOneTouchServices/SubmitEligibilityRequestLiteResponse" message="tns:IOneTouchServices_SubmitEligibilityRequestLite_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IOneTouchServices/SubmitEligibilityRequestLiteAuthenticationFaultFault" name="AuthenticationFaultFault" message="tns:IOneTouchServices_SubmitEligibilityRequestLite_AuthenticationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEQCodesForPayer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOneTouchServices/GetEQCodesForPayer" message="tns:IOneTouchServices_GetEQCodesForPayer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOneTouchServices/GetEQCodesForPayerResponse" message="tns:IOneTouchServices_GetEQCodesForPayer_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IOneTouchServices/GetEQCodesForPayerAuthenticationFaultFault" name="AuthenticationFaultFault" message="tns:IOneTouchServices_GetEQCodesForPayer_AuthenticationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProfession">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOneTouchServices/GetProfession" message="tns:IOneTouchServices_GetProfession_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOneTouchServices/GetProfessionResponse" message="tns:IOneTouchServices_GetProfession_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IOneTouchServices/GetProfessionAuthenticationFaultFault" name="AuthenticationFaultFault" message="tns:IOneTouchServices_GetProfession_AuthenticationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMaxDependents">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOneTouchServices/GetMaxDependents" message="tns:IOneTouchServices_GetMaxDependents_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOneTouchServices/GetMaxDependentsResponse" message="tns:IOneTouchServices_GetMaxDependents_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IOneTouchServices/GetMaxDependentsAuthenticationFaultFault" name="AuthenticationFaultFault" message="tns:IOneTouchServices_GetMaxDependents_AuthenticationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPayerConfiguration">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOneTouchServices/GetPayerConfiguration" message="tns:IOneTouchServices_GetPayerConfiguration_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOneTouchServices/GetPayerConfigurationResponse" message="tns:IOneTouchServices_GetPayerConfiguration_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IOneTouchServices/GetPayerConfigurationAuthenticationFaultFault" name="AuthenticationFaultFault" message="tns:IOneTouchServices_GetPayerConfiguration_AuthenticationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceByProviderAndServiceType">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOneTouchServices/GetServiceByProviderAndServiceType" message="tns:IOneTouchServices_GetServiceByProviderAndServiceType_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOneTouchServices/GetServiceByProviderAndServiceTypeResponse" message="tns:IOneTouchServices_GetServiceByProviderAndServiceType_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IOneTouchServices/GetServiceByProviderAndServiceTypeAuthenticationFaultFault" name="AuthenticationFaultFault" message="tns:IOneTouchServices_GetServiceByProviderAndServiceType_AuthenticationFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTrackerEligibilityInformation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOneTouchServices/UpdateTrackerEligibilityInformation" message="tns:IOneTouchServices_UpdateTrackerEligibilityInformation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOneTouchServices/UpdateTrackerEligibilityInformationResponse" message="tns:IOneTouchServices_UpdateTrackerEligibilityInformation_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IOneTouchServices/UpdateTrackerEligibilityInformationAuthenticationFaultFault" name="AuthenticationFaultFault" message="tns:IOneTouchServices_UpdateTrackerEligibilityInformation_AuthenticationFaultFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IOneTouchServices" type="tns:IOneTouchServices">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SubmitClaims">
+      <soap:operation soapAction="http://tempuri.org/IOneTouchServices/SubmitClaims" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="VendorIdFaultFault">
+        <soap:fault use="literal" name="VendorIdFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetClaimStatus">
+      <soap:operation soapAction="http://tempuri.org/IOneTouchServices/GetClaimStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetPayers">
+      <soap:operation soapAction="http://tempuri.org/IOneTouchServices/GetPayers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetTestPayers">
+      <soap:operation soapAction="http://tempuri.org/IOneTouchServices/GetTestPayers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetPayerResponses">
+      <soap:operation soapAction="http://tempuri.org/IOneTouchServices/GetPayerResponses" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="VendorIdFaultFault">
+        <soap:fault use="literal" name="VendorIdFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetClaimStatusByDate">
+      <soap:operation soapAction="http://tempuri.org/IOneTouchServices/GetClaimStatusByDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitEligibilityRequest">
+      <soap:operation soapAction="http://tempuri.org/IOneTouchServices/SubmitEligibilityRequest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitEligibilityRequestWithFormat">
+      <soap:operation soapAction="http://tempuri.org/IOneTouchServices/SubmitEligibilityRequestWithFormat" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetEligibilityResponses">
+      <soap:operation soapAction="http://tempuri.org/IOneTouchServices/GetEligibilityResponses" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetEligibilityResponsesWithFormat">
+      <soap:operation soapAction="http://tempuri.org/IOneTouchServices/GetEligibilityResponsesWithFormat" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetPayerResponseDocuments">
+      <soap:operation soapAction="http://tempuri.org/IOneTouchServices/GetPayerResponseDocuments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetProvidersBySiteId">
+      <soap:operation soapAction="http://tempuri.org/IOneTouchServices/GetProvidersBySiteId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitEligibilityRequestLite">
+      <soap:operation soapAction="http://tempuri.org/IOneTouchServices/SubmitEligibilityRequestLite" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetEQCodesForPayer">
+      <soap:operation soapAction="http://tempuri.org/IOneTouchServices/GetEQCodesForPayer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetProfession">
+      <soap:operation soapAction="http://tempuri.org/IOneTouchServices/GetProfession" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetMaxDependents">
+      <soap:operation soapAction="http://tempuri.org/IOneTouchServices/GetMaxDependents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetPayerConfiguration">
+      <soap:operation soapAction="http://tempuri.org/IOneTouchServices/GetPayerConfiguration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceByProviderAndServiceType">
+      <soap:operation soapAction="http://tempuri.org/IOneTouchServices/GetServiceByProviderAndServiceType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTrackerEligibilityInformation">
+      <soap:operation soapAction="http://tempuri.org/IOneTouchServices/UpdateTrackerEligibilityInformation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AuthenticationFaultFault">
+        <soap:fault use="literal" name="AuthenticationFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="OneTouchWebService">
+    <wsdl:port name="BasicHttpBinding_IOneTouchServices" binding="tns:BasicHttpBinding_IOneTouchServices">
+      <soap:address location="http://localhost:9562/onetouch.soap/soapService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

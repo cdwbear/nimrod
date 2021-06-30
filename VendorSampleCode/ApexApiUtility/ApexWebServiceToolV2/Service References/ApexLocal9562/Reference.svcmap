@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="cc86b8b7-b993-4695-a108-96a2405447f0" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:9562/onetouch.soap" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="onetouch.xsd" MetadataType="Schema" ID="159d2f4a-5a41-4e58-8803-414b693139a0" SourceId="1" SourceUrl="http://localhost:9562/onetouch.soap?xsd=xsd14" />
+    <MetadataFile FileName="onetouch1.xsd" MetadataType="Schema" ID="998db08b-e45a-44ca-8f1b-0ff209becdd9" SourceId="1" SourceUrl="http://localhost:9562/onetouch.soap?xsd=xsd0" />
+    <MetadataFile FileName="onetouch2.xsd" MetadataType="Schema" ID="1fcf3d8f-cd0c-4f02-8676-87864d2c6cfc" SourceId="1" SourceUrl="http://localhost:9562/onetouch.soap?xsd=xsd11" />
+    <MetadataFile FileName="onetouch3.xsd" MetadataType="Schema" ID="d642ec18-4b82-4caf-8f94-54b3fbfdbf96" SourceId="1" SourceUrl="http://localhost:9562/onetouch.soap?xsd=xsd10" />
+    <MetadataFile FileName="onetouch4.xsd" MetadataType="Schema" ID="2c1ca6d2-4d90-43e1-9d1a-7923de2aeaf8" SourceId="1" SourceUrl="http://localhost:9562/onetouch.soap?xsd=xsd13" />
+    <MetadataFile FileName="onetouch5.xsd" MetadataType="Schema" ID="43ccf822-a370-498a-8066-05db86ca50b7" SourceId="1" SourceUrl="http://localhost:9562/onetouch.soap?xsd=xsd12" />
+    <MetadataFile FileName="onetouch6.xsd" MetadataType="Schema" ID="3f5c9193-7a04-4353-b933-c64e6fd28ff6" SourceId="1" SourceUrl="http://localhost:9562/onetouch.soap?xsd=xsd3" />
+    <MetadataFile FileName="onetouch7.xsd" MetadataType="Schema" ID="ac4570cc-c112-4138-b0e1-7407a66c7c9d" SourceId="1" SourceUrl="http://localhost:9562/onetouch.soap?xsd=xsd8" />
+    <MetadataFile FileName="onetouch8.xsd" MetadataType="Schema" ID="bef96f3c-299d-4af8-8d67-51ce5d643509" SourceId="1" SourceUrl="http://localhost:9562/onetouch.soap?xsd=xsd5" />
+    <MetadataFile FileName="onetouch9.xsd" MetadataType="Schema" ID="6dc0618b-041d-4650-be59-3d1a808a85b6" SourceId="1" SourceUrl="http://localhost:9562/onetouch.soap?xsd=xsd7" />
+    <MetadataFile FileName="onetouch10.xsd" MetadataType="Schema" ID="17f103c4-27c0-4129-a5ca-142bac358947" SourceId="1" SourceUrl="http://localhost:9562/onetouch.soap?xsd=xsd6" />
+    <MetadataFile FileName="onetouch11.xsd" MetadataType="Schema" ID="2108ab2d-5d33-4d53-86ee-74012459e025" SourceId="1" SourceUrl="http://localhost:9562/onetouch.soap?xsd=xsd9" />
+    <MetadataFile FileName="OneTouchWebService.wsdl" MetadataType="Wsdl" ID="421120d1-a018-4b3d-9b0e-0d0e7979d75d" SourceId="1" SourceUrl="http://localhost:9562/onetouch.soap?wsdl" />
+    <MetadataFile FileName="onetouch12.xsd" MetadataType="Schema" ID="f8a9ad5d-31f5-4636-8e66-6edc2a109852" SourceId="1" SourceUrl="http://localhost:9562/onetouch.soap?xsd=xsd2" />
+    <MetadataFile FileName="onetouch13.xsd" MetadataType="Schema" ID="8baa61ac-d565-49b8-9c6f-416ed16ba6ac" SourceId="1" SourceUrl="http://localhost:9562/onetouch.soap?xsd=xsd4" />
+    <MetadataFile FileName="onetouch.disco" MetadataType="Disco" ID="850b1c6e-7347-4e4f-b461-312800885ae9" SourceId="1" SourceUrl="http://localhost:9562/onetouch.soap?disco" />
+    <MetadataFile FileName="onetouch14.xsd" MetadataType="Schema" ID="eaa9db02-75ca-4cc3-8be9-7aafe8f01757" SourceId="1" SourceUrl="http://localhost:9562/onetouch.soap?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

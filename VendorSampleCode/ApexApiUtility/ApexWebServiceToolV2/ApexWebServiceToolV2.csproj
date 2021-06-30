@@ -1,0 +1,606 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{594B2DD2-0D83-4084-BE7C-78C5DE71CADB}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ApexWebServiceToolV2</RootNamespace>
+    <AssemblyName>ApexWebServiceToolV2</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApiVersion.cs" />
+    <Compile Include="ClientHelper.cs" />
+    <Compile Include="BenefitRequestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BenefitRequestForm.Designer.cs">
+      <DependentUpon>BenefitRequestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClientSettings.cs" />
+    <Compile Include="ConfigKeys.cs" />
+    <Compile Include="CredentialsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CredentialsForm.Designer.cs">
+      <DependentUpon>CredentialsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EligibilityPayers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EligibilityPayers.Designer.cs">
+      <DependentUpon>EligibilityPayers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\ApexLocal9557\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ApexLocal9562\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ApexLocal\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="RemittanceAdviceDeserializer.cs" />
+    <Compile Include="Service References\ApexProductionCloud2\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ApexSandbox\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\WebServiceClayton2\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="VendorSetting.cs" />
+    <Compile Include="VendorSettingManager.cs" />
+    <EmbeddedResource Include="BenefitRequestForm.resx">
+      <DependentUpon>BenefitRequestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CredentialsForm.resx">
+      <DependentUpon>CredentialsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EligibilityPayers.resx">
+      <DependentUpon>EligibilityPayers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Service References\ApexLocal9557\ApexWebServiceToolV2.ApexLocal9557.ClaimStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexLocal9557\ApexWebServiceToolV2.ApexLocal9557.ClaimSubmitResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexLocal9557\ApexWebServiceToolV2.ApexLocal9557.Payer.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexLocal9557\ApexWebServiceToolV2.ApexLocal9557.PayerResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexLocal9557\ApexWebServiceToolV2.ApexLocal9557.WsBenefitResponseResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexLocal9557\ApexWebServiceToolV2.ApexLocal9557.WsBenefitSubmitResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexLocal9557\ApexWebServiceToolV2.ApexLocal9557.WsCodeValue.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexLocal9557\ApexWebServiceToolV2.ApexLocal9557.WsCommonProvider.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexLocal9557\ApexWebServiceToolV2.ApexLocal9557.WsHealthCareClaimStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexLocal9557\ApexWebServiceToolV2.ApexLocal9557.WsPayerConfiguration.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexLocal9557\ApexWebServiceToolV2.ApexLocal9557.WsPayerResponseDocuments.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexLocal9557\ApexWebServiceToolV2.ApexLocal9557.WsProfession.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexLocal9557\ApexWebServiceToolV2.ApexLocal9557.WsService.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexLocal9557\onetouch.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal9557\onetouch1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal9557\onetouch10.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal9557\onetouch11.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal9557\onetouch12.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal9557\onetouch13.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal9557\onetouch14.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal9557\onetouch2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal9557\onetouch3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal9557\onetouch4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal9557\onetouch5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal9557\onetouch6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal9557\onetouch7.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal9557\onetouch8.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal9557\onetouch9.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal9557\OneTouchWebService.wsdl" />
+    <None Include="Service References\ApexLocal9562\ApexWebServiceToolV2.ApexLocal9562.ClaimStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexLocal9562\ApexWebServiceToolV2.ApexLocal9562.ClaimSubmitResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexLocal9562\ApexWebServiceToolV2.ApexLocal9562.Payer.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexLocal9562\ApexWebServiceToolV2.ApexLocal9562.PayerResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexLocal9562\ApexWebServiceToolV2.ApexLocal9562.WsBenefitResponseResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexLocal9562\ApexWebServiceToolV2.ApexLocal9562.WsBenefitSubmitResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexLocal9562\ApexWebServiceToolV2.ApexLocal9562.WsCodeValue.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexLocal9562\ApexWebServiceToolV2.ApexLocal9562.WsCommonProvider.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexLocal9562\ApexWebServiceToolV2.ApexLocal9562.WsHealthCareClaimStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexLocal9562\ApexWebServiceToolV2.ApexLocal9562.WsPayerConfiguration.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexLocal9562\ApexWebServiceToolV2.ApexLocal9562.WsPayerResponseDocuments.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexLocal9562\ApexWebServiceToolV2.ApexLocal9562.WsProfession.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexLocal9562\ApexWebServiceToolV2.ApexLocal9562.WsService.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexLocal9562\onetouch.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal9562\onetouch1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal9562\onetouch10.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal9562\onetouch11.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal9562\onetouch12.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal9562\onetouch13.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal9562\onetouch14.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal9562\onetouch2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal9562\onetouch3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal9562\onetouch4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal9562\onetouch5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal9562\onetouch6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal9562\onetouch7.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal9562\onetouch8.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal9562\onetouch9.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal9562\OneTouchWebService.wsdl" />
+    <None Include="Service References\ApexLocal\ApexWebServiceToolV2.ApexLocal.ClaimStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexLocal\ApexWebServiceToolV2.ApexLocal.ClaimSubmitResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexLocal\ApexWebServiceToolV2.ApexLocal.Payer.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexLocal\ApexWebServiceToolV2.ApexLocal.PayerResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexLocal\ApexWebServiceToolV2.ApexLocal.WsBenefitResponseResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexLocal\ApexWebServiceToolV2.ApexLocal.WsBenefitSubmitResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexLocal\ApexWebServiceToolV2.ApexLocal.WsCodeValue.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexLocal\ApexWebServiceToolV2.ApexLocal.WsCommonProvider.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexLocal\ApexWebServiceToolV2.ApexLocal.WsHealthCareClaimStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexLocal\ApexWebServiceToolV2.ApexLocal.WsPayerConfiguration.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexLocal\ApexWebServiceToolV2.ApexLocal.WsPayerResponseDocuments.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexLocal\ApexWebServiceToolV2.ApexLocal.WsProfession.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexLocal\ApexWebServiceToolV2.ApexLocal.WsService.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexLocal\onetouch.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal\onetouch1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal\onetouch10.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal\onetouch11.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal\onetouch12.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal\onetouch13.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal\onetouch14.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal\onetouch2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal\onetouch3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal\onetouch4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal\onetouch5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal\onetouch6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal\onetouch7.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal\onetouch8.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal\onetouch9.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApexLocal\OneTouchWebService.wsdl" />
+    <None Include="Service References\ApexProductionCloud2\ApexWebServiceToolV2.ApexProductionCloud2.ClaimStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexProductionCloud2\ApexWebServiceToolV2.ApexProductionCloud2.ClaimSubmitResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexProductionCloud2\ApexWebServiceToolV2.ApexProductionCloud2.Payer.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexProductionCloud2\ApexWebServiceToolV2.ApexProductionCloud2.PayerResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexProductionCloud2\ApexWebServiceToolV2.ApexProductionCloud2.WsBenefitResponseResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexProductionCloud2\ApexWebServiceToolV2.ApexProductionCloud2.WsBenefitSubmitResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexProductionCloud2\ApexWebServiceToolV2.ApexProductionCloud2.WsHealthCareClaimStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexProductionCloud2\ApexWebServiceToolV2.ApexProductionCloud2.WsPayerResponseDocuments.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexProductionCloud2\OneTouchWebService.wsdl" />
+    <None Include="Service References\ApexSandbox\ApexWebServiceToolV2.ApexSandbox.ClaimStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexSandbox\ApexWebServiceToolV2.ApexSandbox.ClaimSubmitResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexSandbox\ApexWebServiceToolV2.ApexSandbox.Payer.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexSandbox\ApexWebServiceToolV2.ApexSandbox.PayerResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexSandbox\ApexWebServiceToolV2.ApexSandbox.WsBenefitResponseResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexSandbox\ApexWebServiceToolV2.ApexSandbox.WsBenefitSubmitResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexSandbox\ApexWebServiceToolV2.ApexSandbox.WsHealthCareClaimStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexSandbox\ApexWebServiceToolV2.ApexSandbox.WsPayerResponseDocuments.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ApexSandbox\OneTouchWebService.wsdl" />
+    <None Include="Service References\WebServiceClayton2\ApexWebServiceToolV2.WebServiceClayton2.ClaimStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WebServiceClayton2\ApexWebServiceToolV2.WebServiceClayton2.ClaimSubmitResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WebServiceClayton2\ApexWebServiceToolV2.WebServiceClayton2.Payer.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WebServiceClayton2\ApexWebServiceToolV2.WebServiceClayton2.PayerResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WebServiceClayton2\ApexWebServiceToolV2.WebServiceClayton2.WsBenefitResponseResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WebServiceClayton2\ApexWebServiceToolV2.WebServiceClayton2.WsBenefitSubmitResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WebServiceClayton2\ApexWebServiceToolV2.WebServiceClayton2.WsHealthCareClaimStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WebServiceClayton2\ApexWebServiceToolV2.WebServiceClayton2.WsPayerResponseDocuments.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WebServiceClayton2\OneTouchWebService.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ApiV3\ApiV3Library.csproj">
+      <Project>{02f46107-0501-483e-ae6a-d7fffb3d2655}</Project>
+      <Name>ApiV3Library</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CommonControls\CommonControls.csproj">
+      <Project>{ff940e5d-0789-48a0-9f5a-599d58b890c9}</Project>
+      <Name>CommonControls</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ApexLocal9557\" />
+    <WCFMetadataStorage Include="Service References\ApexLocal9562\" />
+    <WCFMetadataStorage Include="Service References\ApexLocal\" />
+    <WCFMetadataStorage Include="Service References\ApexProductionCloud2\" />
+    <WCFMetadataStorage Include="Service References\ApexSandbox\" />
+    <WCFMetadataStorage Include="Service References\WebServiceClayton2\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ApexLocal\onetouch.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ApexLocal\configuration91.svcinfo">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ApexLocal\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ApexLocal\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ApexSandbox\onetouch.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ApexSandbox\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ApexSandbox\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ApexSandbox\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ApexLocal9562\onetouch.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ApexLocal9562\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ApexLocal9562\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ApexLocal9562\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ApexLocal9557\onetouch.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ApexLocal9557\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ApexLocal9557\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ApexLocal9557\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ApexProductionCloud2\onetouch.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ApexProductionCloud2\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ApexProductionCloud2\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ApexProductionCloud2\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WebServiceClayton2\onetouch.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WebServiceClayton2\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WebServiceClayton2\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WebServiceClayton2\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

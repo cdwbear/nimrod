@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Payments" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Payments" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:9562/onetouch.soap?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts" />
+  <xs:import schemaLocation="http://localhost:9562/onetouch.soap?xsd=xsd13" namespace="http://schemas.datacontract.org/2004/07/Apex.PayerServices.PayerModel" />
+  <xs:import schemaLocation="http://localhost:9562/onetouch.soap?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="WsRemittanceAdvice">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts" base="q1:WsPayerClaimStatusBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AverageDrgLengthOfStay" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="AverageDrgWeight" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="ClaimPayments" nillable="true" type="tns:ArrayOfWsClaimPayment" />
+          <xs:element minOccurs="0" name="FacilityType" nillable="true" type="q1:WsPlaceOfServiceCode" />
+          <xs:element minOccurs="0" name="Payee" nillable="true" type="tns:WsPayee" />
+          <xs:element minOccurs="0" name="Payer" nillable="true" type="tns:WsPayer" />
+          <xs:element minOccurs="0" name="PaymentDetails" nillable="true" type="tns:WsPaymentDetails" />
+          <xs:element minOccurs="0" name="ProviderAdjustments" nillable="true" type="tns:ArrayOfWsProviderAdjustment" />
+          <xs:element minOccurs="0" name="ProviderFiscalYearEnd" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="SubsidiaryProviderId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TotalCapitalAmount" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="TotalClaimChargeAmount" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="TotalClaimCount" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="TotalCostOutlierAmount" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="TotalCostReportDayCount" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="TotalCoveredDayCount" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="TotalDayOutlierAmount" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="TotalDischargeCount" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="TotalDisproportionateShareAmount" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="TotalDrgAmount" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="TotalFederalSpecificAmount" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="TotalHcpcsPayableAmount" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="TotalHcpcsReportedChargeAmount" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="TotalHospitalSpecificAmount" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="TotalIndirectMedicalEducationAmount" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="TotalMspPassThroughAmount" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="TotalMspPatientLiabilityMetAmount" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="TotalMspPayerAmount" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="TotalNonLabChargeAmount" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="TotalNoncoveredDayCount" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="TotalOutlierDayCount" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="TotalPatientReimbursementAmount" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="TotalPipAdjustmentAmount" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="TotalPipClaimCount" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="TotalPpsCapitalFspDrgAmount" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="TotalPpsCapitalHspDrgAmount" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="TotalPpsDshDrgAmount" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="TotalProfessionalComponentAmount" nillable="true" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="WsRemittanceAdvice" nillable="true" type="tns:WsRemittanceAdvice" />
+  <xs:complexType name="ArrayOfWsClaimPayment">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WsClaimPayment" nillable="true" type="tns:WsClaimPayment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWsClaimPayment" nillable="true" type="tns:ArrayOfWsClaimPayment" />
+  <xs:complexType name="WsClaimPayment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AdjustedRepricedClaimReferenceNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AuthorizationNumber" nillable="true" type="xs:string" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts" minOccurs="0" name="ClaimFrequency" nillable="true" type="q2:WsClaimFrequencyType" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts" minOccurs="0" name="ClaimLevelAdjustments" nillable="true" type="q3:ArrayOfWsAdjustmentGroup" />
+      <xs:element minOccurs="0" name="ClaimReceivedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ClaimType" type="tns:WsPayerClaimType" />
+      <xs:element minOccurs="0" name="ClassOfContractCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CoinsuredQuantityActual" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CorrectedEntity" nillable="true" type="tns:WsCorrectedEntity" />
+      <xs:element minOccurs="0" name="CorrectedPriorityPayer" nillable="true" type="tns:WsPayer" />
+      <xs:element minOccurs="0" name="CoverageExpirationDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CoveredQuantityActual" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CovergeAmount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CrossoverPayer" nillable="true" type="tns:WsPayer" />
+      <xs:element minOccurs="0" name="DischargeFraction" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="EmployeeIdentificationNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FederallyMandatedPayments" nillable="true" type="tns:ArrayOfWsMandatedPayment" />
+      <xs:element minOccurs="0" name="GroupOrPolicyNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="InpatientAdjudicationInformation" nillable="true" type="tns:WsInpatientAdjudicationInformation" />
+      <xs:element minOccurs="0" name="InsurancePolicyNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="InterestAmount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="LifetimeReservedQuantityActual" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="LifetimeReservedQuantityEstimated" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="MedicalReferenceId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MemberIdentificationNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NegativeLedgerAmount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="NonCoveredQuantityEstimated" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="NotReplacedBloodUnits" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="OriginalReferenceNumber" nillable="true" type="xs:string" />
+      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts" minOccurs="0" name="OtherSubscriber" nillable="true" type="q4:WsSubscriber" />
+      <xs:element minOccurs="0" name="OutlierDays" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="OutpatientAdjudicationInformation" nillable="true" type="tns:WsOutpatientAdjudicationInformation" />
+      <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts" minOccurs="0" name="Patient" nillable="true" type="q5:WsPatient" />
+      <xs:element minOccurs="0" name="PatientAmountPaid" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PatientControlNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PatientResponsibility" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PayerControlNumber" nillable="true" type="xs:string" />
+      <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Apex.PayerServices.PayerModel" minOccurs="0" name="PayerStatus" type="q6:WsStatusOfClaim" />
+      <xs:element minOccurs="0" name="PaymentAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PerDayLimitAmount" nillable="true" type="xs:decimal" />
+      <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts" minOccurs="0" name="PlaceOfService" nillable="true" type="q7:WsPlaceOfServiceCode" />
+      <xs:element minOccurs="0" name="PredeterminationOfBenefitsId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PrescriptionQuantity" nillable="true" type="xs:decimal" />
+      <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts" minOccurs="0" name="PrimaryPayerContact" nillable="true" type="q8:WsContact" />
+      <xs:element minOccurs="0" name="PriorAuthorizationNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PromptPayDiscountAmount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="RenderingProvider" nillable="true" type="tns:WsProvider" />
+      <xs:element minOccurs="0" name="RepricedClaimReferenceNumber" nillable="true" type="xs:string" />
+      <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts" minOccurs="0" name="SecondaryPayerContact" nillable="true" type="q9:WsContact" />
+      <xs:element minOccurs="0" name="ServicePayments" nillable="true" type="tns:ArrayOfWsServicePayment" />
+      <xs:element minOccurs="0" name="SocialSecurityNumber" nillable="true" type="xs:string" />
+      <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts" minOccurs="0" name="StatementDate" nillable="true" type="q10:WsDateRange" />
+      <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts" minOccurs="0" name="Subscriber" nillable="true" type="q11:WsSubscriber" />
+      <xs:element minOccurs="0" name="TaxAmount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="TotalClaimBeforeTaxesAmount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="TotalClaimCharges" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Visits" nillable="true" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WsClaimPayment" nillable="true" type="tns:WsClaimPayment" />
+  <xs:simpleType name="WsPayerClaimType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="PreferredProviderOrganization" />
+      <xs:enumeration value="PointOfService" />
+      <xs:enumeration value="ExclusiveProviderOrganization" />
+      <xs:enumeration value="IndemnityInsurance" />
+      <xs:enumeration value="HmoMedicare" />
+      <xs:enumeration value="DentalMaintenanceOrganization" />
+      <xs:enumeration value="AutomobileMedical" />
+      <xs:enumeration value="Champus" />
+      <xs:enumeration value="Disability" />
+      <xs:enumeration value="Hmo" />
+      <xs:enumeration value="LiabilityMedical" />
+      <xs:enumeration value="MedicarePartA" />
+      <xs:enumeration value="MedicarePartB" />
+      <xs:enumeration value="Medicaid" />
+      <xs:enumeration value="OtherFederalProgram" />
+      <xs:enumeration value="TitleV" />
+      <xs:enumeration value="VeteransAffairsPlan" />
+      <xs:enumeration value="WorkersCompensationHealthClaim" />
+      <xs:enumeration value="MutuallyDefined" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="WsPayerClaimType" nillable="true" type="tns:WsPayerClaimType" />
+  <xs:complexType name="WsCorrectedEntity">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CommonName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CorrectedUniqueId" nillable="true" type="xs:string" />
+      <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts" minOccurs="0" name="EntityType" type="q12:WsEntityType" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MiddleName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OtherInsuredGroupNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Suffix" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WsCorrectedEntity" nillable="true" type="tns:WsCorrectedEntity" />
+  <xs:complexType name="WsPayer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BcbsPlanCode" nillable="true" type="xs:string" />
+      <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts" minOccurs="0" name="BusinessContact" nillable="true" type="q13:WsContact" />
+      <xs:element minOccurs="0" name="CmsPlanId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HealthIndustryNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NaicCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PayerId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PayerIdentificationNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PharmacyProcessorNumber" nillable="true" type="xs:string" />
+      <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts" minOccurs="0" name="PhysicalAddress" nillable="true" type="q14:WsAddress" />
+      <xs:element minOccurs="0" name="SubmitterIdentificationNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TaxpayerIdentificationNumber" nillable="true" type="xs:string" />
+      <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts" minOccurs="0" name="TechnicalContacts" nillable="true" type="q15:ArrayOfWsContact" />
+      <xs:element minOccurs="0" name="WebSite" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WsPayer" nillable="true" type="tns:WsPayer" />
+  <xs:complexType name="ArrayOfWsMandatedPayment">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WsMandatedPayment" nillable="true" type="tns:WsMandatedPayment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWsMandatedPayment" nillable="true" type="tns:ArrayOfWsMandatedPayment" />
+  <xs:complexType name="WsMandatedPayment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Amount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Count" type="xs:int" />
+      <xs:element minOccurs="0" name="Sequence" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WsMandatedPayment" nillable="true" type="tns:WsMandatedPayment" />
+  <xs:complexType name="WsInpatientAdjudicationInformation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CostReportDays" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DiagnosisRelatedGroupAmount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DisproportionateShareAmount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="IndirectTeachingAmount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="LifetimePsychiatricDays" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="MspPassthroughAmount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="NonpayableProfessionalComponentAmount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="OldCapitalAmount" nillable="true" type="xs:decimal" />
+      <xs:element xmlns:q16="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="PaymentRemarkCodes" nillable="true" type="q16:ArrayOfstring" />
+      <xs:element minOccurs="0" name="PpsCapitalAmount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PpsCapitalDisproportionateShareDrgAmount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PpsCapitalExceptionAmount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PpsCapitalFederalSpecificDrgAmount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PpsCapitalHospitalSpecificDrgAmount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PpsCapitalImeAmount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PpsCapitalOutlierAmount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PpsOperatingFederalSpecificDrgAmount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PpsOperatingHospitalSpecificDrgAmount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PpsOperatingOutlierAmount" nillable="true" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WsInpatientAdjudicationInformation" nillable="true" type="tns:WsInpatientAdjudicationInformation" />
+  <xs:complexType name="WsOutpatientAdjudicationInformation">
+    <xs:sequence>
+      <xs:element xmlns:q17="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="AdviceRemarks" nillable="true" type="q17:ArrayOfstring" />
+      <xs:element minOccurs="0" name="EndStagePaymentAmount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="HcpcsPayableAmount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="NonPayableAmount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ReimbursementRate" nillable="true" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WsOutpatientAdjudicationInformation" nillable="true" type="tns:WsOutpatientAdjudicationInformation" />
+  <xs:complexType name="WsProvider">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AlternateIdentifiers" nillable="true" type="tns:WsProviderIdentifiers" />
+      <xs:element minOccurs="0" name="BlueCrossNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BlueShieldNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ChampusId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CommercialNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CommonName" nillable="true" type="xs:string" />
+      <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts" minOccurs="0" name="EntityType" type="q18:WsEntityType" />
+      <xs:element minOccurs="0" name="FacilityId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LocationNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MedicaidNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MedicareNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MiddleName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NationalProviderId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NcpdppNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PharmacyNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SocialSecurityNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StateLicenseNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Suffix" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TaxpayerNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UpinNumber" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WsProvider" nillable="true" type="tns:WsProvider" />
+  <xs:complexType name="WsProviderIdentifiers">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BlueCrossNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BlueShieldNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ChampusId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CommercialNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FacilityId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LocationNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MedicaidNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MedicareNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NationalProviderId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NcpdppNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PharmacyNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SocialSecurityNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StateLicenseNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TaxpayerNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UpinNumber" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WsProviderIdentifiers" nillable="true" type="tns:WsProviderIdentifiers" />
+  <xs:complexType name="ArrayOfWsServicePayment">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WsServicePayment" nillable="true" type="tns:WsServicePayment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWsServicePayment" nillable="true" type="tns:ArrayOfWsServicePayment" />
+  <xs:complexType name="WsServicePayment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AdjudicatedProcedure1" nillable="true" type="tns:WsAdjudicatedProcedure" />
+      <xs:element minOccurs="0" name="AdjudicatedProcedure2" nillable="true" type="tns:WsAdjudicatedProcedure" />
+      <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts" minOccurs="0" name="Adjustments" nillable="true" type="q19:ArrayOfWsAdjustmentGroup" />
+      <xs:element minOccurs="0" name="AllowedActualAmount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="AmbulatoryPatientClassification" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AmbulatoryPatientGroupNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AttachmentCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AuthorizationNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FederallyMandatedPayments" nillable="true" type="tns:ArrayOfWsMandatedPayment" />
+      <xs:element xmlns:q20="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="HealthCarePolicyNumbers" nillable="true" type="q20:ArrayOfstring" />
+      <xs:element minOccurs="0" name="LateFilingReductionAmount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="LineItemChargeAmount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="LineItemControlNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LineItemProviderPaymentAmount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="LocationNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NubcRevenueCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OriginalUnitsOfServiceCount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PaidUnitsOfServiceCount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PredeterminationOfBenefitsId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PriorAuthorizationNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RateCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Remarks" nillable="true" type="tns:ArrayOfWsServiceRemark" />
+      <xs:element minOccurs="0" name="RenderingProviderIds" nillable="true" type="tns:WsProviderIdentifiers" />
+      <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts" minOccurs="0" name="ServiceDates" nillable="true" type="q21:WsDateRange" />
+      <xs:element minOccurs="0" name="TaxAmount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="TotalClaimBeforeTaxesAmount" nillable="true" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WsServicePayment" nillable="true" type="tns:WsServicePayment" />
+  <xs:complexType name="WsAdjudicatedProcedure">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element xmlns:q22="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Modifiers" nillable="true" type="q22:ArrayOfstring" />
+      <xs:element minOccurs="0" name="ProcedureCode" nillable="true" type="xs:string" />
+      <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts" minOccurs="0" name="Type" type="q23:WsProcedureCodeSource" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WsAdjudicatedProcedure" nillable="true" type="tns:WsAdjudicatedProcedure" />
+  <xs:complexType name="ArrayOfWsServiceRemark">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WsServiceRemark" nillable="true" type="tns:WsServiceRemark" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWsServiceRemark" nillable="true" type="tns:ArrayOfWsServiceRemark" />
+  <xs:complexType name="WsServiceRemark">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PaymentRemark" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PrescriptionDrugCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WsServiceRemark" nillable="true" type="tns:WsServiceRemark" />
+  <xs:complexType name="ArrayOfWsCorrectedEntity">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WsCorrectedEntity" nillable="true" type="tns:WsCorrectedEntity" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWsCorrectedEntity" nillable="true" type="tns:ArrayOfWsCorrectedEntity" />
+  <xs:complexType name="WsPayee">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CmsPlanId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DeliveryMethod" type="tns:WsDeliveryMethod" />
+      <xs:element minOccurs="0" name="DeliveryUrl" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NationalProviderId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OtherPayeeId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PayeeId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PharmacyNumber" nillable="true" type="xs:string" />
+      <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts" minOccurs="0" name="PhysicalAddress" nillable="true" type="q24:WsAddress" />
+      <xs:element minOccurs="0" name="StateLicenseNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TaxIdNumber" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WsPayee" nillable="true" type="tns:WsPayee" />
+  <xs:simpleType name="WsDeliveryMethod">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="ByMail" />
+      <xs:enumeration value="Email" />
+      <xs:enumeration value="FileTransfer" />
+      <xs:enumeration value="Online" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="WsDeliveryMethod" nillable="true" type="tns:WsDeliveryMethod" />
+  <xs:complexType name="WsPaymentDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Currency" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HandlingCode" type="tns:WsTransactionHandlingCode" />
+      <xs:element minOccurs="0" name="PayerId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PayerSupplementalId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PayerSupplementalTaxId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PayerTaxId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PaymentFormat" type="tns:WsPaymentFormatCode" />
+      <xs:element minOccurs="0" name="PaymentMethod" type="tns:WsPaymentsPaymentMethodCode" />
+      <xs:element minOccurs="0" name="PaymentReferenceNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductionDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ReceiverAbaTransitRoutingNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverBankIdNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverCanadianBankNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverDepositAccountNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiverSavingsAccountNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SenderAbaTransitRoutingNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SenderAccountNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SenderCanadianBankNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SenderSoftwareVersion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TotalActualProviderPayment" type="xs:decimal" />
+      <xs:element minOccurs="0" name="TransactionEffectiveDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TransactionType" type="tns:WsFinancialTransactionType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WsPaymentDetails" nillable="true" type="tns:WsPaymentDetails" />
+  <xs:simpleType name="WsTransactionHandlingCode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="PaymentWithRemittance" />
+      <xs:enumeration value="MakePaymentOnly" />
+      <xs:enumeration value="Notification" />
+      <xs:enumeration value="Informational" />
+      <xs:enumeration value="Prenotification" />
+      <xs:enumeration value="PaymentWithoutRemittance" />
+      <xs:enumeration value="SplitOptional" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="WsTransactionHandlingCode" nillable="true" type="tns:WsTransactionHandlingCode" />
+  <xs:simpleType name="WsPaymentFormatCode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="CashDisbursement" />
+      <xs:enumeration value="CorporateTradeExchange" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="WsPaymentFormatCode" nillable="true" type="tns:WsPaymentFormatCode" />
+  <xs:simpleType name="WsPaymentsPaymentMethodCode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="Ach" />
+      <xs:enumeration value="FinancialInstitution" />
+      <xs:enumeration value="Check" />
+      <xs:enumeration value="FedWire" />
+      <xs:enumeration value="None" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="WsPaymentsPaymentMethodCode" nillable="true" type="tns:WsPaymentsPaymentMethodCode" />
+  <xs:simpleType name="WsFinancialTransactionType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="Credit" />
+      <xs:enumeration value="Debit" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="WsFinancialTransactionType" nillable="true" type="tns:WsFinancialTransactionType" />
+  <xs:complexType name="ArrayOfWsFinancialTransactionType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WsFinancialTransactionType" type="tns:WsFinancialTransactionType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWsFinancialTransactionType" nillable="true" type="tns:ArrayOfWsFinancialTransactionType" />
+  <xs:complexType name="ArrayOfWsProviderAdjustment">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WsProviderAdjustment" nillable="true" type="tns:WsProviderAdjustment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWsProviderAdjustment" nillable="true" type="tns:ArrayOfWsProviderAdjustment" />
+  <xs:complexType name="WsProviderAdjustment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Details" nillable="true" type="tns:ArrayOfWsAdjustmentDetail" />
+      <xs:element minOccurs="0" name="FiscalEndOfYear" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="NationalProviderId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WsProviderAdjustment" nillable="true" type="tns:WsProviderAdjustment" />
+  <xs:complexType name="ArrayOfWsAdjustmentDetail">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WsAdjustmentDetail" nillable="true" type="tns:WsAdjustmentDetail" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWsAdjustmentDetail" nillable="true" type="tns:ArrayOfWsAdjustmentDetail" />
+  <xs:complexType name="WsAdjustmentDetail">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Adjustment" type="xs:decimal" />
+      <xs:element minOccurs="0" name="AdjustmentId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Reason" type="tns:WsAdjustmentReason" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WsAdjustmentDetail" nillable="true" type="tns:WsAdjustmentDetail" />
+  <xs:simpleType name="WsAdjustmentReason">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="LateCharge" />
+      <xs:enumeration value="InterestPenaltyCharge" />
+      <xs:enumeration value="AuthorizedReturn" />
+      <xs:enumeration value="EarlyPaymentAllowance" />
+      <xs:enumeration value="OriginationFee" />
+      <xs:enumeration value="AppliedToBorrowersAccount" />
+      <xs:enumeration value="AccelerationOfBenefits" />
+      <xs:enumeration value="Rebate" />
+      <xs:enumeration value="RecoveryAllowance" />
+      <xs:enumeration value="BadDebtAdjustment" />
+      <xs:enumeration value="Bonus" />
+      <xs:enumeration value="TemporaryAllowance" />
+      <xs:enumeration value="CapitationInterest" />
+      <xs:enumeration value="Adjustment" />
+      <xs:enumeration value="CapitationPayment" />
+      <xs:enumeration value="CapitalPassthrough" />
+      <xs:enumeration value="CertifiedRegisteredNurseAnesthetistPassthrough" />
+      <xs:enumeration value="DirectMedicalEducationPassthrough" />
+      <xs:enumeration value="Withholding" />
+      <xs:enumeration value="ForwardingBalance" />
+      <xs:enumeration value="FundAllocation" />
+      <xs:enumeration value="GraduateMedicalEducationPassthrough" />
+      <xs:enumeration value="HemophiliaClottingFactorSupplement" />
+      <xs:enumeration value="IncentivePremiumPayment" />
+      <xs:enumeration value="InternalRevenueServiceWithholding" />
+      <xs:enumeration value="InterimSettlement" />
+      <xs:enumeration value="Penalty" />
+      <xs:enumeration value="InterestOwed" />
+      <xs:enumeration value="Levy" />
+      <xs:enumeration value="LumpSum" />
+      <xs:enumeration value="OrganAcquisitionPassthru" />
+      <xs:enumeration value="OffsetForAffiliatedProviders" />
+      <xs:enumeration value="PeriodicInterimPayment" />
+      <xs:enumeration value="PaymentFinal" />
+      <xs:enumeration value="RetroactivityAdjustment" />
+      <xs:enumeration value="ReturnOnEquity" />
+      <xs:enumeration value="StudentLoanRepayment" />
+      <xs:enumeration value="ThirdPartyLiability" />
+      <xs:enumeration value="OverpaymentRecovery" />
+      <xs:enumeration value="UnspecifiedRecovery" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="WsAdjustmentReason" nillable="true" type="tns:WsAdjustmentReason" />
+  <xs:complexType name="ArrayOfWsPayer">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WsPayer" nillable="true" type="tns:WsPayer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWsPayer" nillable="true" type="tns:ArrayOfWsPayer" />
+  <xs:complexType name="ArrayOfWsRemittanceAdvice">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WsRemittanceAdvice" nillable="true" type="tns:WsRemittanceAdvice" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWsRemittanceAdvice" nillable="true" type="tns:ArrayOfWsRemittanceAdvice" />
+</xs:schema>

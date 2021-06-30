@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:9557/onetouch.soap?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Apex.OneTouchService" />
+  <xs:import schemaLocation="http://localhost:9557/onetouch.soap?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://localhost:9557/onetouch.soap?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts" />
+  <xs:import schemaLocation="http://localhost:9557/onetouch.soap?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility.Request" />
+  <xs:import schemaLocation="http://localhost:9557/onetouch.soap?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility" />
+  <xs:import schemaLocation="http://localhost:9557/onetouch.soap?xsd=xsd14" namespace="http://schemas.datacontract.org/2004/07/Apex.AdministrativeServices.Contracts.Providers" />
+  <xs:element name="SubmitClaims">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="vendorKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="vendorSiteId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ansiDocument" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SubmitClaimsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Apex.OneTouchService" minOccurs="0" name="SubmitClaimsResult" nillable="true" type="q1:ClaimSubmitResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetClaimStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="vendorKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+        <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="vendorClaimIds" nillable="true" type="q2:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetClaimStatusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Apex.OneTouchService" minOccurs="0" name="GetClaimStatusResult" nillable="true" type="q3:ArrayOfClaimStatus" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPayers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="vendorKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Apex.OneTouchService" minOccurs="0" name="type" type="q4:PayerType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPayersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Apex.OneTouchService" minOccurs="0" name="GetPayersResult" nillable="true" type="q5:ArrayOfPayer" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTestPayers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="vendorKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Apex.OneTouchService" minOccurs="0" name="type" type="q6:PayerType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTestPayersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Apex.OneTouchService" minOccurs="0" name="GetTestPayersResult" nillable="true" type="q7:ArrayOfPayer" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPayerResponses">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="vendorKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="vendorSiteId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="fromDate" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="toDate" nillable="true" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPayerResponsesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Apex.OneTouchService" minOccurs="0" name="GetPayerResponsesResult" nillable="true" type="q8:ArrayOfPayerResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetClaimStatusByDate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="vendorKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="vendorSiteId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="startDate" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="endDate" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetClaimStatusByDateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts" minOccurs="0" name="GetClaimStatusByDateResult" nillable="true" type="q9:ArrayOfWsHealthCareClaimStatus" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SubmitEligibilityRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="vendorKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="vendorSiteId" nillable="true" type="xs:string" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility.Request" minOccurs="0" name="benefitSubmitRequest" nillable="true" type="q10:WsBenefitSubmitRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SubmitEligibilityRequestResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility" minOccurs="0" name="SubmitEligibilityRequestResult" nillable="true" type="q11:WsBenefitSubmitResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SubmitEligibilityRequestWithFormat">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="vendorKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="vendorSiteId" nillable="true" type="xs:string" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility.Request" minOccurs="0" name="benefitSubmitRequest" nillable="true" type="q12:WsBenefitSubmitRequest" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility" minOccurs="0" name="requestedFormat" type="q13:WsBenefitResponseFormat" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SubmitEligibilityRequestWithFormatResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility" minOccurs="0" name="SubmitEligibilityRequestWithFormatResult" nillable="true" type="q14:WsBenefitSubmitResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetEligibilityResponses">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="vendorKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="vendorSiteId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="requestId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetEligibilityResponsesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility" minOccurs="0" name="GetEligibilityResponsesResult" nillable="true" type="q15:WsBenefitResponseResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetEligibilityResponsesWithFormat">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="vendorKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="vendorSiteId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="requestId" type="xs:long" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility" minOccurs="0" name="requestedFormat" type="q16:WsBenefitResponseFormat" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetEligibilityResponsesWithFormatResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility" minOccurs="0" name="GetEligibilityResponsesWithFormatResult" nillable="true" type="q17:WsBenefitResponseResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPayerResponseDocuments">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="vendorKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+        <xs:element xmlns:q18="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="docIds" nillable="true" type="q18:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPayerResponseDocumentsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts" minOccurs="0" name="GetPayerResponseDocumentsResult" nillable="true" type="q19:WsPayerResponseDocuments" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProvidersBySiteId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="vendorKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="vendorSiteId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProvidersBySiteIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/Apex.AdministrativeServices.Contracts.Providers" minOccurs="0" name="GetProvidersBySiteIdResult" nillable="true" type="q20:ArrayOfWsCommonProvider" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SubmitEligibilityRequestLite">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="vendorKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="vendorSiteId" nillable="true" type="xs:string" />
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility.Request" minOccurs="0" name="benefitSubmitRequest" nillable="true" type="q21:WsBenefitSubmitRequestLite" />
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility" minOccurs="0" name="requestedFormat" type="q22:WsBenefitResponseFormat" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SubmitEligibilityRequestLiteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility" minOccurs="0" name="SubmitEligibilityRequestLiteResult" nillable="true" type="q23:WsBenefitSubmitResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetEQCodesForPayer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="vendorKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="vendorSiteId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="payerId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetEQCodesForPayerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts.Eligibility" minOccurs="0" name="GetEQCodesForPayerResult" nillable="true" type="q24:ArrayOfWsCodeValue" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProfession">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="vendorKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="vendorSiteId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProfessionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts" minOccurs="0" name="GetProfessionResult" type="q25:WsProfession" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMaxDependents">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="vendorKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="vendorSiteId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="payerId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMaxDependentsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetMaxDependentsResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPayerConfiguration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="vendorKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="payerId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPayerConfigurationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts" minOccurs="0" name="GetPayerConfigurationResult" nillable="true" type="q26:WsPayerConfiguration" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetServiceByProviderAndServiceType">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="vendorKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="providerId" type="xs:int" />
+        <xs:element minOccurs="0" name="serviceType" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetServiceByProviderAndServiceTypeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/Apex.OneTouchWebserviceContracts" minOccurs="0" name="GetServiceByProviderAndServiceTypeResult" nillable="true" type="q27:WsService" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateTrackerEligibilityInformation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="vendorKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="vendorSiteId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateTrackerEligibilityInformationResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
