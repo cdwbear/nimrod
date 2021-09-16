@@ -17,9 +17,18 @@ namespace WinFormsLab
             InitializeComponent();
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.CustomFormat = "MMM yyyy";
+            timer1.Interval = 15000;
+            timer1.Enabled = true;
+			timer1.Tick += Timer1_Tick;
+			timer1.Start();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+		private void Timer1_Tick(object sender, EventArgs e)
+		{
+			labelTimer1.Text = DateTime.Now.ToLongTimeString();
+		}
+
+		private void button1_Click(object sender, EventArgs e)
         {
             label1.Text = textBox1.Text;
         }
@@ -37,5 +46,17 @@ namespace WinFormsLab
         {
             var selectedDate = dateTimePicker1.Value;
         }
-    }
+
+		private void radioButtonTimer_CheckedChanged(object sender, EventArgs e)
+		{
+			if (radioButtonTimer.Checked)
+			{
+				timer1.Start();
+			}
+			else
+            {
+	            timer1.Stop();
+            }
+		}
+	}
 }
