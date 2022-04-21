@@ -16,7 +16,9 @@ namespace WinFormsLab
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            //Application.Run(new Form1());
+            var formObj = new Form1();
+            var dlgResult = formObj.ShowDialog();
         }
     }
 }

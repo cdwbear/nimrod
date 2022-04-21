@@ -58,5 +58,16 @@ namespace WinFormsLab
 	            timer1.Stop();
             }
 		}
+
+		private void buttonCancel_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void button3_Click(object sender, EventArgs e)
+		{
+			folderBrowserDialog1.SelectedPath = "D:\\ClaimStaker";
+			folderBrowserDialog1.ShowDialog();
+		}
 	}
 }

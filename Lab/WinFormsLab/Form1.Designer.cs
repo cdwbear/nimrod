@@ -48,6 +48,10 @@
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
 			this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.buttonOk = new System.Windows.Forms.Button();
+			this.buttonCancel = new System.Windows.Forms.Button();
+			this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+			this.button3 = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.SuspendLayout();
@@ -209,11 +213,47 @@
 			this.Column2.HeaderText = "Column2";
 			this.Column2.Name = "Column2";
 			// 
+			// buttonOk
+			// 
+			this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.buttonOk.Location = new System.Drawing.Point(528, 136);
+			this.buttonOk.Name = "buttonOk";
+			this.buttonOk.Size = new System.Drawing.Size(92, 23);
+			this.buttonOk.TabIndex = 7;
+			this.buttonOk.Text = "OK";
+			this.buttonOk.UseVisualStyleBackColor = true;
+			// 
+			// buttonCancel
+			// 
+			this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.buttonCancel.Location = new System.Drawing.Point(528, 165);
+			this.buttonCancel.Name = "buttonCancel";
+			this.buttonCancel.Size = new System.Drawing.Size(92, 29);
+			this.buttonCancel.TabIndex = 8;
+			this.buttonCancel.Text = "Cancel";
+			this.buttonCancel.UseVisualStyleBackColor = true;
+			this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+			// 
+			// button3
+			// 
+			this.button3.Location = new System.Drawing.Point(316, 167);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(75, 23);
+			this.button3.TabIndex = 9;
+			this.button3.Text = "button3";
+			this.button3.UseVisualStyleBackColor = true;
+			this.button3.Click += new System.EventHandler(this.button3_Click);
+			// 
 			// Form1
 			// 
+			this.AcceptButton = this.buttonOk;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.CancelButton = this.buttonCancel;
 			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.Controls.Add(this.button3);
+			this.Controls.Add(this.buttonCancel);
+			this.Controls.Add(this.buttonOk);
 			this.Controls.Add(this.dataGridView1);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.comboBox1);
@@ -250,6 +290,10 @@
 		private System.Windows.Forms.DataGridView dataGridView1;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+		private System.Windows.Forms.Button buttonOk;
+		private System.Windows.Forms.Button buttonCancel;
+		private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+		private System.Windows.Forms.Button button3;
 	}
 }
 

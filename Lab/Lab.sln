@@ -61,6 +61,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EligibilityDocSampleSource"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencies", "{26FEB1AE-CCDA-4844-BD4B-750BCE858D46}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EligConsoleApp", "EligConsoleApp\EligConsoleApp.csproj", "{6F41A039-FBF5-4D4C-A720-2010F842D08A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -385,6 +387,18 @@ Global
 		{12C44F81-D403-4E3F-8755-35235B4E77F5}.Release|x64.Build.0 = Release|Any CPU
 		{12C44F81-D403-4E3F-8755-35235B4E77F5}.Release|x86.ActiveCfg = Release|Any CPU
 		{12C44F81-D403-4E3F-8755-35235B4E77F5}.Release|x86.Build.0 = Release|Any CPU
+		{6F41A039-FBF5-4D4C-A720-2010F842D08A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F41A039-FBF5-4D4C-A720-2010F842D08A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F41A039-FBF5-4D4C-A720-2010F842D08A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6F41A039-FBF5-4D4C-A720-2010F842D08A}.Debug|x64.Build.0 = Debug|Any CPU
+		{6F41A039-FBF5-4D4C-A720-2010F842D08A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6F41A039-FBF5-4D4C-A720-2010F842D08A}.Debug|x86.Build.0 = Debug|Any CPU
+		{6F41A039-FBF5-4D4C-A720-2010F842D08A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F41A039-FBF5-4D4C-A720-2010F842D08A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F41A039-FBF5-4D4C-A720-2010F842D08A}.Release|x64.ActiveCfg = Release|Any CPU
+		{6F41A039-FBF5-4D4C-A720-2010F842D08A}.Release|x64.Build.0 = Release|Any CPU
+		{6F41A039-FBF5-4D4C-A720-2010F842D08A}.Release|x86.ActiveCfg = Release|Any CPU
+		{6F41A039-FBF5-4D4C-A720-2010F842D08A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

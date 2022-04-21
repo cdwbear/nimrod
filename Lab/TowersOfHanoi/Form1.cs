@@ -40,7 +40,7 @@ namespace TowersOfHanoi
 
             TimeSpan ts1 = sw.Elapsed;
 
-            MessageBox.Show($"Time was {sw.Elapsed.Minutes}:{sw.Elapsed.Seconds}:{sw.Elapsed.Milliseconds}");
+            MessageBox.Show($"For number of moves: {Math.Pow(2.0, (double)discCount) - 1}, time was {sw.Elapsed.Minutes}:{sw.Elapsed.Seconds}:{sw.Elapsed.Milliseconds}, Ticks: {sw.ElapsedTicks}, Average Ticks per move: {((double)sw.ElapsedTicks / Math.Pow(2.0, (double)discCount) - 1).ToString()}");
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -65,7 +65,7 @@ namespace TowersOfHanoi
 
             TimeSpan ts1 = sw.Elapsed;
 
-            MessageBox.Show($"Time was {sw.Elapsed.Minutes}:{sw.Elapsed.Seconds}:{sw.Elapsed.Milliseconds}");
+            MessageBox.Show($"For number of moves: {Math.Pow(2.0, (double)discCount) - 1}, time was {sw.Elapsed.Minutes}:{sw.Elapsed.Seconds}:{sw.Elapsed.Milliseconds}, Ticks: {sw.ElapsedTicks}, Average Ticks per move: {((double)sw.ElapsedTicks / Math.Pow(2.0, (double)discCount)-1).ToString()}");
         }
     }
 }
