@@ -13,6 +13,9 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Formatting = Newtonsoft.Json.Formatting;
 // using ApexWebServiceToolV2.ApexProduction;
 // using ApexWebServiceToolV2.ApexProd;
 // using ApexWebServiceToolV2.ApexLocal;
@@ -62,23 +65,6 @@ namespace ApexWebServiceToolV2
             }
 
             dataGridViewServiceTypes.Sort(dataGridViewServiceTypes.Columns[0], ListSortDirection.Ascending);
-            DataGridViewRow defaultSelectedRow = null;
-            foreach (DataGridViewRow row in dataGridViewServiceTypes.Rows)
-            {
-                if (row.Tag != null && row.Tag is WsServiceType)
-                {
-                    if ((WsServiceType) row.Tag == WsServiceType.HealthBenefitPlanCoverage)
-                    {
-                        defaultSelectedRow = row;
-                        break;
-                    }
-                }
-            }
-
-            if (defaultSelectedRow != null)
-            {
-                defaultSelectedRow.Selected = true;
-            }
 
             _key = key;
             _password = password;
@@ -105,6 +91,22 @@ namespace ApexWebServiceToolV2
                 ConfigurationManager.AppSettings.Get(ConfigKeys.eligSubscriberGender).ToLower() == "male";
             radioButtonSubFemale.Checked = !radioButtonSubMale.Checked;
             textBoxSubscriberID.Text = ConfigurationManager.AppSettings.Get(ConfigKeys.eligSubscriberId);
+
+            foreach (DataGridViewRow row in dataGridViewServiceTypes.Rows)
+            {
+	            if (row.Tag != null && row.Tag is WsServiceType)
+	            {
+		            if ((WsServiceType)row.Tag == WsServiceType.HealthBenefitPlanCoverage)
+		            {
+			            // defaultSelectedRow = row;
+			            row.Selected = true;
+			            row.Cells[0].Selected = true;
+			            dataGridViewServiceTypes.CurrentCell = row.Cells[0];
+			            break;
+		            }
+	            }
+            }
+            dataGridViewServiceTypes.Update();
         }
 
         private void saveSettings()
@@ -219,7 +221,7 @@ namespace ApexWebServiceToolV2
                     Dependents = (dependent == null) ? null : new WsEligibilityRequestDependent[] { dependent },
                     RequestedBenefits = benefits.ToArray(),
                     PayeeTraceNumber =
-                        (string.IsNullOrWhiteSpace(textBoxTraceNumber.Text) && string.IsNullOrWhiteSpace(textBoxOriginatingCompanyId.Text)) ? null
+                        (string.IsNullOrWhiteSpace(textBoxTraceNumber.Text) || string.IsNullOrWhiteSpace(textBoxOriginatingCompanyId.Text)) ? null
                         : new WsTraceNumber() { Number = textBoxTraceNumber.Text, OriginatorId = textBoxOriginatingCompanyId.Text },
                 };
 
@@ -310,6 +312,8 @@ namespace ApexWebServiceToolV2
                     // Vendor Site ID
                     // Subscriber First/Last DOB
                     // Dependent Firs/Last DOB
+                    var jsonRequest = JsonConvert.SerializeObject(request, Formatting.Indented);
+                    File.WriteAllText("JubalayaJson.txt", jsonRequest);
                     WsBenefitSubmitResult result = client15.SubmitEligibilityRequest(_key, _password,
                                                                                         textBoxEligibilityVendorSiteId
                                                                                             .Text, request);
@@ -373,6 +377,42 @@ namespace ApexWebServiceToolV2
             }
         }
 
+        private void AddNode(XmlNode inXmlNode, TreeNode inTreeNode)
+        {
+	        XmlNode xNode;
+	        TreeNode tNode;
+	        XmlNodeList nodeList;
+	        int i;
+
+	        if (inXmlNode.HasChildNodes)
+	        {
+		        nodeList = inXmlNode.ChildNodes;
+		        for (i = 0; i <= nodeList.Count - 1; i++)
+		        {
+			        xNode = inXmlNode.ChildNodes[i];
+			        var nodeName = xNode.Name;
+			        //if (string.Compare(xNode.Name.ToLower(), "wsclaimpayment",
+				       //     StringComparison.CurrentCultureIgnoreCase) == 0)
+			        //{
+				       // nodeName =
+					      //  $"{nodeName} - {xNode["Patient"]["CommonName"].InnerText}, {xNode["Patient"]["FirstName"].InnerText}";
+			        //}
+			        // inTreeNode.Nodes.Add(new TreeNode(xNode.Name));
+			        inTreeNode.Nodes.Add(new TreeNode(nodeName));
+			        tNode = inTreeNode.Nodes[i];
+			        AddNode(xNode, tNode);
+		        }
+	        }
+	        else
+	        {
+		        if (!string.IsNullOrEmpty((inXmlNode.InnerText).Trim()))
+		        {
+			        inTreeNode.Text = (inXmlNode.InnerText).Trim();
+		        }
+	        }
+
+        }
+
         private void buttonGetEligibilityResponses_Click(object sender, EventArgs e)
         {
             long idLong = 0L;
@@ -395,6 +435,27 @@ namespace ApexWebServiceToolV2
                     results.Add(
                     client15.GetEligibilityResponses(_key, _password,
                     textBoxEligibilityVendorSiteId.Text, id)));
+
+                _dataContractSerializer = new DataContractSerializer(typeof(List<WsBenefitResponseResult>));
+                var jsonString = JsonConvert.SerializeObject(results, Formatting.Indented);
+                var jsonFile = Path.Combine(
+	                AppDomain.CurrentDomain.BaseDirectory,
+	                $"JsonResponseMulti-{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.txt");
+                if (checkBoxSerializeResponse.Checked)
+	                File.WriteAllText(jsonFile, jsonString);
+                richTextBoxResults.Text = jsonString;
+
+                var fileName = string.Format("EligResponseMulti-{0}-{1}.xml", _vendorSiteId,
+	                DateTime.Now.ToString("yyyyMMddHHmmssfff"));
+                var pathAndFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName);
+
+                if (checkBoxSerializeResponse.Checked)
+                {
+	                FileStream file = File.Create(pathAndFile);
+	                // _xmlSerializer.Serialize(file, result);
+	                _dataContractSerializer.WriteObject(file, results);
+	                file.Close();
+                }
             }
             catch (Exception exception)
             {
@@ -405,21 +466,82 @@ namespace ApexWebServiceToolV2
             results.ForEach(
                 result =>
                 {
-                    if (checkBoxSerializeResponse.Checked)
+                    //if (checkBoxSerializeResponse.Checked)
                     {
                         try
                         {
                             _dataContractSerializer = new DataContractSerializer(typeof(WsBenefitResponseResult));
 
-                            //_xmlSerializer = new XmlSerializer(typeof(WsBenefitResponseResult));
+                            var jsonString = JsonConvert.SerializeObject(result, Formatting.Indented);
+                            var jsonFile = Path.Combine(
+	                            AppDomain.CurrentDomain.BaseDirectory, 
+	                            $"JsonResponse-{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.txt");
+                            
+                            if(checkBoxSerializeResponse.Checked)
+	                            File.WriteAllText(jsonFile, jsonString);
+                            // richTextBoxResults.Text = jsonString;
 
-                            var fileName = string.Format("EligResponse-{0}-{1}-{2}.xml", _vendorSiteId,
-                                result.RequestId, DateTime.Now.ToString("yyyyMMddHHmmssfff"));
-                            var pathAndFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName);
+                            //try
+                            //{
+	                           // _xmlSerializer = new XmlSerializer(typeof(WsBenefitResponseResult));
+                            //}
+                            //catch (Exception ex)
+                            //{
+	                           // MessageBox.Show(ex.StackTrace);
+                            //}
 
-                            FileStream file = File.Create(pathAndFile);
-                            // _xmlSerializer.Serialize(file, result);
-                            _dataContractSerializer.WriteObject(file, result);
+                            if (checkBoxSerializeResponse.Checked)
+                            {
+	                            var fileName = string.Format("EligResponse-{0}-{1}-{2}.xml", _vendorSiteId,
+		                            result.RequestId, DateTime.Now.ToString("yyyyMMddHHmmssfff"));
+	                            var pathAndFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName);
+
+		                        FileStream file = File.Create(pathAndFile);
+		                        // _xmlSerializer.Serialize(file, result);
+		                        _dataContractSerializer.WriteObject(file, result);
+		                        file.Close();
+                            }
+
+                            using (MemoryStream ms = new MemoryStream())
+                            {
+								//using (var output = new StringWriter())
+								//{
+								//	using (var writer = new XmlTextWriter(output) { Formatting = System.Xml.Formatting.Indented })
+								//	{
+								//		_dataContractSerializer.WriteObject(writer, result);
+								//		richTextBoxResults.Text = output.GetStringBuilder().ToString();
+								//	}
+								//}
+
+								_dataContractSerializer.WriteObject(ms, result);
+                                // ms.Flush();
+	                            ms.Seek(0, SeekOrigin.Begin);
+
+                                XmlDocument xmlDoc = new XmlDocument();
+                                xmlDoc.Load(ms);
+
+	                            //using (var sr = new StreamReader(ms))
+	                            //{
+                             //       sr.
+		                           // var endRead = sr.ReadToEnd();
+	                            //}
+
+	                            //{
+		                           // string srResult = sr.ReadToEnd();
+
+		                           // richTextBoxResults.Text = srResult;
+	                            //}
+
+                                treeViewSoapResponse.BeginUpdate();
+
+                                treeViewSoapResponse.Nodes.Clear();
+                                treeViewSoapResponse.Nodes.Add(new TreeNode("Eligibility Response"));
+
+                                var tNode = treeViewSoapResponse.Nodes[0];
+                                AddNode(xmlDoc.DocumentElement, tNode);
+                                treeViewSoapResponse.Nodes[0].Expand();
+                                treeViewSoapResponse.EndUpdate();
+                            }
 
                             //var objectReadIn = _dataContractSerializer.ReadObject(file);
                             //XmlReader xmlReader = XmlReader.Create(file);
@@ -427,7 +549,6 @@ namespace ApexWebServiceToolV2
                             // XmlDocument xmlDoc = new XmlDocument();
                             // var xmlString = xmlReader.ReadContentAsString();
                            
-                            file.Close();
                         }
                         catch (Exception ex)
                         {
@@ -600,199 +721,201 @@ namespace ApexWebServiceToolV2
                     {
                         sb.AppendLine("Responses Returned:");
                         sb.AppendLine("===========================================================");
-                        foreach (WsBenefitResponse response in result.Responses)
-                        {
-                            //var serializer = new XmlSerializer(typeof (WsBenefitResponse));
-                            //var path = string.Format(@"BenefitResponse-{0}.xml", DateTime.Now.ToString("yyyyMMddHHmmssfff"));
-                            //FileStream file = File.Create(path);
+                        sb.Append(JsonConvert.SerializeObject(result.Responses, Formatting.Indented));
 
-                            //serializer.Serialize(file, response);
-                            //file.Close();
+                        //foreach (WsBenefitResponse response in result.Responses)
+                        //{
+                        //    //var serializer = new XmlSerializer(typeof (WsBenefitResponse));
+                        //    //var path = string.Format(@"BenefitResponse-{0}.xml", DateTime.Now.ToString("yyyyMMddHHmmssfff"));
+                        //    //FileStream file = File.Create(path);
 
-                            sb.AppendFormat("\tCreated: ");
-                            if (response.CreateDate.HasValue)
-                            {
-                                sb.AppendFormat("{0}\r\n", response.CreateDate.Value.ToLongTimeString());
-                            }
-                            sb.AppendLine(string.Format("\tDocument ID: {0}", response.DocumentId ?? string.Empty));
-                            sb.AppendLine(string.Format("\tGroup Control Number: {0}", response.GroupControlNumber ?? string.Empty));
-                            sb.AppendLine(string.Format("\tTrading Partner ID: {0}", response.TradingPartnerId ?? string.Empty));
+                        //    //serializer.Serialize(file, response);
+                        //    //file.Close();
 
-                            processRequestErrors(response.EnvelopeErrors, sb, "Envelope");
+                        //    sb.AppendFormat("\tCreated: ");
+                        //    if (response.CreateDate.HasValue)
+                        //    {
+                        //        sb.AppendFormat("{0}\r\n", response.CreateDate.Value.ToLongTimeString());
+                        //    }
+                        //    sb.AppendLine(string.Format("\tDocument ID: {0}", response.DocumentId ?? string.Empty));
+                        //    sb.AppendLine(string.Format("\tGroup Control Number: {0}", response.GroupControlNumber ?? string.Empty));
+                        //    sb.AppendLine(string.Format("\tTrading Partner ID: {0}", response.TradingPartnerId ?? string.Empty));
 
-                            if (null == response.Payers)
-                                continue;
+                        //    processRequestErrors(response.EnvelopeErrors, sb, "Envelope");
 
-                            sb.AppendLine("Response Payers:");
+                        //    if (null == response.Payers)
+                        //        continue;
 
-                            foreach (WsEligibilityResponsePayer payer in response.Payers)
-                            {
+                        //    sb.AppendLine("Response Payers:");
+
+                        //    foreach (WsEligibilityResponsePayer payer in response.Payers)
+                        //    {
                                 
-                                sb.AppendLine(string.Format("\tFirst Name: {0}", payer.FirstName ?? string.Empty));
-                                sb.AppendLine(string.Format("\tMiddle Name: {0}", payer.MiddleName ?? string.Empty));
-                                sb.AppendLine(string.Format("\tCommon Name: {0}", payer.CommonName ?? string.Empty));
+                        //        sb.AppendLine(string.Format("\tFirst Name: {0}", payer.FirstName ?? string.Empty));
+                        //        sb.AppendLine(string.Format("\tMiddle Name: {0}", payer.MiddleName ?? string.Empty));
+                        //        sb.AppendLine(string.Format("\tCommon Name: {0}", payer.CommonName ?? string.Empty));
 
-                                sb.AppendLine(string.Format("\tCmsPlanId: {0}", payer.CmsPlanId ?? string.Empty));
-                                sb.AppendLine(string.Format("\tElectronic Transmitter ID Number: {0}",
-                                                            payer.ElectronicTransmitterIdNumber ?? string.Empty));
-                                sb.AppendLine(string.Format("\tEmployers ID Number: {0}", payer.EmployersIdNumber ?? string.Empty));
-                                sb.AppendLine(string.Format("\tNaic ID: {0}", payer.NaicId ?? string.Empty));
-                                sb.AppendLine(string.Format("\tNational Payer ID Number: {0}",
-                                                            payer.NationalPayerIdNumber ?? string.Empty));
-                                sb.AppendLine(string.Format("\tNational Provider ID: {0}", payer.NationalProviderId ?? string.Empty));
-                                sb.AppendLine(string.Format("\tPayer ID: {0}", payer.PayerId ?? string.Empty));
-                                sb.AppendLine(string.Format("\tSuffix: {0}", payer.Suffix ?? string.Empty));
-                                sb.AppendLine(string.Format("\tTax ID: {0}", payer.TaxIdNumber ?? string.Empty));
+                        //        sb.AppendLine(string.Format("\tCmsPlanId: {0}", payer.CmsPlanId ?? string.Empty));
+                        //        sb.AppendLine(string.Format("\tElectronic Transmitter ID Number: {0}",
+                        //                                    payer.ElectronicTransmitterIdNumber ?? string.Empty));
+                        //        sb.AppendLine(string.Format("\tEmployers ID Number: {0}", payer.EmployersIdNumber ?? string.Empty));
+                        //        sb.AppendLine(string.Format("\tNaic ID: {0}", payer.NaicId ?? string.Empty));
+                        //        sb.AppendLine(string.Format("\tNational Payer ID Number: {0}",
+                        //                                    payer.NationalPayerIdNumber ?? string.Empty));
+                        //        sb.AppendLine(string.Format("\tNational Provider ID: {0}", payer.NationalProviderId ?? string.Empty));
+                        //        sb.AppendLine(string.Format("\tPayer ID: {0}", payer.PayerId ?? string.Empty));
+                        //        sb.AppendLine(string.Format("\tSuffix: {0}", payer.Suffix ?? string.Empty));
+                        //        sb.AppendLine(string.Format("\tTax ID: {0}", payer.TaxIdNumber ?? string.Empty));
 
-                                if (payer.EntityType.HasValue)
-                                {
-                                    sb.AppendLine(string.Format("\tEntity Type: {0}", payer.EntityType.ToString()));
-                                }
+                        //        if (payer.EntityType.HasValue)
+                        //        {
+                        //            sb.AppendLine(string.Format("\tEntity Type: {0}", payer.EntityType.ToString()));
+                        //        }
 
-                                if (payer.Type.HasValue)
-                                {
-                                    sb.AppendLine(string.Format("\tPayer Type: {0}", payer.Type.Value.ToString()));
-                                }
+                        //        if (payer.Type.HasValue)
+                        //        {
+                        //            sb.AppendLine(string.Format("\tPayer Type: {0}", payer.Type.Value.ToString()));
+                        //        }
 
 
-                                processRequestErrors(payer.Errors, sb, "Payer");
+                        //        processRequestErrors(payer.Errors, sb, "Payer");
 
-                                if (null != payer.Contacts)
-                                {
-                                    sb.AppendLine("Payer Contacts:");
-                                    foreach (WsResponseContact contact in payer.Contacts)
-                                    {
-                                        sb.AppendLine(string.Format("\tName: {0}", contact.Name ?? string.Empty));
-                                        if (contact.Methods != null)
-                                        {
-                                            sb.AppendLine("\tPayer Contact Methods:");
-                                            foreach (WsResponseContactMethods methods in contact.Methods)
-                                            {
-                                                sb.AppendLine(string.Format("\t\tEDI Access Number: {0}",
-                                                    methods.EdiAccessNumber ?? string.Empty));
-                                                sb.AppendLine(string.Format("\t\tEmail Address: {0}",
-                                                    methods.EmailAddress ?? string.Empty));
-                                                sb.AppendLine(string.Format("\t\tFax Number: {0}",
-                                                    methods.FaxNumber ?? string.Empty));
-                                                sb.AppendLine(string.Format("\t\tPhone Number: {0}",
-                                                    methods.PhoneNumber ?? string.Empty));
-                                                sb.AppendLine(string.Format("\t\tPhone Number Extension: {0}",
-                                                    methods.PhoneNumberExtension ?? string.Empty));
-                                                sb.AppendLine(
-                                                    string.Format("\t\tUrl: {0}", methods.Url ?? string.Empty));
-                                            }
-                                        }
-                                    }
-                                }
+                        //        if (null != payer.Contacts)
+                        //        {
+                        //            sb.AppendLine("Payer Contacts:");
+                        //            foreach (WsResponseContact contact in payer.Contacts)
+                        //            {
+                        //                sb.AppendLine(string.Format("\tName: {0}", contact.Name ?? string.Empty));
+                        //                if (contact.Methods != null)
+                        //                {
+                        //                    sb.AppendLine("\tPayer Contact Methods:");
+                        //                    foreach (WsResponseContactMethods methods in contact.Methods)
+                        //                    {
+                        //                        sb.AppendLine(string.Format("\t\tEDI Access Number: {0}",
+                        //                            methods.EdiAccessNumber ?? string.Empty));
+                        //                        sb.AppendLine(string.Format("\t\tEmail Address: {0}",
+                        //                            methods.EmailAddress ?? string.Empty));
+                        //                        sb.AppendLine(string.Format("\t\tFax Number: {0}",
+                        //                            methods.FaxNumber ?? string.Empty));
+                        //                        sb.AppendLine(string.Format("\t\tPhone Number: {0}",
+                        //                            methods.PhoneNumber ?? string.Empty));
+                        //                        sb.AppendLine(string.Format("\t\tPhone Number Extension: {0}",
+                        //                            methods.PhoneNumberExtension ?? string.Empty));
+                        //                        sb.AppendLine(
+                        //                            string.Format("\t\tUrl: {0}", methods.Url ?? string.Empty));
+                        //                    }
+                        //                }
+                        //            }
+                        //        }
 
-                                if (null == payer.Payees)
-                                    continue;
+                        //        if (null == payer.Payees)
+                        //            continue;
 
-                                sb.AppendLine("Eligibility Response Payees:");
+                        //        sb.AppendLine("Eligibility Response Payees:");
 
-                                foreach (WsEligibilityResponsePayee payee in payer.Payees)
-                                {
+                        //        foreach (WsEligibilityResponsePayee payee in payer.Payees)
+                        //        {
 
-                                    sb.AppendLine(string.Format("\tFirst Name: {0}", payee.FirstName ?? string.Empty));
-                                    sb.AppendLine(string.Format("\tMiddle Name: {0}", payee.MiddleName ?? string.Empty));
-                                    sb.AppendLine(string.Format("\tLast Name: {0}", payee.CommonName ?? string.Empty));
-                                    sb.AppendLine(string.Format("\tSuffix: {0}", payee.Suffix ?? string.Empty));
-                                    processPhysicalAddress(payee.PhysicalAddress, sb);
+                        //            sb.AppendLine(string.Format("\tFirst Name: {0}", payee.FirstName ?? string.Empty));
+                        //            sb.AppendLine(string.Format("\tMiddle Name: {0}", payee.MiddleName ?? string.Empty));
+                        //            sb.AppendLine(string.Format("\tLast Name: {0}", payee.CommonName ?? string.Empty));
+                        //            sb.AppendLine(string.Format("\tSuffix: {0}", payee.Suffix ?? string.Empty));
+                        //            processPhysicalAddress(payee.PhysicalAddress, sb);
 
-                                    sb.Append("\tEntity Type: ");
-                                    if (payee.EntityType.HasValue)
-                                    {
-                                        sb.AppendFormat("\t{0}\r\n", payee.EntityType.ToString());
-                                    }
+                        //            sb.Append("\tEntity Type: ");
+                        //            if (payee.EntityType.HasValue)
+                        //            {
+                        //                sb.AppendFormat("\t{0}\r\n", payee.EntityType.ToString());
+                        //            }
 
-                                    sb.Append("\tPayee Type: ");
-                                    if (payee.Type.HasValue)
-                                    {
-                                        sb.AppendFormat("\t{0}\r\n", payee.Type.Value.ToString());
-                                    }
+                        //            sb.Append("\tPayee Type: ");
+                        //            if (payee.Type.HasValue)
+                        //            {
+                        //                sb.AppendFormat("\t{0}\r\n", payee.Type.Value.ToString());
+                        //            }
 
-                                    sb.Append("\tProvider Role: ");
-                                    if (payee.ProviderRole.HasValue)
-                                    {
-                                        sb.AppendFormat("\t{0}\r\n", payee.ProviderRole.Value.ToString());
-                                    }
+                        //            sb.Append("\tProvider Role: ");
+                        //            if (payee.ProviderRole.HasValue)
+                        //            {
+                        //                sb.AppendFormat("\t{0}\r\n", payee.ProviderRole.Value.ToString());
+                        //            }
 
-                                    sb.AppendLine(string.Format("\tPayer ID: {0}", payee.PayerId ?? string.Empty));
-                                    sb.AppendLine(string.Format("\tNational Provider ID: {0}",
-                                                                payee.NationalProviderId ?? string.Empty));
-                                    sb.AppendLine(string.Format("\tTax ID Number: {0}", payee.TaxIdNumber ?? string.Empty));
-                                    sb.AppendLine(string.Format("\tState Issuing License: {0}",
-                                                                payee.StateIssuingLicense ?? string.Empty));
-                                    sb.AppendLine(string.Format("\tReceiving Provider Taxonomy Code: {0}",
-                                                                payee.ReceivingProviderTaxonomyCode ?? string.Empty));
-                                    sb.AppendLine(string.Format("\tCMS Plan ID: {0}", payee.CmsPlanId ?? string.Empty));
-                                    sb.AppendLine(string.Format("\tProvider Plan Network ID: {0}",
-                                                                payee.ProviderPlanNetworkId ?? string.Empty));
+                        //            sb.AppendLine(string.Format("\tPayer ID: {0}", payee.PayerId ?? string.Empty));
+                        //            sb.AppendLine(string.Format("\tNational Provider ID: {0}",
+                        //                                        payee.NationalProviderId ?? string.Empty));
+                        //            sb.AppendLine(string.Format("\tTax ID Number: {0}", payee.TaxIdNumber ?? string.Empty));
+                        //            sb.AppendLine(string.Format("\tState Issuing License: {0}",
+                        //                                        payee.StateIssuingLicense ?? string.Empty));
+                        //            sb.AppendLine(string.Format("\tReceiving Provider Taxonomy Code: {0}",
+                        //                                        payee.ReceivingProviderTaxonomyCode ?? string.Empty));
+                        //            sb.AppendLine(string.Format("\tCMS Plan ID: {0}", payee.CmsPlanId ?? string.Empty));
+                        //            sb.AppendLine(string.Format("\tProvider Plan Network ID: {0}",
+                        //                                        payee.ProviderPlanNetworkId ?? string.Empty));
 
-                                    sb.AppendLine(string.Format("\tContract Number: {0}", payee.ContractNumber ?? string.Empty));
-                                    sb.AppendLine(string.Format("\tEmployee ID Number: {0}", payee.EmployersIdNumber ?? string.Empty));
-                                    sb.AppendLine(string.Format("\tFacility Network ID: {0}",
-                                                                payee.FacilityNetworkIdNumber ?? string.Empty));
-                                    sb.AppendLine(string.Format("\tSocial Security Number: {0}",
-                                                                payee.SocialSecurityNumber ?? string.Empty));
-                                    sb.AppendLine(string.Format("\tMedicaid Provider Number: {0}",
-                                                                payee.MedicaidProviderNumber ?? string.Empty));
-                                    sb.AppendLine(string.Format("\tMedicare Provider Number: {0}",
-                                                                payee.MedicareProviderNumber ?? string.Empty));
-                                    sb.AppendLine(string.Format("\tService Provider Number: {0}",
-                                                                payee.ServiceProviderNumber ?? string.Empty));
-                                    sb.AppendLine(string.Format("\tSubmitter ID Number: {0}",
-                                                                payee.SubmitterIdNumber ?? string.Empty));
-                                    sb.AppendLine(string.Format("\tPersonal ID Number: {0}", payee.PersonalIdNumber ?? string.Empty));
-                                    sb.AppendLine(string.Format("\tDevice PIN: {0}", payee.DevicePin ?? string.Empty));
-                                    sb.AppendLine(string.Format("\tPharmacy Number: {0}", payee.PharmacyNumber ?? string.Empty));
-                                    sb.AppendLine(string.Format("\tPrior ID Number: {0}", payee.PriorIdNumber ?? string.Empty));
-                                    sb.AppendLine(string.Format("\tUser ID: {0}", payee.UserId ?? string.Empty));
+                        //            sb.AppendLine(string.Format("\tContract Number: {0}", payee.ContractNumber ?? string.Empty));
+                        //            sb.AppendLine(string.Format("\tEmployee ID Number: {0}", payee.EmployersIdNumber ?? string.Empty));
+                        //            sb.AppendLine(string.Format("\tFacility Network ID: {0}",
+                        //                                        payee.FacilityNetworkIdNumber ?? string.Empty));
+                        //            sb.AppendLine(string.Format("\tSocial Security Number: {0}",
+                        //                                        payee.SocialSecurityNumber ?? string.Empty));
+                        //            sb.AppendLine(string.Format("\tMedicaid Provider Number: {0}",
+                        //                                        payee.MedicaidProviderNumber ?? string.Empty));
+                        //            sb.AppendLine(string.Format("\tMedicare Provider Number: {0}",
+                        //                                        payee.MedicareProviderNumber ?? string.Empty));
+                        //            sb.AppendLine(string.Format("\tService Provider Number: {0}",
+                        //                                        payee.ServiceProviderNumber ?? string.Empty));
+                        //            sb.AppendLine(string.Format("\tSubmitter ID Number: {0}",
+                        //                                        payee.SubmitterIdNumber ?? string.Empty));
+                        //            sb.AppendLine(string.Format("\tPersonal ID Number: {0}", payee.PersonalIdNumber ?? string.Empty));
+                        //            sb.AppendLine(string.Format("\tDevice PIN: {0}", payee.DevicePin ?? string.Empty));
+                        //            sb.AppendLine(string.Format("\tPharmacy Number: {0}", payee.PharmacyNumber ?? string.Empty));
+                        //            sb.AppendLine(string.Format("\tPrior ID Number: {0}", payee.PriorIdNumber ?? string.Empty));
+                        //            sb.AppendLine(string.Format("\tUser ID: {0}", payee.UserId ?? string.Empty));
 
-                                    processRequestErrors(payee.Errors, sb, "Payee");
+                        //            processRequestErrors(payee.Errors, sb, "Payee");
 
-                                    if (null == payee.Subscribers)
-                                        continue;
+                        //            if (null == payee.Subscribers)
+                        //                continue;
 
-                                    sb.AppendLine("Eligibility Response Subscribers:");
-                                    sb.AppendLine("===========================================================");
-                                    foreach (WsEligibilityResponseSubscriber subscriber in payee.Subscribers)
-                                    {
-                                        // Subscriber Unique:
-                                        //  Case Number
-                                        //  Entity Type
-                                        //  Dependent[]
+                        //            sb.AppendLine("Eligibility Response Subscribers:");
+                        //            sb.AppendLine("===========================================================");
+                        //            foreach (WsEligibilityResponseSubscriber subscriber in payee.Subscribers)
+                        //            {
+                        //                // Subscriber Unique:
+                        //                //  Case Number
+                        //                //  Entity Type
+                        //                //  Dependent[]
 
-                                        // Dependent Unique:
-                                        //  RelationshipToSubscriber
-                                        sb.AppendLine(string.Format("\tCase Number: {0}", subscriber.CaseNumber ?? string.Empty));
+                        //                // Dependent Unique:
+                        //                //  RelationshipToSubscriber
+                        //                sb.AppendLine(string.Format("\tCase Number: {0}", subscriber.CaseNumber ?? string.Empty));
 
-                                        sb.Append("\tEntity Type: ");
-                                        if (subscriber.EntityType.HasValue)
-                                        {
-                                            sb.AppendFormat("\t{0}\r\n", subscriber.EntityType.Value.ToString());
-                                        }
+                        //                sb.Append("\tEntity Type: ");
+                        //                if (subscriber.EntityType.HasValue)
+                        //                {
+                        //                    sb.AppendFormat("\t{0}\r\n", subscriber.EntityType.Value.ToString());
+                        //                }
 
-                                        processEligibilityPatient(subscriber, sb);
+                        //                processEligibilityPatient(subscriber, sb);
 
-                                        if (null == subscriber.Dependents)
-                                            continue;
+                        //                if (null == subscriber.Dependents)
+                        //                    continue;
 
-                                        sb.AppendLine("Dependents");
-                                        sb.AppendLine(
-                                            "===========================================================");
-                                        foreach (WsEligibilityResponseDependent dependent in subscriber.Dependents)
-                                        {
-                                            sb.AppendLine(string.Format("\tRelation to Subscriber: {0}",
-                                                                        dependent.RelationshipToSubscriber
-                                                                                    .ToString()));
+                        //                sb.AppendLine("Dependents");
+                        //                sb.AppendLine(
+                        //                    "===========================================================");
+                        //                foreach (WsEligibilityResponseDependent dependent in subscriber.Dependents)
+                        //                {
+                        //                    sb.AppendLine(string.Format("\tRelation to Subscriber: {0}",
+                        //                                                dependent.RelationshipToSubscriber
+                        //                                                            .ToString()));
 
-                                            processEligibilityPatient(dependent, sb);
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                        //                    processEligibilityPatient(dependent, sb);
+                        //                }
+                        //            }
+                        //        }
+                        //    }
+                        //}
                     }
                 });
             richTextBoxResults.Clear();

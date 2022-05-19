@@ -73,6 +73,8 @@
 			this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.changeCredentialsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.exportResultsToCSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.checkBoxClaimIdFilter = new System.Windows.Forms.CheckBox();
+			this.textBoxClaimIdFilter = new System.Windows.Forms.TextBox();
 			this.tableLayoutPanelBase.SuspendLayout();
 			this.tableLayoutPanelAPIs.SuspendLayout();
 			this.groupBoxApi.SuspendLayout();
@@ -103,8 +105,8 @@
 			this.tableLayoutPanelBase.Location = new System.Drawing.Point(0, 24);
 			this.tableLayoutPanelBase.Name = "tableLayoutPanelBase";
 			this.tableLayoutPanelBase.RowCount = 2;
-			this.tableLayoutPanelBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 26.28032F));
-			this.tableLayoutPanelBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 73.71967F));
+			this.tableLayoutPanelBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 28.82883F));
+			this.tableLayoutPanelBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 71.17117F));
 			this.tableLayoutPanelBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
 			this.tableLayoutPanelBase.Size = new System.Drawing.Size(1056, 777);
 			this.tableLayoutPanelBase.TabIndex = 2;
@@ -121,11 +123,13 @@
 			this.tableLayoutPanelAPIs.Name = "tableLayoutPanelAPIs";
 			this.tableLayoutPanelAPIs.RowCount = 1;
 			this.tableLayoutPanelAPIs.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayoutPanelAPIs.Size = new System.Drawing.Size(1050, 198);
+			this.tableLayoutPanelAPIs.Size = new System.Drawing.Size(1050, 217);
 			this.tableLayoutPanelAPIs.TabIndex = 2;
 			// 
 			// groupBoxApi
 			// 
+			this.groupBoxApi.Controls.Add(this.textBoxClaimIdFilter);
+			this.groupBoxApi.Controls.Add(this.checkBoxClaimIdFilter);
 			this.groupBoxApi.Controls.Add(this.checkBoxViewJsonForV3);
 			this.groupBoxApi.Controls.Add(this.groupBoxApiSelector);
 			this.groupBoxApi.Controls.Add(this.checkBoxSerializeStatusToFile);
@@ -145,7 +149,7 @@
 			this.groupBoxApi.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.groupBoxApi.Location = new System.Drawing.Point(3, 3);
 			this.groupBoxApi.Name = "groupBoxApi";
-			this.groupBoxApi.Size = new System.Drawing.Size(510, 192);
+			this.groupBoxApi.Size = new System.Drawing.Size(510, 211);
 			this.groupBoxApi.TabIndex = 0;
 			this.groupBoxApi.TabStop = false;
 			this.groupBoxApi.Text = "API";
@@ -388,7 +392,7 @@
 			this.groupBoxSettings.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.groupBoxSettings.Location = new System.Drawing.Point(519, 3);
 			this.groupBoxSettings.Name = "groupBoxSettings";
-			this.groupBoxSettings.Size = new System.Drawing.Size(528, 192);
+			this.groupBoxSettings.Size = new System.Drawing.Size(528, 211);
 			this.groupBoxSettings.TabIndex = 1;
 			this.groupBoxSettings.TabStop = false;
 			this.groupBoxSettings.Text = "Settings";
@@ -418,7 +422,7 @@
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(522, 173);
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(522, 192);
 			this.tableLayoutPanel1.TabIndex = 10;
 			// 
 			// labelKey
@@ -523,10 +527,10 @@
 			// resultsControlMain
 			// 
 			this.resultsControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.resultsControlMain.Location = new System.Drawing.Point(3, 207);
+			this.resultsControlMain.Location = new System.Drawing.Point(3, 226);
 			this.resultsControlMain.Name = "resultsControlMain";
 			this.resultsControlMain.ResultsLabel = "Results";
-			this.resultsControlMain.Size = new System.Drawing.Size(1050, 567);
+			this.resultsControlMain.Size = new System.Drawing.Size(1050, 548);
 			this.resultsControlMain.TabIndex = 3;
 			// 
 			// openFileDialog1
@@ -565,6 +569,24 @@
 			this.exportResultsToCSVToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
 			this.exportResultsToCSVToolStripMenuItem.Text = "&Export Results to CSV";
 			this.exportResultsToCSVToolStripMenuItem.Click += new System.EventHandler(this.exportResultsToCSVToolStripMenuItem_Click);
+			// 
+			// checkBoxClaimIdFilter
+			// 
+			this.checkBoxClaimIdFilter.AutoSize = true;
+			this.checkBoxClaimIdFilter.Enabled = false;
+			this.checkBoxClaimIdFilter.Location = new System.Drawing.Point(6, 187);
+			this.checkBoxClaimIdFilter.Name = "checkBoxClaimIdFilter";
+			this.checkBoxClaimIdFilter.Size = new System.Drawing.Size(116, 17);
+			this.checkBoxClaimIdFilter.TabIndex = 14;
+			this.checkBoxClaimIdFilter.Text = "Filter By Claim ID(s)";
+			this.checkBoxClaimIdFilter.UseVisualStyleBackColor = true;
+			// 
+			// textBoxClaimIdFilter
+			// 
+			this.textBoxClaimIdFilter.Location = new System.Drawing.Point(124, 184);
+			this.textBoxClaimIdFilter.Name = "textBoxClaimIdFilter";
+			this.textBoxClaimIdFilter.Size = new System.Drawing.Size(261, 20);
+			this.textBoxClaimIdFilter.TabIndex = 15;
 			// 
 			// MainForm
 			// 
@@ -643,6 +665,8 @@
         private System.Windows.Forms.RadioButton radioButtonV3;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.CheckBox checkBoxViewJsonForV3;
-    }
+		private System.Windows.Forms.TextBox textBoxClaimIdFilter;
+		private System.Windows.Forms.CheckBox checkBoxClaimIdFilter;
+	}
 }
 

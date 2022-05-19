@@ -104,6 +104,7 @@
 			this.buttonSubmitSelectedRequests = new System.Windows.Forms.Button();
 			this.labelRequests = new System.Windows.Forms.Label();
 			this.tableLayoutPanelResponses = new System.Windows.Forms.TableLayoutPanel();
+			this.treeViewSoapResponse = new System.Windows.Forms.TreeView();
 			this.label1 = new System.Windows.Forms.Label();
 			this.dataGridViewEligibilityResponses = new System.Windows.Forms.DataGridView();
 			this.RequestID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -838,9 +839,9 @@
 			this.tableLayoutPanelRequestMgmt.Location = new System.Drawing.Point(349, 23);
 			this.tableLayoutPanelRequestMgmt.Name = "tableLayoutPanelRequestMgmt";
 			this.tableLayoutPanelRequestMgmt.RowCount = 2;
-			this.tableLayoutPanelRequestMgmt.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30.97345F));
-			this.tableLayoutPanelRequestMgmt.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 69.02655F));
-			this.tableLayoutPanelRequestMgmt.Size = new System.Drawing.Size(680, 565);
+			this.tableLayoutPanelRequestMgmt.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 23.55491F));
+			this.tableLayoutPanelRequestMgmt.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 76.44508F));
+			this.tableLayoutPanelRequestMgmt.Size = new System.Drawing.Size(680, 692);
 			this.tableLayoutPanelRequestMgmt.TabIndex = 41;
 			// 
 			// tableLayoutPanelRequests
@@ -998,21 +999,30 @@
 			// 
 			this.tableLayoutPanelResponses.ColumnCount = 1;
 			this.tableLayoutPanelResponses.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+			this.tableLayoutPanelResponses.Controls.Add(this.treeViewSoapResponse, 0, 5);
 			this.tableLayoutPanelResponses.Controls.Add(this.label1, 0, 3);
 			this.tableLayoutPanelResponses.Controls.Add(this.dataGridViewEligibilityResponses, 0, 1);
 			this.tableLayoutPanelResponses.Controls.Add(this.buttonGetEligibilityResponses, 0, 2);
 			this.tableLayoutPanelResponses.Controls.Add(this.richTextBoxResults, 0, 4);
 			this.tableLayoutPanelResponses.Controls.Add(this.labelResponses, 0, 0);
-			this.tableLayoutPanelResponses.Location = new System.Drawing.Point(3, 177);
+			this.tableLayoutPanelResponses.Location = new System.Drawing.Point(3, 165);
 			this.tableLayoutPanelResponses.Name = "tableLayoutPanelResponses";
-			this.tableLayoutPanelResponses.RowCount = 5;
+			this.tableLayoutPanelResponses.RowCount = 6;
 			this.tableLayoutPanelResponses.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
 			this.tableLayoutPanelResponses.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 99F));
 			this.tableLayoutPanelResponses.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
 			this.tableLayoutPanelResponses.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
 			this.tableLayoutPanelResponses.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 160F));
-			this.tableLayoutPanelResponses.Size = new System.Drawing.Size(657, 360);
+			this.tableLayoutPanelResponses.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+			this.tableLayoutPanelResponses.Size = new System.Drawing.Size(657, 494);
 			this.tableLayoutPanelResponses.TabIndex = 50;
+			// 
+			// treeViewSoapResponse
+			// 
+			this.treeViewSoapResponse.Location = new System.Drawing.Point(3, 334);
+			this.treeViewSoapResponse.Name = "treeViewSoapResponse";
+			this.treeViewSoapResponse.Size = new System.Drawing.Size(632, 157);
+			this.treeViewSoapResponse.TabIndex = 40;
 			// 
 			// label1
 			// 
@@ -1112,7 +1122,7 @@
 			// 
 			this.richTextBoxResults.Location = new System.Drawing.Point(3, 174);
 			this.richTextBoxResults.Name = "richTextBoxResults";
-			this.richTextBoxResults.Size = new System.Drawing.Size(632, 183);
+			this.richTextBoxResults.Size = new System.Drawing.Size(632, 154);
 			this.richTextBoxResults.TabIndex = 3;
 			this.richTextBoxResults.Text = "";
 			// 
@@ -1242,5 +1252,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn PayeeName;
         private System.Windows.Forms.DataGridViewTextBoxColumn SubscriberName;
         private System.Windows.Forms.DataGridViewTextBoxColumn DependentName;
-    }
+		private System.Windows.Forms.TreeView treeViewSoapResponse;
+	}
 }

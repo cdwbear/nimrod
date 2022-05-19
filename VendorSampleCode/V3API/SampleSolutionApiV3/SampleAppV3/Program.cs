@@ -24,17 +24,19 @@ namespace SampleAppV3_2
 
         //private const string ServiceBaseURL = "http://localhost:49923/api/v3/";
         //private const string ServiceBaseURL = "http://10.45.120.59:58693/api/v3/";
-        //private const string ServiceBaseURL = "http://localhost:58694/api/v3/";
         //private const string ServiceBaseURL = "https://EC2AMAZ-G004EIP/api/v3/";
-        //private const string ServiceBaseURL = "https://clayton2.services.apexedi-eng.com/api/v3/";
+        private const string ServiceBaseURL = "http://clayton2.services.apexedi-eng.com/api/v3/";
         //private const string ServiceBaseURL = "https://kamika.OneTouchWebService/api/v3/";
         //private const string ServiceBaseURL = "http://localhost:58693/api/v3/";
         //private const string ServiceBaseURL = "http://localhost:49923/api/v3/";
         //private const string ServiceBaseURL = "http://localhost:49923/";
         //private const string ServiceBaseURL = "http://localhost:52846/api/v3/";
         //private const string ServiceBaseURL = "https://production.services.apexedi.com/api/v3/";
-        //private const string ServiceBaseURL = "https://stage.services.apexedi-stage.com/api/v3/";
-        private const string ServiceBaseURL = "https://sandbox.services.apexedi.com/api/v3/";
+        //private const string ServiceBaseURL = "http://stage.services.apexedi-stage.com/api/v3/";
+        //private const string ServiceBaseURL = "https://sandbox.services.apexedi.com/api/v3/";
+        //private const string ServiceBaseURL = "https://jarik.services.apexedi-eng.com/api/v3/";
+
+        //private const string ServiceBaseURL = "https://stage-web.apexedi.com/api/v3/";
         //                          vendor key                         vendor password
         //private static string creds = " 4YZLQVUAQWJRE1IDZNREEW3I" + ":" + "040KQ4OH5NCQSQKMPCBJ5QIW"; // 
         //private static string creds = "P5M1XIFDI0DIGSISAECLUGX1" + ":" + "5NENAJ11ZZ3YC4343MOEW23P"; // dental writer
@@ -48,10 +50,10 @@ namespace SampleAppV3_2
         //private static string creds = "NIT3EY1EWKKYXHBPHRWGPE4M" + ":" + "4YMYMLRODAIFIZ0LGC0NHHKZ"; // winbuilt
         //private static string creds = "LIJ5H0DMTRAAWP2COS4MBB3N" + ":" + "20HE5TPVIMFF4OPP33JH12BS"; // BP8
         //private static string creds = "FG2IWZRXZYBFRMNUFCZ3MNVH" + ":" + "MTJD1RWTJ1141XKBNGPDSGGO"; // TOL
-        //private static string creds = "TAHFVVRWHPFBU3TI1NGTH3QO" + ":" + "WSSUVP1ZAPPVSRBWTFMCRQRJ";
-        private static string creds = "440N2VBHIXB1JB0YWPY40XDF" + ":" + "KQMZYOA334X2WFY4X4ATDBJ1"; // ABO
+        private static string creds = "JMZXBLL1KU0QRU0BKYWWBEUS" + ":" + "S4FAG3FGXPI5LFAQZJ3M3OBP";
+        //private static string creds = "440N2VBHIXB1JB0YWPY40XDF" + ":" + "KQMZYOA334X2WFY4X4ATDBJ1"; // ABO
 
-        private static string vendorSiteId = "ABO";
+        private static string vendorSiteId = "D2P";
         //private static string vendorSiteId = "ZZZ";
         //private static string vendorSiteId = "JOD_1329";
         //private static string vendorSiteId = "A9J";
@@ -76,7 +78,7 @@ namespace SampleAppV3_2
         // private static string jsonStringFile = @"D:\ClientFiles\NOE\M1300458928-VCI-32668.NOE";
         //private static string jsonStringFile = @"D:\ClientFiles\Luminello\SecondaryClaims-Y.A9J";
 		//private static string jsonStringFile = @"D:\ClientFiles\ODLink\M20191023002.MAL";
-		private static string jsonStringFile = @"D:\ClientFiles\ABO\ABOClaim-Error.json"; // @"C:\Users\cwilliams\Documents\V3Claim2.txt";
+		private static string jsonStringFile = @"C:\ClientFiles\Input2.txt";
 
 
         static void Main(string[] args)
@@ -88,7 +90,8 @@ namespace SampleAppV3_2
             SubmitClaims();
             //GetClaimStatusByDate(new DateTime(2018,04,01), DateTime.Today);
             //Thread.Sleep(60000);
-            GetPayerResponseDocuments(DateTime.Today.AddDays(-21), DateTime.Now);
+            //GetPayerResponseDocuments(DateTime.Today.AddDays(-21), DateTime.Now);
+            GetPayerResponseDocuments(new DateTime(2022, 2, 22), new DateTime(2022, 2, 25));
             //GetPayerResponseDocuments(new DateTime(2018, 04, 01), DateTime.Now);
             // GetClaimStatusByDate(new DateTime(2018, 4, 3), DateTime.Today);
             // GetPayerResponseDocuments(new DateTime(2017, 3, 4), DateTime.Today);
@@ -250,6 +253,10 @@ namespace SampleAppV3_2
                             }
                         });
 
+                        StringBuilder docSb = new StringBuilder();
+                        docSb.Append("[");
+                        docIds.ForEach(s => { docSb.Append($"\"{s}\","); });
+                        docSb = docSb.Replace(',', ']', docSb.Length - 1, 1);
                         var httpContentString = JsonSerialize(docIds);
                         _response = client
                             .PostAsync(
@@ -261,6 +268,8 @@ namespace SampleAppV3_2
                             var responses =
                                 JsonConvert.DeserializeObject<WsPayerResponseDocuments>(stringResult);
                         }
+
+                        Console.WriteLine(stringResult);
                     }
                 }
             }
@@ -348,6 +357,7 @@ namespace SampleAppV3_2
 
                         var jsonMessage = GetJsonMessage(jObj);
                         Console.WriteLine(jsonMessage);
+                        Console.WriteLine(stringResults);
 
                         Dictionary<string, string> modelErrorDict = new Dictionary<string, string>();
                         var modelErrors = jObj["ModelState"];
@@ -366,6 +376,19 @@ namespace SampleAppV3_2
                             }
                         }
 
+                        var errors = (JArray)jObj["Errors"];
+                        var sb = new StringBuilder();
+                        foreach (var error in errors)
+                        {
+	                        JArray errMsgs = (JArray) error["Value"];
+	                        List<string> errorTextList = errMsgs.Select(e => (string) e).ToList();
+                            errorTextList.ForEach(x => sb.AppendLine(x));
+                        }
+
+                        if (sb.Length > 0)
+                        {
+	                        Console.WriteLine(sb.ToString());
+                        }
                     }
                 }
             }
