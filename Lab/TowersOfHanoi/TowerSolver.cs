@@ -94,6 +94,7 @@ namespace TowersOfHanoi
         private void moveDisk(string fp, string tp)
         {
             _mainForm.richTextBoxMoves.AppendText($"{++_moveCount}: moving disk from {fp} to {tp}\r\n");
+            _mainForm.richTextBoxStack.AppendText($"{_moveCount}: moving disk from {fp} to {tp}\r\n");
         }
 
         public void moveTower2(int height, string fromPole, string toPole, string withPole)
@@ -108,6 +109,7 @@ namespace TowersOfHanoi
             {
                 moveTower2(height - 1, fromPole, withPole, toPole);
                 moveDisk(fromPole, toPole);
+                _mainForm.richTextBoxStack.AppendText($"height: {height}, fromPole: {fromPole}, toPole: {toPole}, withPole: {withPole}\r\n");
                 moveTower2(height-1, withPole, toPole, fromPole);
             }
         }

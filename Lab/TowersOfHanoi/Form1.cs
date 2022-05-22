@@ -64,8 +64,11 @@ namespace TowersOfHanoi
             sw.Stop();
 
             TimeSpan ts1 = sw.Elapsed;
+            var avgTicksPerDisk = (Math.Pow(2, discCount) - 1) / ts1.Ticks;
 
-            MessageBox.Show($"Time was {sw.Elapsed.Minutes}:{sw.Elapsed.Seconds}:{sw.Elapsed.Milliseconds}");
+            // var avgTimeSpan = new TimeSpan(avgTicksPerDisk);
+
+            MessageBox.Show($"Time was {sw.Elapsed.Minutes}:{sw.Elapsed.Seconds}:{sw.Elapsed.Milliseconds} - Ticks:{sw.ElapsedTicks}");
         }
     }
 }
