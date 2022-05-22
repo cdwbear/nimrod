@@ -69,6 +69,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonToAndFromAndAllAround",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsingAttributes", "UsingAttributes\UsingAttributes.csproj", "{89F5C535-D9AD-482A-8ABB-B84BA10BED9F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EligConsoleApp", "EligConsoleApp\EligConsoleApp.csproj", "{6F41A039-FBF5-4D4C-A720-2010F842D08A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

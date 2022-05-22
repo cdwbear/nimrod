@@ -221,6 +221,7 @@ namespace ApexWebServiceToolV2
                 else
                 {
                     _payers = client15.GetPayers(_key_15, _pwd_15, payerType);
+                    var pJson = JsonConvert.SerializeObject(_payers, Formatting.Indented);
                 }
 
                 resultsControlMain.UpdateResultsGrid(_payers, "Payers v1.5", 3);
@@ -730,8 +731,6 @@ namespace ApexWebServiceToolV2
                     }
                     else
                     {
-
-
                         sw1.Start();
                         resultsControlMain.TreeViewResults.BeginUpdate();
 
@@ -743,11 +742,12 @@ namespace ApexWebServiceToolV2
                         {
                             if (checkBoxSerializeReponseFiles.Checked)
                             {
-                                var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
-                                    string.Format("835Output-{0}_{1:000}_[{2}]_{3}.xml", _vendorSiteId, ++idx,
-                                        eob.VendorClaimId,
-                                        (eob.CreateDate ?? DateTime.MinValue).ToString(
-                                            "yyyyMMddHHmmssfff")));
+	                            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
+		                            $"835Output-{_vendorSiteId}_{++idx:000}_[{eob.VendorClaimId}]_{(eob.CreateDate ?? DateTime.MinValue).ToString("yyyyMMddHHmmssfff")}_{eob.VendorClaimId}_{eob.ClaimPayments[0].PatientControlNumber}");
+                                    //string.Format("835Output-{0}_{1:000}_[{2}]_{3}.xml", _vendorSiteId, ++idx,
+                                        //eob.VendorClaimId,
+                                        //(eob.CreateDate ?? DateTime.MinValue).ToString(
+                                        //    "yyyyMMddHHmmssfff")));
 
                                 FileStream file = File.Create(path);
                                 serializer.Serialize(file, eob);
@@ -766,7 +766,7 @@ namespace ApexWebServiceToolV2
 
                             var tNode = resultsControlMain.TreeViewResults.Nodes[0];
                             int nodeIdx =
-                                tNode.Nodes.Add(new TreeNode($"ERA: {eob.CreateDate.ToString()}-{eob.Payer.Name}"));
+                                tNode.Nodes.Add(new TreeNode($"ERA: {eob.CreateDate.ToString()}-{eob.Payer.Name}-{eob.ClaimPayments[0].PatientControlNumber}-{eob.VendorClaimId}"));
 
                             AddNode(xmlDoc.DocumentElement, tNode.Nodes[nodeIdx]);
 
@@ -838,7 +838,7 @@ namespace ApexWebServiceToolV2
                             }
 
                             int nodeIdx = tNode.Nodes.Add(new TreeNode(
-                                $"CS: {claimStatus.CreateDate.ToString()}-{claimStatus.Patient.CommonName}"));
+                                $"CS: {claimStatus.CreateDate.ToString()}-{claimStatus.Patient.CommonName}-{claimStatus.ClearinghouseControlNumber}"));
 
                             AddNode(xmlDoc.DocumentElement, tNode.Nodes[nodeIdx]);
 

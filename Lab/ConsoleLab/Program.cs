@@ -7,8 +7,10 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
+using Microsoft.Win32;
 
 namespace ConsoleLab
 {
@@ -41,6 +43,7 @@ namespace ConsoleLab
 
     class Program
     {
+
         static void ReferenceTest(out List<string> myList)
         {
             myList = new List<string>();
@@ -223,6 +226,36 @@ namespace ConsoleLab
             }
 
             return idCode;
+        }
+
+        static string GetDefaultBrowser()
+        {
+	        string bPath = string.Empty;
+	        using (var key = Registry.CurrentUser.OpenSubKey(
+		        @"SOFTWARE\Microsoft\Windows\Shell\Associations\URLAssociations\http\UserChoice"))
+	        {
+		        var s = (string)key?.GetValue("ProgId");
+		        using (var command = Registry.ClassesRoot.OpenSubKey($"{s}\\shell\\open\\command"))
+		        {
+			        if (command != null)
+			        {
+				        bPath = (string) command?.GetValue(null);
+				        var matchHit = Regex.Match(bPath, @"(?<Path>^.+\\)(?<File>[^\\]+\.\w+)[^a-zA-Z0-9\- ]*");
+				        if (matchHit.Success)
+				        {
+					        bPath = matchHit.Value.Replace("\"", "");
+					        bool doesExists = File.Exists(bPath);
+				        }
+			        }
+		        };
+            }
+            // command == null if not found
+            // GetValue(null) for default value.
+            // returned string looks like one of the following:
+            // "C:\Program Files\Mozilla Firefox\firefox.exe" -osint -url "%1"
+            // "C:\Program Files\Internet Explorer\iexplore.exe" %1
+            // "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe" --single-argument %1
+            return bPath;
         }
 
         static void Main(string[] args)
