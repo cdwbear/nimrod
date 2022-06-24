@@ -25,9 +25,12 @@ namespace SampleAppV3_2
         //private const string ServiceBaseURL = "http://localhost:49923/api/v3/";
         //private const string ServiceBaseURL = "http://10.45.120.59:58693/api/v3/";
         //private const string ServiceBaseURL = "https://EC2AMAZ-G004EIP/api/v3/";
-        private const string ServiceBaseURL = "http://clayton2.services.apexedi-eng.com/api/v3/";
+        //private const string ServiceBaseURL = "http://clayton2.services.apexedi-eng.com/api/v3/";
+        //private const string EligServiceBaseURL = "http://clayton2.services.apexedi-eng.com/api/v3/";
+        //private const string ServiceBaseURL = "http://clayton2.services.apexedi-eng.com/api/v3/";
+        private const string EligServiceBaseURL = "http://localhost:58693/api/v3/";
         //private const string ServiceBaseURL = "https://kamika.OneTouchWebService/api/v3/";
-        //private const string ServiceBaseURL = "http://localhost:58693/api/v3/";
+        private const string ServiceBaseURL = "http://localhost:58693/api/v3/";
         //private const string ServiceBaseURL = "http://localhost:49923/api/v3/";
         //private const string ServiceBaseURL = "http://localhost:49923/";
         //private const string ServiceBaseURL = "http://localhost:52846/api/v3/";
@@ -50,10 +53,16 @@ namespace SampleAppV3_2
         //private static string creds = "NIT3EY1EWKKYXHBPHRWGPE4M" + ":" + "4YMYMLRODAIFIZ0LGC0NHHKZ"; // winbuilt
         //private static string creds = "LIJ5H0DMTRAAWP2COS4MBB3N" + ":" + "20HE5TPVIMFF4OPP33JH12BS"; // BP8
         //private static string creds = "FG2IWZRXZYBFRMNUFCZ3MNVH" + ":" + "MTJD1RWTJ1141XKBNGPDSGGO"; // TOL
-        private static string creds = "JMZXBLL1KU0QRU0BKYWWBEUS" + ":" + "S4FAG3FGXPI5LFAQZJ3M3OBP";
+        //private static string creds = "QGO4TRR1NGZOOSFBW14WML1W" + ":" + "K5JG0GF4JE1WLYGXHCZC1POT";
+        private static string creds = "QGO4TRR1NGZOOSFBW14WML1W" + ":" + "GFL2K0I3GODAQRHBG20DOQ2H"; //SoftAge_1329
+        private static string eligCreds = "QGO4TRR1NGZOOSFBW14WML1W" + ":" + "K5JG0GF4JE1WLYGXHCZC1POT";
         //private static string creds = "440N2VBHIXB1JB0YWPY40XDF" + ":" + "KQMZYOA334X2WFY4X4ATDBJ1"; // ABO
+        //private static string creds = "QGO4TRR1NGZOOSFBW14WML1W" + ":" + "K5JG0GF4JE1WLYGXHCZC1POT"; // A4B
 
-        private static string vendorSiteId = "D2P";
+        //private static string vendorSiteId = "SoftAge_1329";
+        private static string vendorSiteId = "A4B";
+
+        private static string eligVendorSiteId = "A4B";
         //private static string vendorSiteId = "ZZZ";
         //private static string vendorSiteId = "JOD_1329";
         //private static string vendorSiteId = "A9J";
@@ -79,6 +88,7 @@ namespace SampleAppV3_2
         //private static string jsonStringFile = @"D:\ClientFiles\Luminello\SecondaryClaims-Y.A9J";
 		//private static string jsonStringFile = @"D:\ClientFiles\ODLink\M20191023002.MAL";
 		private static string jsonStringFile = @"C:\ClientFiles\Input2.txt";
+        private static string jsonEligStringFile = @"C:\Source\CSGit1\claimstaker\Apex1\WebSite\ApexDevelopers\v3\SingleSubscriberSingleServiceType-Test.json";
 
 
         static void Main(string[] args)
@@ -86,12 +96,15 @@ namespace SampleAppV3_2
             //UseOneTouchSSOApi();
             //Console.WriteLine("About to call GetPayers");
             GetPayers("medical");
+            //GetEligibilityPayers("medical");
+            //GetTestPayers("medical");
             //GetPayers("dental");
             SubmitClaims();
+            SubmitEligibilityRequests();
             //GetClaimStatusByDate(new DateTime(2018,04,01), DateTime.Today);
             //Thread.Sleep(60000);
             //GetPayerResponseDocuments(DateTime.Today.AddDays(-21), DateTime.Now);
-            GetPayerResponseDocuments(new DateTime(2022, 2, 22), new DateTime(2022, 2, 25));
+            //GetPayerResponseDocuments(new DateTime(2022, 2, 22), new DateTime(2022, 2, 25));
             //GetPayerResponseDocuments(new DateTime(2018, 04, 01), DateTime.Now);
             // GetClaimStatusByDate(new DateTime(2018, 4, 3), DateTime.Today);
             // GetPayerResponseDocuments(new DateTime(2017, 3, 4), DateTime.Today);
@@ -102,13 +115,18 @@ namespace SampleAppV3_2
 
         private class ApexClient : HttpClient
         {
-            public ApexClient()
+	        private string Creds { get; set; }
+            private string Url { get; set; }
+
+            public ApexClient(string vendorCreds = null, string vendorServiceUrl = null)
             {
+	            Creds = vendorCreds ?? creds;
+	            Url = vendorServiceUrl ?? ServiceBaseURL;
                 //Console.WriteLine(ServicePointManager.SecurityProtocol.ToString());
                 //ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-                var bcreds = Encoding.ASCII.GetBytes(creds);
+                var bcreds = Encoding.ASCII.GetBytes(Creds);
                 var base64Creds = Convert.ToBase64String(bcreds);
-                BaseAddress = new Uri(ServiceBaseURL);
+                BaseAddress = new Uri(Url);
                 DefaultRequestHeaders.Add("Authorization", "Basic " + base64Creds);
                 DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 				Timeout = System.Threading.Timeout.InfiniteTimeSpan;
@@ -125,7 +143,7 @@ namespace SampleAppV3_2
 
                     var instanceId = _instancedGuid.ToString("B");
                     _response = client.PostAsync(
-                        $"proxylogin/create_instance_token?vendorSiteId={vendorSiteId}&instanceId={instanceId}&instanceName={_instanceName}", null).Result;
+                        $"proxylogin/create_instance_token?vendorSiteId={eligVendorSiteId}&instanceId={instanceId}&instanceName={_instanceName}", null).Result;
 
                     var stringResult = GetContentAsJsonString(MethodBase.GetCurrentMethod().Name);
 
@@ -170,30 +188,86 @@ namespace SampleAppV3_2
 
         static void GetPayers(string payerType)
         {
-            try
-            {
-                var urlString = string.Format("payers/get_list?vendorSiteId={0}&type={1}", vendorSiteId, payerType);
-                Console.WriteLine($"{urlString}");
-                //Console.ReadLine();
-                using (ApexClient client = new ApexClient())
-                {
-                    _response = client
-                        //.PostAsync(string.Format("payers/get_list?vendorSiteId={0}&type={1}", vendorSiteId, payerType), null).Result;
-                        .PostAsync(urlString, null).Result;
-                }
+	        try
+	        {
+		        var urlString = string.Format("payers/get_list?vendorSiteId={0}&type={1}", eligVendorSiteId, payerType);
+		        Console.WriteLine($"{urlString}");
+		        //Console.ReadLine();
+		        using (ApexClient client = new ApexClient())
+		        {
+			        _response = client
+				        //.PostAsync(string.Format("payers/get_list?vendorSiteId={0}&type={1}", vendorSiteId, payerType), null).Result;
+				        .PostAsync(urlString, null).Result;
+		        }
 
-                var stringResult = GetContentAsJsonString(MethodBase.GetCurrentMethod().Name);
-                Console.WriteLine(stringResult);
-                if (_response.StatusCode == HttpStatusCode.OK)
-                {
-                    List<Payer> payerList = JsonConvert.DeserializeObject<List<Payer>>(stringResult);
-                }
+		        var stringResult = GetContentAsJsonString(MethodBase.GetCurrentMethod().Name);
+		        Console.WriteLine(stringResult);
+		        if (_response.StatusCode == HttpStatusCode.OK)
+		        {
+			        List<Payer> payerList = JsonConvert.DeserializeObject<List<Payer>>(stringResult).Where(payer => payer.OffersEligibility).ToList<Payer>();
+		        }
 
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
+	        }
+	        catch (Exception e)
+	        {
+		        Console.WriteLine(e);
+	        }
+        }
+
+        static void GetEligibilityPayers(string payerType)
+        {
+	        try
+	        {
+		        var urlString = string.Format("payers/get_list_of_eligibility?vendorSiteId={0}&type={1}", eligVendorSiteId, payerType);
+		        Console.WriteLine($"{urlString}");
+		        //Console.ReadLine();
+		        using (ApexClient client = new ApexClient(eligCreds, EligServiceBaseURL))
+		        {
+			        _response = client
+				        //.PostAsync(string.Format("payers/get_list?vendorSiteId={0}&type={1}", vendorSiteId, payerType), null).Result;
+				        .PostAsync(urlString, null).Result;
+		        }
+
+		        var stringResult = GetContentAsJsonString(MethodBase.GetCurrentMethod().Name);
+		        Console.WriteLine(stringResult);
+		        if (_response.StatusCode == HttpStatusCode.OK)
+		        {
+			        List<Payer> payerList = JsonConvert.DeserializeObject<List<Payer>>(stringResult).Where(payer => payer.OffersEligibility).ToList<Payer>();
+		        }
+
+	        }
+	        catch (Exception e)
+	        {
+		        Console.WriteLine(e);
+	        }
+        }
+
+        static void GetTestPayers(string payerType)
+        {
+	        try
+	        {
+		        var urlString = string.Format("payers/get_list_of_test?vendorSiteId={0}&type={1}", eligVendorSiteId, payerType);
+		        Console.WriteLine($"{urlString}");
+		        //Console.ReadLine();
+		        using (ApexClient client = new ApexClient(eligCreds, EligServiceBaseURL))
+		        {
+			        _response = client
+				        //.PostAsync(string.Format("payers/get_list?vendorSiteId={0}&type={1}", vendorSiteId, payerType), null).Result;
+				        .PostAsync(urlString, null).Result;
+		        }
+
+		        var stringResult = GetContentAsJsonString(MethodBase.GetCurrentMethod().Name);
+		        Console.WriteLine(stringResult);
+		        if (_response.StatusCode == HttpStatusCode.OK)
+		        {
+			        List<Payer> payerList = JsonConvert.DeserializeObject<List<Payer>>(stringResult).Where(payer => payer.OffersEligibility).ToList<Payer>();
+		        }
+
+	        }
+	        catch (Exception e)
+	        {
+		        Console.WriteLine(e);
+	        }
         }
 
 
@@ -277,6 +351,96 @@ namespace SampleAppV3_2
             {
                 Console.WriteLine(e);
             }
+        }
+
+        static void SubmitEligibilityRequests()
+        {
+	        try
+	        {
+		        using (ApexClient client = new ApexClient(eligCreds, EligServiceBaseURL))
+		        {
+			        StringContent httpStringContent = null;
+			        //var testFiles = Directory.GetFiles(@"C:\Source\CSGit1\claimstaker\Apex1\WebSite\ApexDevelopers\v3_eligibility\All\");
+                    List<long> requestIdList = new List<long>();
+
+                    //foreach (var testFile in testFiles)
+                    {
+	                    //jsonEligStringFile = testFile;
+		                    //$@"C:\Source\CSGit1\claimstaker\Apex1\WebSite\ApexDevelopers\v3_eligibility\{testFile}";
+
+	                    if (File.Exists(jsonEligStringFile))
+	                    {
+		                    // JsonSerialize is a helper method that is called to convert the claim form 
+		                    // structure into a serialized JSON string
+
+		                    var jsonString = File.ReadAllText(jsonEligStringFile);
+		                    httpStringContent = JsonSerializeFromJsonString(jsonString);
+		                
+		                    _response = client.PostAsync($"eligibility/submit?vendorSiteId={eligVendorSiteId}", httpStringContent)
+			                    .Result;
+		                    
+		                    var stringResult = GetContentAsJsonString(MethodBase.GetCurrentMethod().Name);
+		                    JObject jObject = JObject.Parse(stringResult);
+		                    long requestId = 0L;
+
+		                    if (_response.StatusCode == HttpStatusCode.OK)
+		                    {
+			                    requestId = (long)(jObject["RequestId"] ?? 0);
+			                    var responses = JsonConvert.DeserializeObject(stringResult);
+			                    Console.WriteLine($"Results for Submit Request ID:{requestId}\r\n\r\n{stringResult}\r\n\r\n");
+			                    requestIdList.Add(requestId);
+		                    }
+		                    else
+		                    {
+			                    Console.WriteLine($"Error Results for submission: {stringResult}");
+		                    }
+	                    }
+
+                    }
+
+                    GetEligibilityRequests(requestIdList);
+
+                }
+            }
+	        catch (Exception ex)
+	        {
+		        Console.WriteLine(ex);
+		        throw;
+	        }
+        }
+
+        static void GetEligibilityRequests(List<long> requestIds)
+        {
+	        try
+	        {
+		        using (ApexClient client = new ApexClient(eligCreds, EligServiceBaseURL))
+		        {
+                    Dictionary<long, string> responseDict = new Dictionary<long, string>();
+                    requestIds.ForEach(l =>
+                    {
+	                    _response = client.PostAsync(
+		                    $"eligibility/get_responses?vendorSiteId={eligVendorSiteId}&requestId={l}", null).Result;
+
+	                    var stringResult = GetContentAsJsonString(MethodBase.GetCurrentMethod().Name);
+	                    responseDict[l] = stringResult;
+	                    Console.WriteLine($"Results for Response Request for Request ID{l}\r\n\r\n{stringResult}\r\n\r\n");
+
+	                    if (_response.StatusCode == HttpStatusCode.OK)
+	                    {
+		                    var responses = JsonConvert.DeserializeObject(stringResult);
+	                    }
+
+                    });
+
+
+		        }
+
+            }
+            catch (Exception ex)
+	        {
+		        Console.WriteLine(ex);
+		        throw;
+	        }
         }
 
         static void SubmitClaims()

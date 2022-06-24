@@ -107,6 +107,17 @@ namespace ApexWebServiceToolV2
 	            }
             }
             dataGridViewServiceTypes.Update();
+
+            foreach (WsRelationship rel in Enum.GetValues(typeof(WsRelationship)))
+            {
+	            if (rel != WsRelationship.Invalid)
+	            {
+		            comboBoxRelationship.Items.Add(rel.ToString());
+	            }
+            }
+
+            var selIdx = comboBoxRelationship.Items.IndexOf("Child");
+            comboBoxRelationship.SelectedIndex = selIdx;
         }
 
         private void saveSettings()
@@ -197,6 +208,7 @@ namespace ApexWebServiceToolV2
                 WsEligibilityRequestDependent dependent = null;
                 if (checkBoxUseDependent.Checked)
                 {
+	                Enum.TryParse(comboBoxRelationship.Text, out WsRelationship relationship);
                     dependent = new WsEligibilityRequestDependent()
                     {
                         FirstName = textBoxDependentFirst.Text,
@@ -204,7 +216,8 @@ namespace ApexWebServiceToolV2
                         BirthDate = dateTimePickerDependentDOB.Value,
                         Gender = radioButtonDepMale.Checked ? WsGender.Male : WsGender.Female,
                         MemberId = "",
-                        RequestedBenefits = benefits.ToArray(),
+                        RequestedBenefits = benefits.ToArray<WsBenefit>(),
+                        RelationshipToSubscriber = relationship,
                         PayeeTraceNumber =
                             (string.IsNullOrWhiteSpace(textBoxTraceNumber.Text) && string.IsNullOrWhiteSpace(textBoxOriginatingCompanyId.Text)) ? null
                             : new WsTraceNumber() { Number = textBoxTraceNumber.Text, OriginatorId = textBoxOriginatingCompanyId.Text },
@@ -218,8 +231,8 @@ namespace ApexWebServiceToolV2
                     BirthDate = (DateTime?)dateTimePickerSubscriberDOB.Value,
                     Gender = radioButtonSubMale.Checked ? WsGender.Male : WsGender.Female,
                     MemberId = textBoxSubscriberID.Text,
-                    Dependents = (dependent == null) ? null : new WsEligibilityRequestDependent[] { dependent },
-                    RequestedBenefits = benefits.ToArray(),
+                    Dependents = (dependent == null) ? null : new WsEligibilityRequestDependent[] { dependent, dependent, dependent },
+                    RequestedBenefits = dependent == null ? benefits.ToArray() : null,
                     PayeeTraceNumber =
                         (string.IsNullOrWhiteSpace(textBoxTraceNumber.Text) || string.IsNullOrWhiteSpace(textBoxOriginatingCompanyId.Text)) ? null
                         : new WsTraceNumber() { Number = textBoxTraceNumber.Text, OriginatorId = textBoxOriginatingCompanyId.Text },

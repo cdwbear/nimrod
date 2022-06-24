@@ -33,6 +33,8 @@
 			this.tableLayoutPanelBase = new System.Windows.Forms.TableLayoutPanel();
 			this.tableLayoutPanelAPIs = new System.Windows.Forms.TableLayoutPanel();
 			this.groupBoxApi = new System.Windows.Forms.GroupBox();
+			this.textBoxClaimIdFilter = new System.Windows.Forms.TextBox();
+			this.checkBoxClaimIdFilter = new System.Windows.Forms.CheckBox();
 			this.checkBoxViewJsonForV3 = new System.Windows.Forms.CheckBox();
 			this.groupBoxApiSelector = new System.Windows.Forms.GroupBox();
 			this.radioButtonV3 = new System.Windows.Forms.RadioButton();
@@ -73,8 +75,6 @@
 			this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.changeCredentialsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.exportResultsToCSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.checkBoxClaimIdFilter = new System.Windows.Forms.CheckBox();
-			this.textBoxClaimIdFilter = new System.Windows.Forms.TextBox();
 			this.tableLayoutPanelBase.SuspendLayout();
 			this.tableLayoutPanelAPIs.SuspendLayout();
 			this.groupBoxApi.SuspendLayout();
@@ -123,7 +123,7 @@
 			this.tableLayoutPanelAPIs.Name = "tableLayoutPanelAPIs";
 			this.tableLayoutPanelAPIs.RowCount = 1;
 			this.tableLayoutPanelAPIs.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayoutPanelAPIs.Size = new System.Drawing.Size(1050, 217);
+			this.tableLayoutPanelAPIs.Size = new System.Drawing.Size(1050, 218);
 			this.tableLayoutPanelAPIs.TabIndex = 2;
 			// 
 			// groupBoxApi
@@ -149,10 +149,28 @@
 			this.groupBoxApi.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.groupBoxApi.Location = new System.Drawing.Point(3, 3);
 			this.groupBoxApi.Name = "groupBoxApi";
-			this.groupBoxApi.Size = new System.Drawing.Size(510, 211);
+			this.groupBoxApi.Size = new System.Drawing.Size(510, 212);
 			this.groupBoxApi.TabIndex = 0;
 			this.groupBoxApi.TabStop = false;
 			this.groupBoxApi.Text = "API";
+			// 
+			// textBoxClaimIdFilter
+			// 
+			this.textBoxClaimIdFilter.Location = new System.Drawing.Point(124, 184);
+			this.textBoxClaimIdFilter.Name = "textBoxClaimIdFilter";
+			this.textBoxClaimIdFilter.Size = new System.Drawing.Size(261, 20);
+			this.textBoxClaimIdFilter.TabIndex = 15;
+			// 
+			// checkBoxClaimIdFilter
+			// 
+			this.checkBoxClaimIdFilter.AutoSize = true;
+			this.checkBoxClaimIdFilter.Enabled = false;
+			this.checkBoxClaimIdFilter.Location = new System.Drawing.Point(6, 187);
+			this.checkBoxClaimIdFilter.Name = "checkBoxClaimIdFilter";
+			this.checkBoxClaimIdFilter.Size = new System.Drawing.Size(116, 17);
+			this.checkBoxClaimIdFilter.TabIndex = 14;
+			this.checkBoxClaimIdFilter.Text = "Filter By Claim ID(s)";
+			this.checkBoxClaimIdFilter.UseVisualStyleBackColor = true;
 			// 
 			// checkBoxViewJsonForV3
 			// 
@@ -316,6 +334,7 @@
 			this.buttonGetTestPayers.TabIndex = 0;
 			this.buttonGetTestPayers.Text = "GetTestPayers";
 			this.buttonGetTestPayers.UseVisualStyleBackColor = true;
+			this.buttonGetTestPayers.Click += new System.EventHandler(this.buttonGetTestPayers_Click);
 			// 
 			// listBoxClaimFiles
 			// 
@@ -392,7 +411,7 @@
 			this.groupBoxSettings.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.groupBoxSettings.Location = new System.Drawing.Point(519, 3);
 			this.groupBoxSettings.Name = "groupBoxSettings";
-			this.groupBoxSettings.Size = new System.Drawing.Size(528, 211);
+			this.groupBoxSettings.Size = new System.Drawing.Size(528, 212);
 			this.groupBoxSettings.TabIndex = 1;
 			this.groupBoxSettings.TabStop = false;
 			this.groupBoxSettings.Text = "Settings";
@@ -422,7 +441,7 @@
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(522, 192);
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(522, 193);
 			this.tableLayoutPanel1.TabIndex = 10;
 			// 
 			// labelKey
@@ -527,10 +546,10 @@
 			// resultsControlMain
 			// 
 			this.resultsControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.resultsControlMain.Location = new System.Drawing.Point(3, 226);
+			this.resultsControlMain.Location = new System.Drawing.Point(3, 227);
 			this.resultsControlMain.Name = "resultsControlMain";
 			this.resultsControlMain.ResultsLabel = "Results";
-			this.resultsControlMain.Size = new System.Drawing.Size(1050, 548);
+			this.resultsControlMain.Size = new System.Drawing.Size(1050, 547);
 			this.resultsControlMain.TabIndex = 3;
 			// 
 			// openFileDialog1
@@ -569,24 +588,6 @@
 			this.exportResultsToCSVToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
 			this.exportResultsToCSVToolStripMenuItem.Text = "&Export Results to CSV";
 			this.exportResultsToCSVToolStripMenuItem.Click += new System.EventHandler(this.exportResultsToCSVToolStripMenuItem_Click);
-			// 
-			// checkBoxClaimIdFilter
-			// 
-			this.checkBoxClaimIdFilter.AutoSize = true;
-			this.checkBoxClaimIdFilter.Enabled = false;
-			this.checkBoxClaimIdFilter.Location = new System.Drawing.Point(6, 187);
-			this.checkBoxClaimIdFilter.Name = "checkBoxClaimIdFilter";
-			this.checkBoxClaimIdFilter.Size = new System.Drawing.Size(116, 17);
-			this.checkBoxClaimIdFilter.TabIndex = 14;
-			this.checkBoxClaimIdFilter.Text = "Filter By Claim ID(s)";
-			this.checkBoxClaimIdFilter.UseVisualStyleBackColor = true;
-			// 
-			// textBoxClaimIdFilter
-			// 
-			this.textBoxClaimIdFilter.Location = new System.Drawing.Point(124, 184);
-			this.textBoxClaimIdFilter.Name = "textBoxClaimIdFilter";
-			this.textBoxClaimIdFilter.Size = new System.Drawing.Size(261, 20);
-			this.textBoxClaimIdFilter.TabIndex = 15;
 			// 
 			// MainForm
 			// 

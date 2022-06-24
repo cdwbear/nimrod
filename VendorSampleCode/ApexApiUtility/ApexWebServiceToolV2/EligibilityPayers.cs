@@ -137,9 +137,10 @@ namespace ApexWebServiceToolV2
 
         public bool IsTestPayer(Payer payer)
         {
-            return payer != null && string.IsNullOrWhiteSpace(payer.ApexPayerId) && ((_testDentalPayers.Any(x => x.ApexPayerId == payer.ApexPayerId) ||
-                    _testMedicalPayers.Any(x => x.ApexPayerId == payer.ApexPayerId) ||
-                    _testMedicaidPayers.Any(x => x.ApexPayerId == payer.ApexPayerId)));
+            return payer != null && !string.IsNullOrWhiteSpace(payer.ApexPayerId) && 
+                   ((_testDentalPayers != null && _testDentalPayers.Any(x => x.ApexPayerId == payer.ApexPayerId) ||
+                    _testMedicalPayers != null && _testMedicalPayers.Any(x => x.ApexPayerId == payer.ApexPayerId) ||
+                    _testMedicaidPayers != null && _testMedicalPayers.Any(x => x.ApexPayerId == payer.ApexPayerId)));
         }
 
         private void EligibilityPayers_FormClosing(object sender, FormClosingEventArgs e)

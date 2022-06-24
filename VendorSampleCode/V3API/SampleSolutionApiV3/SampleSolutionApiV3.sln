@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32106.194
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleAppApiV3", "SampleAppV3\SampleAppApiV3.csproj", "{C924AA9E-EECA-4FE0-AF78-56BCC598DC00}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp1", "WindowsFormsApp1\WindowsFormsApp1.csproj", "{4C8C9F4B-7701-422F-8320-53EBA019A7FC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebDocSample", "WebDocSample\WebDocSample.csproj", "{2ACD09E3-3027-4768-90B8-9CC183F27822}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleEligibility", "SimpleEligibility\SimpleEligibility.csproj", "{6CE622A3-EC29-49BE-8A30-0C393AAE96CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{2ACD09E3-3027-4768-90B8-9CC183F27822}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2ACD09E3-3027-4768-90B8-9CC183F27822}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2ACD09E3-3027-4768-90B8-9CC183F27822}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CE622A3-EC29-49BE-8A30-0C393AAE96CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CE622A3-EC29-49BE-8A30-0C393AAE96CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CE622A3-EC29-49BE-8A30-0C393AAE96CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CE622A3-EC29-49BE-8A30-0C393AAE96CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
