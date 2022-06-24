@@ -41,7 +41,6 @@
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.labelTime2 = new System.Windows.Forms.Label();
-			this.labelTimer1 = new System.Windows.Forms.Label();
 			this.radioButtonTimer2 = new System.Windows.Forms.RadioButton();
 			this.radioButtonTimer = new System.Windows.Forms.RadioButton();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -66,6 +65,7 @@
 			// 
 			// button1
 			// 
+            this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.button1.Location = new System.Drawing.Point(560, 59);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(75, 23);
@@ -113,8 +113,6 @@
 			this.comboBox1.Size = new System.Drawing.Size(208, 21);
 			this.comboBox1.TabIndex = 5;
 			// 
-			// groupBox1
-			// 
 			this.groupBox1.Controls.Add(this.labelTime2);
 			this.groupBox1.Controls.Add(this.labelTimer1);
 			this.groupBox1.Controls.Add(this.radioButtonTimer2);
@@ -138,8 +136,6 @@
 			// labelTimer1
 			// 
 			this.labelTimer1.AutoSize = true;
-			this.labelTimer1.Location = new System.Drawing.Point(156, 41);
-			this.labelTimer1.Name = "labelTimer1";
 			this.labelTimer1.Size = new System.Drawing.Size(66, 13);
 			this.labelTimer1.TabIndex = 1;
 			this.labelTimer1.Text = "Timer Text 1";
@@ -160,9 +156,6 @@
 			this.radioButtonTimer.AutoSize = true;
 			this.radioButtonTimer.Checked = true;
 			this.radioButtonTimer.Location = new System.Drawing.Point(30, 39);
-			this.radioButtonTimer.Name = "radioButtonTimer";
-			this.radioButtonTimer.Size = new System.Drawing.Size(60, 17);
-			this.radioButtonTimer.TabIndex = 0;
 			this.radioButtonTimer.TabStop = true;
 			this.radioButtonTimer.Text = "Timer 1";
 			this.radioButtonTimer.UseVisualStyleBackColor = true;
@@ -246,7 +239,6 @@
 			// 
 			// Form1
 			// 
-			this.AcceptButton = this.buttonOk;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.buttonCancel;
@@ -255,7 +247,6 @@
 			this.Controls.Add(this.buttonCancel);
 			this.Controls.Add(this.buttonOk);
 			this.Controls.Add(this.dataGridView1);
-			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.comboBox1);
 			this.Controls.Add(this.dateTimePicker1);
 			this.Controls.Add(this.button2);
@@ -263,6 +254,7 @@
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.label1);
 			this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Form1";
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
@@ -285,7 +277,6 @@
 		private System.Windows.Forms.Label labelTime2;
 		private System.Windows.Forms.Label labelTimer1;
 		private System.Windows.Forms.RadioButton radioButtonTimer2;
-		private System.Windows.Forms.RadioButton radioButtonTimer;
 		private System.Windows.Forms.Timer timer1;
 		private System.Windows.Forms.DataGridView dataGridView1;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
