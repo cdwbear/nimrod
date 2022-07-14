@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace SimpleEligibility
@@ -12,7 +13,7 @@ namespace SimpleEligibility
 	class Program
 	{
 		private static HttpResponseMessage _response;
-		private static string _creds = "QGO4TRR1NGZOOSFBW14WML1W" + ":" + "GFL2K0I3GODAQRHBG20DOQ2H";
+		private static string _creds = "QGO4TRR1NGZOOSFBW14WML1W" + ":" + "0JSTCNDO5NYBXKWCRTDBSWEL";
 		private static string _vendorSiteId = "A4B";
 		// private static string jsonEligTextFile = @"C:\TestFiles\EligTest01.json";
 		private static string jsonEligTextFile = @"C:\Source\CSGit1\claimstaker\Apex1\WebSite\ApexDevelopers\v3\new 10.json";
@@ -81,8 +82,8 @@ namespace SimpleEligibility
 								}}],
 								""CommonName"": ""LastName"",
 								""FirstName"": ""Benjamin"",
-								""BirthDate"": ""1981-08-21"",
-								""Gender"": ""Male"",
+								""BirthDate"": ""2003-03-04"",
+								""Gender"": ""Maale"",
 								""MemberId"": ""{memberId}"",
 								""PayeeTraceNumber"": {{
 									""Number"": ""SingleSubServiceSingle-01"",
@@ -92,9 +93,10 @@ namespace SimpleEligibility
 							""Type"": ""Facility""
 						}}],
 						""PayerId"": ""APX15944"",
-						""Type"": ""Payer""
-					}}]
-				}}],
+						""Type"": ""Payeer""
+					}}],
+					""RequestType"": ""Request124""
+				}}],			
 				""IsTest"": true
 			}}
 			";
@@ -114,7 +116,10 @@ namespace SimpleEligibility
 				string resultString = string.Empty;
 				if (_response != null && _response.Content != null)
 				{
+					// _response.RequestMessage;
 					resultString = _response.Content.ReadAsStringAsync().Result;
+					JToken jt = JToken.Parse(resultString);
+					resultString = jt.ToString(Formatting.Indented);
 				}
 
 				try

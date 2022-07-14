@@ -25,12 +25,12 @@ namespace SampleAppV3_2
         //private const string ServiceBaseURL = "http://localhost:49923/api/v3/";
         //private const string ServiceBaseURL = "http://10.45.120.59:58693/api/v3/";
         //private const string ServiceBaseURL = "https://EC2AMAZ-G004EIP/api/v3/";
-        //private const string ServiceBaseURL = "http://clayton2.services.apexedi-eng.com/api/v3/";
+        private const string ServiceBaseURL = "http://clayton2.services.apexedi-eng.com/api/v3/";
         //private const string EligServiceBaseURL = "http://clayton2.services.apexedi-eng.com/api/v3/";
         //private const string ServiceBaseURL = "http://clayton2.services.apexedi-eng.com/api/v3/";
         private const string EligServiceBaseURL = "http://localhost:58693/api/v3/";
         //private const string ServiceBaseURL = "https://kamika.OneTouchWebService/api/v3/";
-        private const string ServiceBaseURL = "http://localhost:58693/api/v3/";
+        //private const string ServiceBaseURL = "http://localhost:58693/api/v3/";
         //private const string ServiceBaseURL = "http://localhost:49923/api/v3/";
         //private const string ServiceBaseURL = "http://localhost:49923/";
         //private const string ServiceBaseURL = "http://localhost:52846/api/v3/";
@@ -54,13 +54,14 @@ namespace SampleAppV3_2
         //private static string creds = "LIJ5H0DMTRAAWP2COS4MBB3N" + ":" + "20HE5TPVIMFF4OPP33JH12BS"; // BP8
         //private static string creds = "FG2IWZRXZYBFRMNUFCZ3MNVH" + ":" + "MTJD1RWTJ1141XKBNGPDSGGO"; // TOL
         //private static string creds = "QGO4TRR1NGZOOSFBW14WML1W" + ":" + "K5JG0GF4JE1WLYGXHCZC1POT";
-        private static string creds = "QGO4TRR1NGZOOSFBW14WML1W" + ":" + "GFL2K0I3GODAQRHBG20DOQ2H"; //SoftAge_1329
+        private static string creds = "QGO4TRR1NGZOOSFBW14WML1W" + ":" + "QDJU0N5NGXAWN5L2IAYVQTX5"; // Luminello
+        //private static string creds = "QGO4TRR1NGZOOSFBW14WML1W" + ":" + "GFL2K0I3GODAQRHBG20DOQ2H"; //SoftAge_1329
         private static string eligCreds = "QGO4TRR1NGZOOSFBW14WML1W" + ":" + "K5JG0GF4JE1WLYGXHCZC1POT";
         //private static string creds = "440N2VBHIXB1JB0YWPY40XDF" + ":" + "KQMZYOA334X2WFY4X4ATDBJ1"; // ABO
         //private static string creds = "QGO4TRR1NGZOOSFBW14WML1W" + ":" + "K5JG0GF4JE1WLYGXHCZC1POT"; // A4B
 
         //private static string vendorSiteId = "SoftAge_1329";
-        private static string vendorSiteId = "A4B";
+        private static string vendorSiteId = "C6W"; // "AUJ";
 
         private static string eligVendorSiteId = "A4B";
         //private static string vendorSiteId = "ZZZ";
@@ -99,11 +100,13 @@ namespace SampleAppV3_2
             //GetEligibilityPayers("medical");
             //GetTestPayers("medical");
             //GetPayers("dental");
-            SubmitClaims();
-            SubmitEligibilityRequests();
+            //SubmitClaims();
+            //SubmitEligibilityRequests();
             //GetClaimStatusByDate(new DateTime(2018,04,01), DateTime.Today);
             //Thread.Sleep(60000);
-            //GetPayerResponseDocuments(DateTime.Today.AddDays(-21), DateTime.Now);
+            // GetPayResponseDocumentsWithIds(new List<string> { "AFTTWJM4KQNTI7OOIHZ5TDVBXH5UAENN76K7LUNJBKY6SL2FTS4SQ5", });
+            GetPayResponseDocumentsWithIds(new List<string> { "AFHNJ7LVQWIW7MEYZW4AHYXXZAXJLCDP3B4RGHESAMLWCROYK7RXO5", });
+//            GetPayerResponseDocuments(DateTime.Today.AddDays(-21), DateTime.Now);
             //GetPayerResponseDocuments(new DateTime(2022, 2, 22), new DateTime(2022, 2, 25));
             //GetPayerResponseDocuments(new DateTime(2018, 04, 01), DateTime.Now);
             // GetClaimStatusByDate(new DateTime(2018, 4, 3), DateTime.Today);
@@ -297,6 +300,30 @@ namespace SampleAppV3_2
             {
                 Console.WriteLine(e);
             }
+        }
+
+        static void GetPayResponseDocumentsWithIds(List<string> docIds)
+		{
+			using (ApexClient client = new ApexClient())
+			{
+				StringBuilder docSb = new StringBuilder();
+				docSb.Append("[");
+				docIds.ForEach(s => { docSb.Append($"\"{s}\","); });
+				docSb = docSb.Replace(',', ']', docSb.Length - 1, 1);
+				var httpContentString = JsonSerialize(docIds);
+
+				_response = client
+					.PostAsync(
+						string.Format("claims/responses/get_by_doc_id?vendorSiteId={0}", vendorSiteId),
+						httpContentString).Result;
+
+				var stringResult = GetContentAsJsonString(MethodBase.GetCurrentMethod().Name);
+				if (_response.StatusCode == HttpStatusCode.OK)
+				{
+					var responses =
+						JsonConvert.DeserializeObject<WsPayerResponseDocuments>(stringResult);
+				}
+			}
         }
 
         static void GetPayerResponseDocuments(DateTime startDate, DateTime endDate)

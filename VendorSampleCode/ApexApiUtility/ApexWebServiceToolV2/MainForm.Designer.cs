@@ -105,9 +105,8 @@
 			this.tableLayoutPanelBase.Location = new System.Drawing.Point(0, 24);
 			this.tableLayoutPanelBase.Name = "tableLayoutPanelBase";
 			this.tableLayoutPanelBase.RowCount = 2;
-			this.tableLayoutPanelBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 28.82883F));
-			this.tableLayoutPanelBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 71.17117F));
-			this.tableLayoutPanelBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+			this.tableLayoutPanelBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 225F));
+			this.tableLayoutPanelBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.tableLayoutPanelBase.Size = new System.Drawing.Size(1056, 777);
 			this.tableLayoutPanelBase.TabIndex = 2;
 			// 
@@ -123,7 +122,7 @@
 			this.tableLayoutPanelAPIs.Name = "tableLayoutPanelAPIs";
 			this.tableLayoutPanelAPIs.RowCount = 1;
 			this.tableLayoutPanelAPIs.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayoutPanelAPIs.Size = new System.Drawing.Size(1050, 218);
+			this.tableLayoutPanelAPIs.Size = new System.Drawing.Size(1050, 219);
 			this.tableLayoutPanelAPIs.TabIndex = 2;
 			// 
 			// groupBoxApi
@@ -149,7 +148,7 @@
 			this.groupBoxApi.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.groupBoxApi.Location = new System.Drawing.Point(3, 3);
 			this.groupBoxApi.Name = "groupBoxApi";
-			this.groupBoxApi.Size = new System.Drawing.Size(510, 212);
+			this.groupBoxApi.Size = new System.Drawing.Size(510, 213);
 			this.groupBoxApi.TabIndex = 0;
 			this.groupBoxApi.TabStop = false;
 			this.groupBoxApi.Text = "API";
@@ -222,6 +221,7 @@
 			this.radioButtonV15.Tag = "V1.5";
 			this.radioButtonV15.Text = "V 1.5 (SOAP)";
 			this.radioButtonV15.UseVisualStyleBackColor = true;
+			this.radioButtonV15.CheckedChanged += new System.EventHandler(this.RadioButtonApiVersion_CheckedChanged);
 			// 
 			// checkBoxSerializeStatusToFile
 			// 
@@ -411,7 +411,7 @@
 			this.groupBoxSettings.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.groupBoxSettings.Location = new System.Drawing.Point(519, 3);
 			this.groupBoxSettings.Name = "groupBoxSettings";
-			this.groupBoxSettings.Size = new System.Drawing.Size(528, 212);
+			this.groupBoxSettings.Size = new System.Drawing.Size(528, 213);
 			this.groupBoxSettings.TabIndex = 1;
 			this.groupBoxSettings.TabStop = false;
 			this.groupBoxSettings.Text = "Settings";
@@ -441,7 +441,7 @@
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(522, 193);
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(522, 194);
 			this.tableLayoutPanel1.TabIndex = 10;
 			// 
 			// labelKey
@@ -546,10 +546,10 @@
 			// resultsControlMain
 			// 
 			this.resultsControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.resultsControlMain.Location = new System.Drawing.Point(3, 227);
+			this.resultsControlMain.Location = new System.Drawing.Point(3, 228);
 			this.resultsControlMain.Name = "resultsControlMain";
 			this.resultsControlMain.ResultsLabel = "Results";
-			this.resultsControlMain.Size = new System.Drawing.Size(1050, 547);
+			this.resultsControlMain.Size = new System.Drawing.Size(1050, 546);
 			this.resultsControlMain.TabIndex = 3;
 			// 
 			// openFileDialog1
